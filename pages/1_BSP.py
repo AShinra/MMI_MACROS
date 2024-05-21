@@ -12,10 +12,12 @@ if st.session_state['bsp_raw'] != None:
 
     if button_process:
 
-        REPORT_FILE = Path(__file__).parent/f'BSP_Temp/bsp.xlsx'
-        wb = openpyxl.Workbook(REPORT_FILE)
-        wb.save(REPORT_FILE)
-        wb.close()
+        st.write(Path(__file__).parent)
+
+        # REPORT_FILE = Path(__file__).parent/f'BSP_Temp/bsp.xlsx'
+        # wb = openpyxl.Workbook(REPORT_FILE)
+        # wb.save(REPORT_FILE)
+        # wb.close()
 
         wb = openpyxl.load_workbook(st.session_state['bsp_raw'])
         ws = wb.active
