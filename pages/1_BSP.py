@@ -27,6 +27,7 @@ if st.session_state['bsp_raw'] != None:
                 row[3]='AUTHOR'
                 row[4]='PRINT'
                 row[5]='ONLINE'
+                
             
             if row[2].hyperlink != None:
                 row[4].value=row[2].hyperlink
