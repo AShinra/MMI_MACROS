@@ -32,8 +32,9 @@ if st.session_state['bsp_raw'] != None:
                 
             
             if row[2].hyperlink != None:
-                row[4].value=row[2].hyperlink
-                row[4].hyperlink=row[4].value
+                st.write(row[2].hyperlink)
+                # row[4].value=row[2].hyperlink
+                # row[4].hyperlink=row[4].value
     
 
 
