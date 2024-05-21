@@ -24,12 +24,12 @@ if st.session_state['bsp_raw'] != None:
         ws = wb.active
 
         for row in ws.iter_rows(min_row=9, max_col=6):
-            if row[0]=='DATE':
-                row[1]='SOURCE'
-                row[2]='TITLE'
-                row[3]='AUTHOR'
-                row[4]='PRINT'
-                row[5]='ONLINE'
+            if row[0].value=='DATE':
+                row[1].value='SOURCE'
+                row[2].value='TITLE'
+                row[3].value='AUTHOR'
+                row[4].value='PRINT'
+                row[5].value='ONLINE'
                 
             
             if row[2].hyperlink != None:
@@ -37,8 +37,8 @@ if st.session_state['bsp_raw'] != None:
                 row[4].hyperlink=row[4].value
 
     
-    wb.save(REPORT_FILE)
-    wb.close()
+        wb.save(REPORT_FILE)
+        wb.close()
 
     result_file = open(REPORT_FILE, 'rb')
     st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
