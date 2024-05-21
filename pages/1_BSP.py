@@ -11,7 +11,7 @@ if st.session_state['bsp_raw'] != None:
     button_process = st.button('Process File')
 
     if button_process:
-        
+
         REPORT_FILE = Path(__file__).parent/f'BSP_Temp/bsp.xlsx'
         wb = openpyxl.Workbook(REPORT_FILE)
         wb.save(REPORT_FILE)
@@ -32,6 +32,7 @@ if st.session_state['bsp_raw'] != None:
             if row[2].hyperlink != None:
                 row[4].value=row[2].hyperlink.target
                 row[4].hyperlink=row[4].value
+                row[4].style = 'Hyperlink'
 
     
         wb.save(REPORT_FILE)
