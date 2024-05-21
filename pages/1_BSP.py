@@ -40,9 +40,9 @@ if st.session_state['bsp_raw'] != None:
         wb.save(REPORT_FILE)
         wb.close()
 
-    result_file = open(REPORT_FILE, 'rb')
-    st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
-    st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
+        result_file = open(REPORT_FILE, 'rb')
+        st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
+        st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
 
 
          
