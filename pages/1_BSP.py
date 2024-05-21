@@ -11,11 +11,8 @@ if st.session_state['bsp_raw'] != None:
     button_process = st.button('Process File')
 
     if button_process:
-
-        st.write(Path(__file__).parent)
-
+        
         REPORT_FILE = Path(__file__).parent/f'BSP_Temp/bsp.xlsx'
-        st.write(REPORT_FILE)
         wb = openpyxl.Workbook(REPORT_FILE)
         wb.save(REPORT_FILE)
         wb.close()
