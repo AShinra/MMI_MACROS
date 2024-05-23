@@ -35,7 +35,6 @@ if st.session_state['bsp_raw'] != None:
                 ]:
                 # color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
                 # row[0].style = color_fill
-                st.write(row[0].value)
                 ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
 
             if row[0].value=='DATE':
@@ -64,6 +63,7 @@ if st.session_state['bsp_raw'] != None:
             #     active_cell.font = ft
 
             s_row += 1
+            st.write(s_row)
 
         ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
