@@ -62,7 +62,7 @@ if st.session_state['bsp_raw'] != None:
                     row[4].style = 'Hyperlink'
                     row[4].alignment = Alignment(horizontal='center')
 
-            if row[2].value != None and row[2].value == 'TITLE':
+            if row[2].value != None and row[2].value != 'TITLE':
                 row[2].hyperlink = None
                 active_cell = row[2]
                 ft = Font(color='000000')
