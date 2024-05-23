@@ -24,8 +24,8 @@ if st.session_state['bsp_raw'] != None:
         wb = openpyxl.load_workbook(st.session_state['bsp_raw'])
         ws = wb.active
 
+        s_row = 9
         for row in ws.iter_rows(min_row=9, max_col=7):
-            s_row = 9
 
             if row[0].value in [
                 'TODAY\'S HEADLINE NEWS',
@@ -56,11 +56,11 @@ if st.session_state['bsp_raw'] != None:
                     row[4].value='Print Link'
                     row[4].style = 'Hyperlink'
 
-            # if row[2].value != None:
-            #     row[2].hyperlink = None
-            #     active_cell = row[2]
-            #     ft = Font(color='000000')
-            #     active_cell.font = ft
+            if row[2].value != None:
+                row[2].hyperlink = None
+                active_cell = row[2]
+                ft = Font(color='000000')
+                active_cell.font = ft
 
             s_row += 1
             st.write(s_row)
