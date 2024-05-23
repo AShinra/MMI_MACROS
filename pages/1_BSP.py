@@ -107,12 +107,19 @@ if st.session_state['bsp_raw'] != None:
                 break
             else:
                 row[0].border = thin_border
-                row[0].alignment = Alignment(vertical='center')
                 row[1].border = thin_border
                 row[2].border = thin_border
                 row[3].border = thin_border
                 row[4].border = thin_border
                 row[5].border = thin_border
+
+        ws.column_dimensions['A'].width = 15
+        ws.column_dimensions['B'].width = 15
+        ws.column_dimensions['C'].width = 15
+        ws.column_dimensions['D'].width = 15
+        ws.column_dimensions['E'].width = 15
+        ws.column_dimensions['F'].width = 15
+
 
         ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
