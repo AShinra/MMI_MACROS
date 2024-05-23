@@ -1,6 +1,6 @@
 import streamlit as st
 import openpyxl
-from openpyxl.styles import Color, PatternFill, Font, Border
+from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
 
 
@@ -37,6 +37,8 @@ if st.session_state['bsp_raw'] != None:
                 color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
                 active_cell = row[0]
                 active_cell.fill = color_fill
+                active_cell.alignment = Alignment(horizontal='center')
+
 
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
