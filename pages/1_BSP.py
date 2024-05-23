@@ -1,6 +1,10 @@
 import streamlit as st
 import openpyxl
+from openpyxl.styles import Color, PatternFill, Font, Border
 from pathlib import Path
+
+
+
 
 with st.container(border=True):
     st.header('Bangko Sentral ng Pilipinas Macro')
@@ -21,6 +25,17 @@ if st.session_state['bsp_raw'] != None:
         ws = wb.active
 
         for row in ws.iter_rows(min_row=9, max_col=7):
+            s_row = 9
+
+            if row[0].value in [
+                'TODAY\'S HEADLINE NEWS',
+                'TODAY\'S BUSINESS HEADLINE NEWS',
+                'BSP ONLINE NEWS',
+                'BSP PRINT NEWS'
+                ]:
+                ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
+                color_fill = PatternFill(start_color='#0b80f8', end_color='', fill_type='solid')
+
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
                 row[2].value='TITLE'
@@ -39,6 +54,8 @@ if st.session_state['bsp_raw'] != None:
                     row[4].hyperlink=row[4].value
                     row[4].value='Print Link'
                     row[4].style = 'Hyperlink'
+
+            s_row = s_row + 1
 
         ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
