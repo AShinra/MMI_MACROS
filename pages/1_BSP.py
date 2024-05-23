@@ -29,14 +29,21 @@ if st.session_state['bsp_raw'] != None:
 
             row[0].alignment = Alignment(horizontal='center')
 
-            if row[0].value in [
-                'TODAYS HEADLINENEWS',
-                'TODAYS BUSINESS HEADLINENEWS'
-                ]:
+            if row[0].value=='TODAYS HEADLINENEWS':
                 ws.unmerge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=7)
                 ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
                 color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
                 active_cell = row[0]
+                active_cell.value = 'TODAYS HEADLINE NEWS'
+                active_cell.fill = color_fill
+                active_cell.alignment = Alignment(horizontal='center')
+            
+            if row[0].value=='TODAYS BUSINESS HEADLINENEWS':
+                ws.unmerge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=7)
+                ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
+                color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
+                active_cell = row[0]
+                active_cell.value = 'TODAYS BUSINESS HEADLINE NEWS'
                 active_cell.fill = color_fill
                 active_cell.alignment = Alignment(horizontal='center')
             
@@ -58,12 +65,14 @@ if st.session_state['bsp_raw'] != None:
 
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
+                    row[4].value='N/A'
                     row[5].value=row[2].hyperlink.target
                     row[5].hyperlink=row[5].value
                     row[5].value='Online Link'
                     row[5].style = 'Hyperlink'
                     row[5].alignment = Alignment(horizontal='center')
                 else:
+                    row[5].value='N/A'
                     row[4].value=row[2].hyperlink.target
                     row[4].hyperlink=row[4].value
                     row[4].value='Print Link'
