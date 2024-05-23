@@ -63,7 +63,7 @@ if st.session_state['bsp_raw'] != None:
                 ws.unmerge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=7)
                 ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
                 active_cell = row[0]
-                active_cell.value = 'TODAYS BUSINESS HEADLINE NEWS'
+                active_cell.value = 'Powered by Media Meter, Inc.'
                 # active_cell.fill = color_fill
                 active_cell.alignment = Alignment(horizontal='center')
 
