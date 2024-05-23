@@ -46,7 +46,7 @@ if st.session_state['bsp_raw'] != None:
             if row[2].hyperlink != None:
                 row[4].value = row[6].value
                 row[5].value = cat
-                row[6].value = row[2].hyperlink
+                row[6].value = row[2].hyperlink.target
                 row[2].hyperlink = None
             
         wb.save(REPORT_FILE)
