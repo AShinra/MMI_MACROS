@@ -43,19 +43,24 @@ if st.session_state['bsp_raw'] != None:
 
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
-                row[1].font = Font(bold=True)
+                a1 = row[1]
+                a1.font = Font(bold=True)
                 
                 row[2].value='TITLE'
-                row[2].font = Font(bold=True)
+                a1 = row[2]
+                a1.font = Font(bold=True)
                 
                 row[3].value='AUTHOR'
-                row[3].font = Font(bold=True)
+                a1 = row[3]
+                a1.font = Font(bold=True)
 
                 row[4].value='PRINT'
-                row[4].font = Font(bold=True)
+                a1 = row[4]
+                a1.font = Font(bold=True)
                 
                 row[5].value='ONLINE'
-                row[5].font = Font(bold=True)
+                a1 = row[5]
+                a1.font = Font(bold=True)
             
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
