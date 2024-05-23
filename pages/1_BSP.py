@@ -42,26 +42,16 @@ if st.session_state['bsp_raw'] != None:
                 active_cell.alignment = Alignment(horizontal='center')
 
             if row[0].value=='DATE':
-                row[1].value='SOURCE'
-                a1 = row[1]
-                a1.font = Font(bold=True)
-                
-                row[2].value='TITLE'
-                a1 = row[2]
-                a1.font = Font(bold=True)
-                
-                row[3].value='AUTHOR'
-                a1 = row[3]
-                a1.font = Font(bold=True)
 
+                my_row = ws.row_dimensions[s_row]
+                my_row.font = Font(bold=True)
+
+                row[1].value='SOURCE'
+                row[2].value='TITLE'
+                row[3].value='AUTHOR'
                 row[4].value='PRINT'
-                a1 = row[4]
-                a1.font = Font(bold=True)
-                
                 row[5].value='ONLINE'
-                a1 = row[5]
-                a1.font = Font(bold=True)
-            
+                
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
                     row[5].value=row[2].hyperlink.target
@@ -76,7 +66,6 @@ if st.session_state['bsp_raw'] != None:
                     row[4].style = 'Hyperlink'
                     row[4].alignment = Alignment(horizontal='center')
 
-
             if row[2].value != None:
                 row[2].hyperlink = None
                 active_cell = row[2]
@@ -84,8 +73,7 @@ if st.session_state['bsp_raw'] != None:
                 active_cell.font = ft
 
             ws.row_dimensions[s_row].height = 15
-            s_row += 1
-            
+            s_row += 1            
 
         ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
