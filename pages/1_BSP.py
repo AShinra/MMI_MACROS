@@ -91,17 +91,17 @@ if st.session_state['bsp_raw'] != None:
                 ft = Font(color='000000')
                 active_cell.font = ft
             
-            if row[0].value == '':
+            if row[0].value != None:
                 row[0].border = thin_border
-            if row[1].value != '':
+            if row[1].value != None:
                 row[1].border = thin_border
-            if row[2].value != '':
+            if row[2].value != None:
                 row[2].border = thin_border
-            if row[3].value != '':
+            if row[3].value != None:
                 row[3].border = thin_border
-            if row[4].value != '':
+            if row[4].value != None:
                 row[4].border = thin_border
-            if row[5].value != '':
+            if row[5].value != None:
                 row[5].border = thin_border
             
             ws.row_dimensions[s_row].height = 15
