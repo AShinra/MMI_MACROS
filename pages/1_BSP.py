@@ -28,6 +28,7 @@ if st.session_state['bsp_raw'] != None:
         for row in ws.iter_rows(min_row=8, max_col=7):
 
             row[0].alignment = Alignment(horizontal='center')
+            st.write(row[0].value)
 
             if row[0].value in [
                 'TODAYS HEADLINENEWS',
