@@ -67,7 +67,7 @@ def dataframe_create(uploaded_file):
     df = df.dropna()
     
 
-    return df
+    return df, REPORT_FILE
 
 
 
@@ -82,7 +82,7 @@ if st.session_state['bsp_raw'] != None:
 
     if button_process:
 
-        df = dataframe_create(st.session_state['bsp_raw'])
+        df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
 
         df['PRINT LINK'] = 'N/A'
         df['ONLINE LINK'] = 'N/A'
@@ -101,9 +101,9 @@ if st.session_state['bsp_raw'] != None:
 
         
 
-        # result_file = open(REPORT_FILE, 'rb')
-        # st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
-        # st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
+        result_file = open(REPORT_FILE, 'rb')
+        st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
+        st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
 
 
          
