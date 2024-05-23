@@ -89,9 +89,8 @@ if st.session_state['bsp_raw'] != None:
         
         st.dataframe(df)
 
-        for index, row in df.iterrows():
-            st.write(row['TITLE'])
-            
+        for i in df.index:
+            st.write(df['TITLE'][i])
 
         
 
