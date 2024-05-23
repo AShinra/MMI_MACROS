@@ -20,21 +20,27 @@ if st.session_state['bsp_raw'] != None:
         wb = openpyxl.load_workbook(st.session_state['bsp_raw'])
         ws = wb.active
 
-        for row in ws.iter_rows(min_row=9, max_col=6):
+        for row in ws.iter_rows(min_row=9, max_col=7):
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
                 row[2].value='TITLE'
                 row[3].value='AUTHOR'
                 row[4].value='PRINT'
                 row[5].value='ONLINE'
+                row[6].value='MEDIA TYPE'
                 
             
             if row[2].hyperlink != None:
-                row[4].value=row[2].hyperlink.target
-                row[4].hyperlink=row[4].value
-                row[4].style = 'Hyperlink'
+                if row[6].value=='Online News':
+                    row[5].value=row[2].hyperlink.target
+                    row[5].hyperlink=row[5].value
+                    row[5].style = 'Hyperlink'
+                else:
+                    row[4].value=row[2].hyperlink.target
+                    row[4].hyperlink=row[4].value
+                    row[4].style = 'Hyperlink'
 
-    
+        ws.delete_cols(6,1)
         wb.save(REPORT_FILE)
         wb.close()
 
