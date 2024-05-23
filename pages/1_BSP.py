@@ -56,6 +56,8 @@ if st.session_state['bsp_raw'] != None:
                     row[4].value='Print Link'
                     row[4].style = 'Hyperlink'
 
+                row[2].hyperlink = None
+
             s_row = s_row + 1
 
         ws.delete_cols(7,1)
