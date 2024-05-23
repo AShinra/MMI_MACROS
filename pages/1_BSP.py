@@ -42,11 +42,6 @@ if st.session_state['bsp_raw'] != None:
                 active_cell.alignment = Alignment(horizontal='center')
 
             if row[0].value=='DATE':
-
-                my_row = ws.row_dimensions[s_row]
-                font_face = Font(b=True)
-                my_row.font = font_face
-
                 row[1].value='SOURCE'
                 row[2].value='TITLE'
                 row[3].value='AUTHOR'
@@ -60,6 +55,7 @@ if st.session_state['bsp_raw'] != None:
                     row[5].value='Online Link'
                     row[5].style = 'Hyperlink'
                     row[5].alignment = Alignment(horizontal='center')
+                    row[5].font = Font(bold=True)
                 else:
                     row[4].value=row[2].hyperlink.target
                     row[4].hyperlink=row[4].value
