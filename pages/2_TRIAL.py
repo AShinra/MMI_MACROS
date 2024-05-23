@@ -65,7 +65,7 @@ def dataframe_create(uploaded_file):
     df.columns = df.iloc[0]
     df = df.drop(df.index[0])
     df = df.dropna()
-    st.dataframe(df)
+    
 
     return df
 
@@ -83,9 +83,11 @@ if st.session_state['bsp_raw'] != None:
     if button_process:
 
         df = dataframe_create(st.session_state['bsp_raw'])
+
+        df['PRINT LINK'] = ''
+        df['ONLINE LINK'] = ''
         
-
-
+        st.dataframe(df)
             
 
         
