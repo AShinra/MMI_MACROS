@@ -60,7 +60,7 @@ if st.session_state['bsp_raw'] != None:
         
         for row in ws.iter_rows(min_row=3, max_col=7):
             if row[0].value == 'DATE':
-                row[0].value == ''
+                row[0].value = ''
                 row[1].value = ''
                 row[2].value = ''
                 row[3].value = ''
@@ -72,6 +72,7 @@ if st.session_state['bsp_raw'] != None:
         wb.close()
 
         df = pd.read_excel(REPORT_FILE)
+        df.columns = df.iloc[0]
         st.dataframe(df)
         
 
