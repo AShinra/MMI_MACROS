@@ -89,8 +89,8 @@ if st.session_state['bsp_raw'] != None:
         
         st.dataframe(df)
 
-        for i in df.index():
-            st.write(df.loc[i, 'SOURCE'])
+        for row in df.rows:
+            st.write(row['TITLE'])
             
 
         
