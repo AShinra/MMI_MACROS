@@ -25,7 +25,7 @@ if st.session_state['bsp_raw'] != None:
         ws = wb.active
 
         s_row = 9
-        for row in ws.iter_rows(min_row=9, max_col=7):
+        for row in ws.iter_rows(min_row=8, max_col=7):
 
             row[0].alignment = Alignment(horizontal='center')
 
