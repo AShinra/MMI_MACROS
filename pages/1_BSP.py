@@ -24,7 +24,7 @@ if st.session_state['bsp_raw'] != None:
         wb = openpyxl.load_workbook(st.session_state['bsp_raw'])
         ws = wb.active
 
-        s_row = 9
+        s_row = 8
         for row in ws.iter_rows(min_row=8, max_col=7):
 
             row[0].alignment = Alignment(horizontal='center')
@@ -48,12 +48,12 @@ if st.session_state['bsp_raw'] != None:
                 active_cell.fill = color_fill
                 active_cell.alignment = Alignment(horizontal='center')
 
-            # if row[0].value=='DATE':
-            #     row[1].value='SOURCE'
-            #     row[2].value='TITLE'
-            #     row[3].value='AUTHOR'
-            #     row[4].value='PRINT'
-            #     row[5].value='ONLINE'
+            if row[0].value=='DATE':
+                row[1].value='SOURCE'
+                row[2].value='TITLE'
+                row[3].value='AUTHOR'
+                row[4].value='PRINT'
+                row[5].value='ONLINE'
 
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
