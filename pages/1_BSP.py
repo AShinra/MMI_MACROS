@@ -66,6 +66,7 @@ if st.session_state['bsp_raw'] != None:
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
                     row[4].value='N/A'
+                    row[4].alignment = Alignment(horizontal='center')
                     row[5].value=row[2].hyperlink.target
                     row[5].hyperlink=row[5].value
                     row[5].value='Online Link'
@@ -73,6 +74,7 @@ if st.session_state['bsp_raw'] != None:
                     row[5].alignment = Alignment(horizontal='center')
                 else:
                     row[5].value='N/A'
+                    row[5].alignment = Alignment(horizontal='center')
                     row[4].value=row[2].hyperlink.target
                     row[4].hyperlink=row[4].value
                     row[4].value='Print Link'
