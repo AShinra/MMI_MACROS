@@ -27,11 +27,10 @@ if st.session_state['bsp_raw'] != None:
                 row[3].value='AUTHOR'
                 row[4].value='PRINT'
                 row[5].value='ONLINE'
-                row[6].value='MEDIA TYPE'
-                
             
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
+                    st.write('found online link')
                     row[5].value=row[2].hyperlink.target
                     row[5].hyperlink=row[5].value
                     row[5].style = 'Hyperlink'
@@ -40,7 +39,7 @@ if st.session_state['bsp_raw'] != None:
                     row[4].hyperlink=row[4].value
                     row[4].style = 'Hyperlink'
 
-        ws.delete_cols(6,1)
+        ws.delete_cols(6,2)
         wb.save(REPORT_FILE)
         wb.close()
 
