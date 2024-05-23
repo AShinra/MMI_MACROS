@@ -25,7 +25,7 @@ if st.session_state['bsp_raw'] != None:
         wb = openpyxl.load_workbook(st.session_state['bsp_raw'])
         ws = wb.active
 
-        df = pd.DataFrame()
+        df = pd.read_excel(st.session_state['bsp_raw'])
         st.write(df)
 
         # s_row = 8
