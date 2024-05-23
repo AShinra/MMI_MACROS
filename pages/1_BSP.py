@@ -27,6 +27,10 @@ if st.session_state['bsp_raw'] != None:
         s_row = 9
         for row in ws.iter_rows(min_row=9, max_col=7):
 
+            row[0].alignment = Alignment(horizontal='center')
+            row[5].alignment = Alignment(horizontal='center')
+            row[6].alignment = Alignment(horizontal='center')
+
             if row[0].value in [
                 'TODAY\'S HEADLINE NEWS',
                 'TODAY\'S BUSINESS HEADLINE NEWS',
@@ -38,7 +42,6 @@ if st.session_state['bsp_raw'] != None:
                 active_cell = row[0]
                 active_cell.fill = color_fill
                 active_cell.alignment = Alignment(horizontal='center')
-
 
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
