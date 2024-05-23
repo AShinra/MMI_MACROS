@@ -44,7 +44,7 @@ if st.session_state['bsp_raw'] != None:
             if row[0].value=='DATE':
 
                 my_row = ws.row_dimensions[s_row]
-                font_face = Font(bold=True, italic=True)
+                font_face = Font(b=True)
                 my_row.font = font_face
 
                 row[1].value='SOURCE'
