@@ -30,8 +30,8 @@ if st.session_state['bsp_raw'] != None:
             row[0].alignment = Alignment(horizontal='center')
 
             if row[0].value in [
-                'TODAY\'S HEADLINE NEWS',
-                'TODAY\'S BUSINESS HEADLINE NEWS'
+                'TODAYS HEADLINE NEWS',
+                'TODAYS BUSINESS HEADLINE NEWS'
                 ]:
                 ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
                 color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
