@@ -107,6 +107,7 @@ if st.session_state['bsp_raw'] != None:
                 break
             else:
                 row[0].border = thin_border
+                row[0].alignment = Alignment(vertical='center')
                 row[1].border = thin_border
                 row[2].border = thin_border
                 row[3].border = thin_border
