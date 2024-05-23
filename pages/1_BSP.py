@@ -44,6 +44,7 @@ if st.session_state['bsp_raw'] != None:
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
                 row[2].value='TITLE'
+                row[2].font = Font(bold=True)
                 row[3].value='AUTHOR'
                 row[4].value='PRINT'
                 row[5].value='ONLINE'
@@ -55,7 +56,6 @@ if st.session_state['bsp_raw'] != None:
                     row[5].value='Online Link'
                     row[5].style = 'Hyperlink'
                     row[5].alignment = Alignment(horizontal='center')
-                    row[5].font = Font(bold=True)
                 else:
                     row[4].value=row[2].hyperlink.target
                     row[4].hyperlink=row[4].value
