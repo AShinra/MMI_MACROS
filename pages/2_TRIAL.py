@@ -89,6 +89,11 @@ if st.session_state['bsp_raw'] != None:
         
         st.dataframe(df)
 
+        grouped = df.groupby(df.CATEGORY)
+        df1 = grouped.get_group('TODAYS HEADLINENEWS')
+
+        st.dataframe(df1)
+
         for i in df.index:
             st.write(df['TITLE'][i])
 
