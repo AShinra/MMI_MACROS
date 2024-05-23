@@ -28,8 +28,6 @@ if st.session_state['bsp_raw'] != None:
         for row in ws.iter_rows(min_row=9, max_col=7):
 
             row[0].alignment = Alignment(horizontal='center')
-            row[5].alignment = Alignment(horizontal='center')
-            row[6].alignment = Alignment(horizontal='center')
 
             if row[0].value in [
                 'TODAY\'S HEADLINE NEWS',
@@ -68,6 +66,9 @@ if st.session_state['bsp_raw'] != None:
                 ft = Font(color='000000')
                 active_cell.font = ft
 
+            row[5].alignment = Alignment(horizontal='center')
+            row[6].alignment = Alignment(horizontal='center')
+            
             ws.row_dimensions[s_row].height = 15
             s_row += 1
             
