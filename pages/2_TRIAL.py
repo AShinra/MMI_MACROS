@@ -51,8 +51,7 @@ if st.session_state['bsp_raw'] != None:
                 row[6].value = row[2].hyperlink.target
                 row[2].hyperlink = None
 
-        ws.delete_rows(1, )
-
+        
         wb.save(REPORT_FILE)
         wb.close()
 
