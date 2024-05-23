@@ -91,12 +91,18 @@ if st.session_state['bsp_raw'] != None:
                 ft = Font(color='000000')
                 active_cell.font = ft
             
-            row[0].border = thin_border
-            row[1].border = thin_border
-            row[2].border = thin_border
-            row[3].border = thin_border
-            row[4].border = thin_border
-            row[5].border = thin_border
+            if row[0] != '':
+                row[0].border = thin_border
+            if row[1] != '':
+                row[1].border = thin_border
+            if row[2] != '':
+                row[2].border = thin_border
+            if row[3] != '':
+                row[3].border = thin_border
+            if row[4] != '':
+                row[4].border = thin_border
+            if row[5] != '':
+                row[5].border = thin_border
             
             ws.row_dimensions[s_row].height = 15
             s_row += 1            
