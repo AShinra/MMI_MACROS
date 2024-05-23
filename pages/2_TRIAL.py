@@ -31,7 +31,6 @@ if st.session_state['bsp_raw'] != None:
 
             if row[0].value == 'TODAYS HEADLINENEWS':
                 cat = 'TODAYS HEADLINENEWS'
-
             elif row[0].value == 'TODAYS BUSINESS HEADLINENEWS':
                 cat = 'TODAYS BUSINESS HEADLINENEWS'
             elif row[0].value == 'BSPNEWS':
@@ -50,7 +49,24 @@ if st.session_state['bsp_raw'] != None:
                 row[5].value = cat
                 row[6].value = row[2].hyperlink.target
                 row[2].hyperlink = None
+        
 
+        for row in ws.iter_rows(max_col=7):
+
+            if row[0].value in ['TODAYS HEADLINENEWS',
+                                'TODAYS BUSINESS HEADLINENEWS',
+                                'BSPNEWS']:
+                row[0].value = ''
+        
+        for row in ws.iter_rows(min_row=3, max_col=7):
+            if row[0].value == 'DATE':
+                row[0].value == ''
+                row[1].value = ''
+                row[2].value = ''
+                row[3].value = ''
+                row[4].value = ''
+                row[5].value = ''
+                row[6].value = ''
         
         wb.save(REPORT_FILE)
         wb.close()
