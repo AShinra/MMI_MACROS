@@ -25,11 +25,13 @@ if st.session_state['bsp_raw'] != None:
         wb = openpyxl.load_workbook(st.session_state['bsp_raw'])
         ws = wb.active
 
-        s_row = 8
-        for row in ws.iter_rows(min_row=8, max_col=7):
+        ws.delete_rows(1,7)
+
+        for row in ws.iter_rows(max_col=7):
 
             if row[0].value == 'TODAYS HEADLINENEWS':
                 cat = 'TODAYS HEADLINENEWS'
+
             elif row[0].value == 'TODAYS BUSINESS HEADLINENEWS':
                 cat = 'TODAYS BUSINESS HEADLINENEWS'
             elif row[0].value == 'BSPNEWS':
@@ -48,13 +50,16 @@ if st.session_state['bsp_raw'] != None:
                 row[5].value = cat
                 row[6].value = row[2].hyperlink.target
                 row[2].hyperlink = None
-            
+
+        ws.delete_rows(1, )
+
         wb.save(REPORT_FILE)
         wb.close()
 
         df = pd.read_excel(REPORT_FILE)
         st.dataframe(df)
-            
+        
+
 
             
 
