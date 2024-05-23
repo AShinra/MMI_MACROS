@@ -44,14 +44,14 @@ if st.session_state['bsp_raw'] != None:
             if row[0].value=='DATE':
 
                 my_row = ws.row_dimensions[s_row]
-                my_row.font = Font(bold=True)
+                my_row.font = Font(bold=True, italic=True)
 
                 row[1].value='SOURCE'
                 row[2].value='TITLE'
                 row[3].value='AUTHOR'
                 row[4].value='PRINT'
                 row[5].value='ONLINE'
-                
+
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
                     row[5].value=row[2].hyperlink.target
