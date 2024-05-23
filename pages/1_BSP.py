@@ -48,12 +48,12 @@ if st.session_state['bsp_raw'] != None:
                 active_cell.fill = color_fill
                 active_cell.alignment = Alignment(horizontal='center')
 
-            if row[0].value=='DATE':
-                row[1].value='SOURCE'
-                row[2].value='TITLE'
-                row[3].value='AUTHOR'
-                row[4].value='PRINT'
-                row[5].value='ONLINE'
+            # if row[0].value=='DATE':
+            #     row[1].value='SOURCE'
+            #     row[2].value='TITLE'
+            #     row[3].value='AUTHOR'
+            #     row[4].value='PRINT'
+            #     row[5].value='ONLINE'
 
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
