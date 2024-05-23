@@ -91,21 +91,19 @@ if st.session_state['bsp_raw'] != None:
                 ft = Font(color='000000')
                 active_cell.font = ft
             
-            if row[0].value != None:
-                row[0].border = thin_border
-            if row[1].value != None:
-                row[1].border = thin_border
-            if row[2].value != None:
-                row[2].border = thin_border
-            if row[3].value != None:
-                row[3].border = thin_border
-            if row[4].value != None:
-                row[4].border = thin_border
-            if row[5].value != None:
-                row[5].border = thin_border
-            
             ws.row_dimensions[s_row].height = 15
             s_row += 1            
+
+        for row in ws.iter_rows(min_row=8, max_col=6):
+            if row[0].value == None and row[5].value == None:
+                break
+            else:
+                row[0].border = thin_border
+                row[1].border = thin_border
+                row[2].border = thin_border
+                row[3].border = thin_border
+                row[4].border = thin_border
+                row[5].border = thin_border
 
         ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
