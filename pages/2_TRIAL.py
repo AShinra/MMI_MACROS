@@ -84,8 +84,8 @@ if st.session_state['bsp_raw'] != None:
 
         df = dataframe_create(st.session_state['bsp_raw'])
 
-        df['PRINT LINK'] = ''
-        df['ONLINE LINK'] = ''
+        df['PRINT LINK'] = 'N/A'
+        df['ONLINE LINK'] = 'N/A'
         
         st.dataframe(df)
             
