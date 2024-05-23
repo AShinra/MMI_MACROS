@@ -43,6 +43,7 @@ if st.session_state['bsp_raw'] != None:
 
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
+                row[1].font = Font(bold=False)
                 row[2].value='TITLE'
                 row[3].value='AUTHOR'
                 row[4].value='PRINT'
@@ -67,9 +68,7 @@ if st.session_state['bsp_raw'] != None:
                 active_cell = row[2]
                 ft = Font(color='000000')
                 active_cell.font = ft
-            elif row[2].value == 'TITLE':
-                row[2].font = Font(bold=True)
-
+            
             ws.row_dimensions[s_row].height = 15
             s_row += 1            
 
