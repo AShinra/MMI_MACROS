@@ -65,6 +65,9 @@ if st.session_state['bsp_raw'] != None:
 
             s_row += 1
 
+            active_cell = row[0]
+            ws.row_dimensions[active_cell].height = 15
+
         ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
         wb.close()
