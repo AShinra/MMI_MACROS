@@ -86,13 +86,15 @@ if st.session_state['bsp_raw'] != None:
 
         df['PRINT LINK'] = 'N/A'
         df['ONLINE LINK'] = 'N/A'
-        
-        st.dataframe(df)
 
         grouped = df.groupby(df.CATEGORY)
         df1 = grouped.get_group('TODAYS HEADLINENEWS')
+        df2 = grouped.get_group('TODAYS BUSINESS HEADLINENEWS')
+        df3 = grouped.get_group('BSP NEWS')
 
         st.dataframe(df1)
+        st.dataframe(df2)
+        st.dataframe(df3)
 
         for i in df.index:
             st.write(df['TITLE'][i])
