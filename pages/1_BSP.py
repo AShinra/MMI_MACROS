@@ -54,11 +54,14 @@ if st.session_state['bsp_raw'] != None:
                     row[5].hyperlink=row[5].value
                     row[5].value='Online Link'
                     row[5].style = 'Hyperlink'
+                    row[5].alignment = Alignment(horizontal='center')
                 else:
                     row[4].value=row[2].hyperlink.target
                     row[4].hyperlink=row[4].value
                     row[4].value='Print Link'
                     row[4].style = 'Hyperlink'
+                    row[4].alignment = Alignment(horizontal='center')
+
 
             if row[2].value != None:
                 row[2].hyperlink = None
@@ -66,9 +69,6 @@ if st.session_state['bsp_raw'] != None:
                 ft = Font(color='000000')
                 active_cell.font = ft
 
-            row[5].alignment = Alignment(horizontal='center')
-            row[6].alignment = Alignment(horizontal='center')
-            
             ws.row_dimensions[s_row].height = 15
             s_row += 1
             
