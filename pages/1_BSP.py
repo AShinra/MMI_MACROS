@@ -39,7 +39,7 @@ if st.session_state['bsp_raw'] != None:
                     row[4].hyperlink=row[4].value
                     row[4].style = 'Hyperlink'
 
-        ws.delete_cols(6,2)
+        ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
         wb.close()
 
