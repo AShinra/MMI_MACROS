@@ -58,6 +58,14 @@ if st.session_state['bsp_raw'] != None:
                 active_cell.value = 'BSP NEWS'
                 active_cell.fill = color_fill
                 active_cell.alignment = Alignment(horizontal='center')
+            
+            if row[0].value=='Powered by Media Meter, Inc.':
+                ws.unmerge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=7)
+                ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
+                active_cell = row[0]
+                active_cell.value = 'TODAYS BUSINESS HEADLINE NEWS'
+                # active_cell.fill = color_fill
+                active_cell.alignment = Alignment(horizontal='center')
 
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
