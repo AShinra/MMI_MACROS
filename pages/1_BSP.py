@@ -61,8 +61,7 @@ if st.session_state['bsp_raw'] != None:
                 ft = Font(color='000000')
                 active_cell.font = ft
 
-
-            s_row = s_row + 1
+            s_row += 1
 
         ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
