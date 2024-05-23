@@ -97,7 +97,7 @@ if st.session_state['bsp_raw'] != None:
         st.dataframe(df3)
 
         for i in df.index:
-            st.write(df['TITLE'][i])
+            st.write(df['SOURCE'][i], df['TITLE'][i])
 
         
 
