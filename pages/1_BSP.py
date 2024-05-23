@@ -45,7 +45,7 @@ if st.session_state['bsp_raw'] != None:
                 row[4].value='PRINT'
                 row[5].value='ONLINE'
             
-            if row[2].hyperlink != None and row[2].value != None:
+            if row[2].hyperlink != None:
                 if row[6].value=='Online News':
                     row[5].value=row[2].hyperlink.target
                     row[5].hyperlink=row[5].value
@@ -57,6 +57,7 @@ if st.session_state['bsp_raw'] != None:
                     row[4].value='Print Link'
                     row[4].style = 'Hyperlink'
 
+            if row[2].value != None:
                 row[2].hyperlink = None
                 active_cell = row[2]
                 ft = Font(color='000000')
