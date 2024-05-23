@@ -33,9 +33,10 @@ if st.session_state['bsp_raw'] != None:
                 'BSP ONLINE NEWS',
                 'BSP PRINT NEWS'
                 ]:
-                # color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
-                # row[0].style = color_fill
                 ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
+                color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
+                active_cell = row[0]
+                active_cell.fill = color_fill
 
             if row[0].value=='DATE':
                 row[1].value='SOURCE'
@@ -63,7 +64,6 @@ if st.session_state['bsp_raw'] != None:
                 active_cell.font = ft
 
             s_row += 1
-            st.write(s_row)
 
         ws.delete_cols(7,1)
         wb.save(REPORT_FILE)
