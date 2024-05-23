@@ -73,7 +73,7 @@ if st.session_state['bsp_raw'] != None:
 
         df = pd.read_excel(REPORT_FILE)
         df.columns = df.iloc[0]
-        df.drop(df.index[0])
+        df = df.drop(df.index[0])
         st.dataframe(df)
         
 
