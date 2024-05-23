@@ -1,6 +1,7 @@
 import streamlit as st
 import openpyxl
 from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
+from openpyxl.styles.borders import Border, Side
 from pathlib import Path
 
 
@@ -28,11 +29,15 @@ if st.session_state['bsp_raw'] != None:
         for row in ws.iter_rows(min_row=8, max_col=7):
 
             row[0].alignment = Alignment(horizontal='center')
+            color_fill = PatternFill(start_color='06A2E5', end_color='06A2E5', fill_type='solid')
+            thin_border = Border(left=Side(style='thin'), 
+                     right=Side(style='thin'), 
+                     top=Side(style='thin'), 
+                     bottom=Side(style='thin'))
 
             if row[0].value=='TODAYS HEADLINENEWS':
                 ws.unmerge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=7)
                 ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
-                color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
                 active_cell = row[0]
                 active_cell.value = 'TODAYS HEADLINE NEWS'
                 active_cell.fill = color_fill
@@ -41,7 +46,6 @@ if st.session_state['bsp_raw'] != None:
             if row[0].value=='TODAYS BUSINESS HEADLINENEWS':
                 ws.unmerge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=7)
                 ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
-                color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
                 active_cell = row[0]
                 active_cell.value = 'TODAYS BUSINESS HEADLINE NEWS'
                 active_cell.fill = color_fill
@@ -50,7 +54,6 @@ if st.session_state['bsp_raw'] != None:
             if row[0].value=='BSPNEWS':
                 ws.unmerge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=7)
                 ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
-                color_fill = PatternFill(start_color='0b80f8', end_color='0b80f8', fill_type='solid')
                 active_cell = row[0]
                 active_cell.value = 'BSP NEWS'
                 active_cell.fill = color_fill
@@ -64,6 +67,7 @@ if st.session_state['bsp_raw'] != None:
                 row[5].value='ONLINE'
 
             if row[2].hyperlink != None:
+
                 if row[6].value=='Online News':
                     row[4].value='N/A'
                     row[4].alignment = Alignment(horizontal='center')
@@ -72,6 +76,7 @@ if st.session_state['bsp_raw'] != None:
                     row[5].value='Online Link'
                     row[5].style = 'Hyperlink'
                     row[5].alignment = Alignment(horizontal='center')
+                    row[5].border = thin_border
                 else:
                     row[5].value='N/A'
                     row[5].alignment = Alignment(horizontal='center')
@@ -80,6 +85,7 @@ if st.session_state['bsp_raw'] != None:
                     row[4].value='Print Link'
                     row[4].style = 'Hyperlink'
                     row[4].alignment = Alignment(horizontal='center')
+                    row[4].border = thin_border
 
             if row[2].value != None and row[2].value != 'TITLE':
                 row[2].hyperlink = None
