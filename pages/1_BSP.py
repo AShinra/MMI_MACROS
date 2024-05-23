@@ -42,25 +42,20 @@ if st.session_state['bsp_raw'] != None:
                 active_cell.alignment = Alignment(horizontal='center')
 
             if row[0].value=='DATE':
-                with row[1]:
-                    value='SOURCE'
-                    font = Font(bold=True)
+                row[1].value='SOURCE'
+                row[1].font = Font(bold=True)
                 
-                with row[2]:
-                    value='TITLE'
-                    font = Font(bold=True)
+                row[2].value='TITLE'
+                row[2].font = Font(bold=True)
                 
-                with row[3]:
-                    value='AUTHOR'
-                    font = Font(bold=True)
+                row[3].value='AUTHOR'
+                row[3].font = Font(bold=True)
 
-                with row[4]:
-                    value='PRINT'
-                    font = Font(bold=True)
+                row[4].value='PRINT'
+                row[4].font = Font(bold=True)
                 
-                with row[5]:
-                    value='ONLINE'
-                    font = Font(bold=True)
+                row[5].value='ONLINE'
+                row[5].font = Font(bold=True)
             
             if row[2].hyperlink != None:
                 if row[6].value=='Online News':
