@@ -15,7 +15,6 @@ def dataframe_create(uploaded_file):
     wb = openpyxl.load_workbook(uploaded_file)
     ws = wb.active
 
-    # ws.delete_rows(1,7)
 
     s_row = 1
     for row in ws.iter_rows():
@@ -24,6 +23,8 @@ def dataframe_create(uploaded_file):
         except:
             pass
         s_row += 1
+
+    ws.delete_rows(1,7)
 
     # for row in ws.iter_rows(max_col=7):
 
