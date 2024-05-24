@@ -15,7 +15,7 @@ def dataframe_create(uploaded_file):
     wb = openpyxl.load_workbook(uploaded_file)
     ws = wb.active
 
-    ws.delete_rows(1,7)
+    # ws.delete_rows(1,7)
 
     s_row = 1
     for row in ws.iter_rows():
