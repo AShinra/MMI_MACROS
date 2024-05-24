@@ -6,7 +6,12 @@ from pathlib import Path
 import json
 import spacy
 
-
+try:
+    nlp = spacy.load('en_core_web_md')
+except:
+    from spacy.cli import download
+    download('en_core_web_md')
+    nlp = spacy.load('en_core_web_md')
 
 
 def json_publications():
@@ -21,17 +26,10 @@ def similar_title(a, b):
 
     # a_tokens = a.split(' ')
     # b_tokens = b.split(' ')
-    try:
-        nlp = spacy.load('en_core_web_md')
-    except:
-        from spacy.cli import download
-        download('en_core_web_md')
-        nlp = spacy.load('en_core_web_md')
-    else:
-        # a1 = nlp(' '.join(a_tokens))
-        # b1 = nlp(' '.join(b_tokens))
-        a1 = nlp(a)
-        b1 = nlp(b)
+    # a1 = nlp(' '.join(a_tokens))
+    # b1 = nlp(' '.join(b_tokens))
+    a1 = nlp(a)
+    b1 = nlp(b)
     return a1.similarity(b1)
 
 
