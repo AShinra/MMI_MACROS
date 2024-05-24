@@ -24,50 +24,51 @@ def dataframe_create(uploaded_file):
             pass
         s_row += 1
 
-    ws.delete_rows(1,7)
+    
 
-    # for row in ws.iter_rows(max_col=7):
+    for row in ws.iter_rows(max_col=7):
 
-    #     if row[0].value == 'TODAYS HEADLINENEWS':
-    #         cat = 'TODAYS HEADLINENEWS'
-    #     elif row[0].value == 'TODAYS BUSINESS HEADLINENEWS':
-    #         cat = 'TODAYS BUSINESS HEADLINENEWS'
-    #     elif row[0].value == 'BSPNEWS':
-    #         cat = 'BSP NEWS'
+        if row[0].value == 'TODAYS HEADLINENEWS':
+            cat = 'TODAYS HEADLINENEWS'
+        elif row[0].value == 'TODAYS BUSINESS HEADLINENEWS':
+            cat = 'TODAYS BUSINESS HEADLINENEWS'
+        elif row[0].value == 'BSPNEWS':
+            cat = 'BSP NEWS'
 
-    #     if row[0].value == 'DATE':
-    #         row[1].value = 'SOURCE'
-    #         row[2].value = 'TITLE'
-    #         row[3].value = 'AUTHOR'
-    #         row[4].value = 'TYPE'
-    #         row[5].value = 'CATEGORY'
-    #         row[6].value = 'LINK'
-    #         continue
+        if row[0].value == 'DATE':
+            row[1].value = 'SOURCE'
+            row[2].value = 'TITLE'
+            row[3].value = 'AUTHOR'
+            row[4].value = 'TYPE'
+            row[5].value = 'CATEGORY'
+            row[6].value = 'LINK'
+            continue
         
-        # if row[2].hyperlink != None:
-        #     row[4].value = row[6].value
-        #     row[5].value = cat
-        #     row[6].value = row[2].hyperlink.target
-        #     row[2].hyperlink = None
+        if row[2].hyperlink != None:
+            row[4].value = row[6].value
+            row[5].value = cat
+            row[6].value = row[2].hyperlink.target
+            row[2].hyperlink = None
     
 
-    # for row in ws.iter_rows(max_col=7):
+    for row in ws.iter_rows(max_col=7):
 
-    #     if row[0].value in ['TODAYS HEADLINENEWS',
-    #                         'TODAYS BUSINESS HEADLINENEWS',
-    #                         'BSPNEWS']:
-    #         row[0].value = ''
+        if row[0].value in ['TODAYS HEADLINENEWS',
+                            'TODAYS BUSINESS HEADLINENEWS',
+                            'BSPNEWS']:
+            row[0].value = ''
     
-    # for row in ws.iter_rows(min_row=3, max_col=7):
-    #     if row[0].value == 'DATE':
-    #         row[0].value = ''
-    #         row[1].value = ''
-    #         row[2].value = ''
-    #         row[3].value = ''
-    #         row[4].value = ''
-    #         row[5].value = ''
-    #         row[6].value = ''
-    
+    for row in ws.iter_rows(min_row=3, max_col=7):
+        if row[0].value == 'DATE':
+            row[0].value = ''
+            row[1].value = ''
+            row[2].value = ''
+            row[3].value = ''
+            row[4].value = ''
+            row[5].value = ''
+            row[6].value = ''
+
+    ws.delete_rows(1,7)
     wb.save(REPORT_FILE)
     wb.close()
 
