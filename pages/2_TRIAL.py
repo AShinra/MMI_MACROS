@@ -25,23 +25,23 @@ def dataframe_create(uploaded_file):
             pass
         s_row += 1
 
-    for row in ws.iter_rows(max_col=7):
+    # for row in ws.iter_rows(max_col=7):
 
-        if row[0].value == 'TODAYS HEADLINENEWS':
-            cat = 'TODAYS HEADLINENEWS'
-        elif row[0].value == 'TODAYS BUSINESS HEADLINENEWS':
-            cat = 'TODAYS BUSINESS HEADLINENEWS'
-        elif row[0].value == 'BSPNEWS':
-            cat = 'BSP NEWS'
+    #     if row[0].value == 'TODAYS HEADLINENEWS':
+    #         cat = 'TODAYS HEADLINENEWS'
+    #     elif row[0].value == 'TODAYS BUSINESS HEADLINENEWS':
+    #         cat = 'TODAYS BUSINESS HEADLINENEWS'
+    #     elif row[0].value == 'BSPNEWS':
+    #         cat = 'BSP NEWS'
 
-        if row[0].value == 'DATE':
-            row[1].value = 'SOURCE'
-            row[2].value = 'TITLE'
-            row[3].value = 'AUTHOR'
-            row[4].value = 'TYPE'
-            row[5].value = 'CATEGORY'
-            row[6].value = 'LINK'
-            continue
+    #     if row[0].value == 'DATE':
+    #         row[1].value = 'SOURCE'
+    #         row[2].value = 'TITLE'
+    #         row[3].value = 'AUTHOR'
+    #         row[4].value = 'TYPE'
+    #         row[5].value = 'CATEGORY'
+    #         row[6].value = 'LINK'
+    #         continue
         
         # if row[2].hyperlink != None:
         #     row[4].value = row[6].value
