@@ -5,7 +5,7 @@ from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
 import json
 import spacy
-import en_core_web_md
+
 
 
 
