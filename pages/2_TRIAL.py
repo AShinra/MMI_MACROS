@@ -17,6 +17,11 @@ def dataframe_create(uploaded_file):
 
     ws.delete_rows(1,7)
 
+    s_row = 1
+    for row in ws.iter_rows():
+        ws.unmerge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=7)
+        s_row += 1
+
     for row in ws.iter_rows(max_col=7):
 
         if row[0].value == 'TODAYS HEADLINENEWS':
