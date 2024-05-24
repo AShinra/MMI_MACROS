@@ -58,15 +58,15 @@ def dataframe_create(uploaded_file):
                             'BSPNEWS']:
             row[0].value = ''
     
-    for row in ws.iter_rows(min_row=3, max_col=7):
-        if row[0].value == 'DATE':
-            row[0].value = ''
-            row[1].value = ''
-            row[2].value = ''
-            row[3].value = ''
-            row[4].value = ''
-            row[5].value = ''
-            row[6].value = ''
+    # for row in ws.iter_rows(min_row=3, max_col=7):
+    #     if row[0].value == 'DATE':
+    #         row[0].value = ''
+    #         row[1].value = ''
+    #         row[2].value = ''
+    #         row[3].value = ''
+    #         row[4].value = ''
+    #         row[5].value = ''
+    #         row[6].value = ''
 
     ws.delete_rows(1,7)
     wb.save(REPORT_FILE)
@@ -94,6 +94,8 @@ if st.session_state['bsp_raw'] != None:
     if button_process:
 
         df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
+
+        df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
 
         df['PRINT LINK'] = 'N/A'
         df['ONLINE LINK'] = 'N/A'
