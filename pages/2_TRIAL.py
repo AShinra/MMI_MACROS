@@ -27,11 +27,11 @@ def similar_title(a, b):
         from spacy.cli import download
         download('en_core_web_md')
         nlp = spacy.load('en_core_web_md')
-
-    # a1 = nlp(' '.join(a_tokens))
-    # b1 = nlp(' '.join(b_tokens))
-    a1 = nlp(a)
-    b1 = nlp(b)
+    finally:
+        # a1 = nlp(' '.join(a_tokens))
+        # b1 = nlp(' '.join(b_tokens))
+        a1 = nlp(a)
+        b1 = nlp(b)
     return a1.similarity(b1)
 
 
