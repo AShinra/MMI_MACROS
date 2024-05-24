@@ -17,15 +17,14 @@ def json_publications():
 
 def similar_title(a, b):
 
-    spacy.download('en_core_web_md')
-
-    a_tokens = a.split(' ')
-    b_tokens = b.split(' ')
+    # a_tokens = a.split(' ')
+    # b_tokens = b.split(' ')
 
     nlp = spacy.load('en_core_web_md')
-    a1 = nlp(' '.join(a))
-    b1 = nlp(' '.join(b))
-
+    # a1 = nlp(' '.join(a_tokens))
+    # b1 = nlp(' '.join(b_tokens))
+    a1 = nlp(a)
+    b1 = nlp(b)
     return a1.similarity(b1)
 
 
@@ -124,6 +123,8 @@ if st.session_state['bsp_raw'] != None:
 
         bsp = json_publications()
         
+
+
         main_title = df1['TITLE'][1]
         main_source = df1['SOURCE'][1]
         main_link = df1['LINK'][1]
@@ -133,7 +134,9 @@ if st.session_state['bsp_raw'] != None:
             _source = df1['SOURCE'][i]
             _link = df1['LINK'][i]
             _type = df1['TYPE'][i]
-            _source = df1['SOURCE'][i]
+
+            st.write(_title)
+
             if i == 1:
                 continue
             elif _type == 'Online News':
