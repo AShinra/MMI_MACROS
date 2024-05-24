@@ -8,7 +8,7 @@ import spacy
 
 try:
     nlp = spacy.load('en_core_web_md')
-except:
+except OSError:
     from spacy.cli import download
     download('en_core_web_md')
     nlp = spacy.load('en_core_web_md')
