@@ -4,7 +4,15 @@ import openpyxl
 from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
 import spacy
+import json
 
+
+def json_publications():
+
+    f = open('json_files/bsp_publications.json')
+    bsp_pub = json.load(f)
+
+    return bsp_pub
 
 
 def similar_title(a, b):
@@ -112,20 +120,24 @@ if st.session_state['bsp_raw'] != None:
         st.write(w)
         st.write(df1['TITLE'][1])
 
+        bsp = json_publications()
+        
         main_title = df1['TITLE'][1]
         main_source = df1['SOURCE'][1]
         main_link = df1['LINK'][1]
+        
         for i in df1.index:
             _title = df1['TITLE'][i]
             _source = df1['SOURCE'][i]
             _link = df1['LINK'][i]
             _type = df1['TYPE'][i]
+            _source = df1['SOURCE'][i]
             if i == 1:
                 continue
             elif _type == 'Online News':
-                if main_source == 'Manila Bulletin' and _source != 'Manila Bulletin Online':
+                if _source not in bsp[main_source]:
                     pass
-                elif main_source == 'Manila Bulletin' and _source == 'Manila Bulletin Online':
+                elif _source in bsp[main_source]:
                     similarity_ratio = similar_title(main_title, _title)
                     if similarity_ratio >= 0.9:
                         df1.at[1, 'ONLINE LINK'] = _link
