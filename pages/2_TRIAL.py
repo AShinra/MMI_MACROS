@@ -5,7 +5,7 @@ from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
 import json
 import spacy
-import os
+
 
 
 
@@ -19,12 +19,15 @@ def json_publications():
 
 def similar_title(a, b):
 
-    os.system('python -m spacy download en_core_web_md')
-
     # a_tokens = a.split(' ')
     # b_tokens = b.split(' ')
+    try:
+        nlp = spacy.load('en_core_web_md')
+    except:
+        from spacy.cli import download
+        download('en_core_web_md')
+        nlp = spacy.load('en_core_web_md')
 
-    nlp = spacy.load('en_core_web_md')
     # a1 = nlp(' '.join(a_tokens))
     # b1 = nlp(' '.join(b_tokens))
     a1 = nlp(a)
