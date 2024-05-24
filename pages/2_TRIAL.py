@@ -22,7 +22,7 @@ def similar_title(a, b):
     # a_tokens = a.split(' ')
     # b_tokens = b.split(' ')
 
-    nlp = spacy.load('en')
+    nlp = spacy.load('en_core_web_md')
     # a1 = nlp(' '.join(a_tokens))
     # b1 = nlp(' '.join(b_tokens))
     a1 = nlp(a)
@@ -112,11 +112,6 @@ if st.session_state['bsp_raw'] != None:
         df3 = grouped.get_group('BSP NEWS')
 
         st.dataframe(df1)
-        # st.dataframe(df2)
-        # st.dataframe(df3)
-
-        # for i in df.index:
-        #     st.write(df['SOURCE'][i], df['TITLE'][i])
 
         l, w = df1.shape
         st.write(l)
@@ -125,8 +120,6 @@ if st.session_state['bsp_raw'] != None:
 
         bsp = json_publications()
         
-
-
         main_title = df1['TITLE'][1]
         main_source = df1['SOURCE'][1]
         main_link = df1['LINK'][1]
@@ -149,7 +142,7 @@ if st.session_state['bsp_raw'] != None:
                     if similarity_ratio >= 0.8:
                         df1.at[1, 'ONLINE LINK'] = _link
                         df1.at[1, 'PRINT LINK'] = main_link
-                        df1.at[1, 'DELETE'] = 'NO'
+                        df1.at[1, 'DELETE'] = 'DONE'
                         df1.at[i, 'DELETE'] = 'YES'
                     else:
                         st.write('THey are not similar')
