@@ -1,5 +1,4 @@
 openpyxl
 streamlit
-spacyspacy==3.7.4
-https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.7.4/en_core_web_sm-3.7.4-py3-none-any.whl
-https://github.com/explosion/spacy-models/releases/download/fr_core_news_md-3.7.4/fr_core_news_sm-3.7.4-py3-none-any.whl
+spacy==3.7.4
+en_core_web_md
