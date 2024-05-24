@@ -43,11 +43,11 @@ def dataframe_create(uploaded_file):
             row[6].value = 'LINK'
             continue
         
-        if row[2].hyperlink != None:
-            row[4].value = row[6].value
-            row[5].value = cat
-            row[6].value = row[2].hyperlink.target
-            row[2].hyperlink = None
+        # if row[2].hyperlink != None:
+        #     row[4].value = row[6].value
+        #     row[5].value = cat
+        #     row[6].value = row[2].hyperlink.target
+        #     row[2].hyperlink = None
     
 
     for row in ws.iter_rows(max_col=7):
