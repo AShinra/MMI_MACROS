@@ -3,14 +3,20 @@ import pandas as pd
 import openpyxl
 from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
+import spacy
 
 
 
-def similar_title():
+def similar_title(a, b):
 
+    a_tokens = a.split(' ')
+    b_tokens = b.split(' ')
 
+    nlp = spacy.load('en_core_web_md')
+    a1 = nlp(' '.join(a))
+    b1 = nlp(' '.join(b))
 
-    return
+    return a1.similarity(b1)
 
 
 
@@ -87,6 +93,7 @@ if st.session_state['bsp_raw'] != None:
 
         df['PRINT LINK'] = 'N/A'
         df['ONLINE LINK'] = 'N/A'
+        df['DELETE'] = ''
 
         grouped = df.groupby(df.CATEGORY)
         df1 = grouped.get_group('TODAYS HEADLINENEWS')
@@ -94,16 +101,44 @@ if st.session_state['bsp_raw'] != None:
         df3 = grouped.get_group('BSP NEWS')
 
         st.dataframe(df1)
-        st.dataframe(df2)
-        st.dataframe(df3)
+        # st.dataframe(df2)
+        # st.dataframe(df3)
 
         # for i in df.index:
         #     st.write(df['SOURCE'][i], df['TITLE'][i])
 
-        l, w = df.shape
+        l, w = df1.shape
         st.write(l)
         st.write(w)
+        st.write(df1['TITLE'][1])
 
+        main_title = df1['TITLE'][1]
+        main_source = df1['SOURCE'][1]
+        main_link = df1['LINK'][1]
+        for i in df1.index:
+            _title = df1['TITLE'][i]
+            _source = df1['SOURCE'][i]
+            _link = df1['LINK'][i]
+            _type = df1['TYPE'][i]
+            if i == 1:
+                continue
+            elif _type == 'Online News':
+                if main_source == 'Manila Bulletin' and _source != 'Manila Bulletin Online':
+                    pass
+                elif main_source == 'Manila Bulletin' and _source == 'Manila Bulletin Online':
+                    similarity_ratio = similar_title(main_title, _title)
+                    if similarity_ratio >= 0.9:
+                        df1.at[1, 'ONLINE LINK'] = _link
+                        df1.at[1, 'PRINT LINK'] = main_link
+                        df1.at[1, 'DELETE'] = 'NO'
+                        df1.at[i, 'DELETE'] = 'YES'
+                    else:
+                        st.write('THey are not similar')
+            else:
+                continue
+
+
+        st.dataframe(df1)    
         
 
         # result_file = open(REPORT_FILE, 'rb')
