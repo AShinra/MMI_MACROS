@@ -35,14 +35,14 @@ def dataframe_create(uploaded_file):
         elif row[0].value == 'BSPNEWS':
             cat = 'BSP NEWS'
 
-        if row[0].value == 'DATE':
-            row[1].value = 'SOURCE'
-            row[2].value = 'TITLE'
-            row[3].value = 'AUTHOR'
-            row[4].value = 'TYPE'
-            row[5].value = 'CATEGORY'
-            row[6].value = 'LINK'
-            continue
+        # if row[0].value == 'DATE':
+        #     row[1].value = 'SOURCE'
+        #     row[2].value = 'TITLE'
+        #     row[3].value = 'AUTHOR'
+        #     row[4].value = 'TYPE'
+        #     row[5].value = 'CATEGORY'
+        #     row[6].value = 'LINK'
+        #     continue
         
         if row[2].hyperlink != None:
             row[4].value = row[6].value
@@ -95,17 +95,17 @@ if st.session_state['bsp_raw'] != None:
 
         df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
 
-        # df['PRINT LINK'] = 'N/A'
-        # df['ONLINE LINK'] = 'N/A'
+        df['PRINT LINK'] = 'N/A'
+        df['ONLINE LINK'] = 'N/A'
 
-        # grouped = df.groupby(df.CATEGORY)
-        # df1 = grouped.get_group('TODAYS HEADLINENEWS')
-        # df2 = grouped.get_group('TODAYS BUSINESS HEADLINENEWS')
-        # df3 = grouped.get_group('BSP NEWS')
+        grouped = df.groupby(df.CATEGORY)
+        df1 = grouped.get_group('TODAYS HEADLINENEWS')
+        df2 = grouped.get_group('TODAYS BUSINESS HEADLINENEWS')
+        df3 = grouped.get_group('BSP NEWS')
 
-        # st.dataframe(df1)
-        # st.dataframe(df2)
-        # st.dataframe(df3)
+        st.dataframe(df1)
+        st.dataframe(df2)
+        st.dataframe(df3)
 
         # for i in df.index:
         #     st.write(df['SOURCE'][i], df['TITLE'][i])
