@@ -75,7 +75,7 @@ def dataframe_create(uploaded_file):
     df = pd.read_excel(REPORT_FILE)
     df.columns = df.iloc[0]
     df = df.drop(df.index[0])
-    df = df.dropna()
+    # df = df.dropna()
     
 
     return df, REPORT_FILE
