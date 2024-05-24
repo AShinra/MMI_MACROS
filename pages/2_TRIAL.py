@@ -23,11 +23,6 @@ def json_publications():
 
 
 def similar_title(a, b):
-
-    # a_tokens = a.split(' ')
-    # b_tokens = b.split(' ')
-    # a1 = nlp(' '.join(a_tokens))
-    # b1 = nlp(' '.join(b_tokens))
     a1 = nlp(a)
     b1 = nlp(b)
     return a1.similarity(b1)
