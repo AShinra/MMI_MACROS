@@ -17,6 +17,8 @@ def json_publications():
 
 def similar_title(a, b):
 
+    nlp.download('en_core_web_md')
+
     a_tokens = a.split(' ')
     b_tokens = b.split(' ')
 
