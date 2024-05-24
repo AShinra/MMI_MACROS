@@ -93,20 +93,20 @@ if st.session_state['bsp_raw'] != None:
 
         df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
 
-        df['PRINT LINK'] = 'N/A'
-        df['ONLINE LINK'] = 'N/A'
+        # df['PRINT LINK'] = 'N/A'
+        # df['ONLINE LINK'] = 'N/A'
 
-        grouped = df.groupby(df.CATEGORY)
-        df1 = grouped.get_group('TODAYS HEADLINENEWS')
-        df2 = grouped.get_group('TODAYS BUSINESS HEADLINENEWS')
-        df3 = grouped.get_group('BSP NEWS')
+        # grouped = df.groupby(df.CATEGORY)
+        # df1 = grouped.get_group('TODAYS HEADLINENEWS')
+        # df2 = grouped.get_group('TODAYS BUSINESS HEADLINENEWS')
+        # df3 = grouped.get_group('BSP NEWS')
 
-        st.dataframe(df1)
-        st.dataframe(df2)
-        st.dataframe(df3)
+        # st.dataframe(df1)
+        # st.dataframe(df2)
+        # st.dataframe(df3)
 
-        for i in df.index:
-            st.write(df['SOURCE'][i], df['TITLE'][i])
+        # for i in df.index:
+        #     st.write(df['SOURCE'][i], df['TITLE'][i])
 
         
 
