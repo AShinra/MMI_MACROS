@@ -1,3 +1,4 @@
 openpyxl
 streamlit
 spacy
+en_core_web_md
