@@ -3,8 +3,8 @@ import pandas as pd
 import openpyxl
 from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
-import spacy
 import json
+import spacy
 import spacy_streamlit
 
 
@@ -22,7 +22,7 @@ def similar_title(a, b):
     # a_tokens = a.split(' ')
     # b_tokens = b.split(' ')
 
-    nlp = spacy.load('en_core_web_md')
+    nlp = spacy.load('en')
     # a1 = nlp(' '.join(a_tokens))
     # b1 = nlp(' '.join(b_tokens))
     a1 = nlp(a)
