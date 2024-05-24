@@ -5,6 +5,8 @@ from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
 import spacy
 import json
+import spacy_streamlit
+
 
 
 def json_publications():
@@ -135,16 +137,16 @@ if st.session_state['bsp_raw'] != None:
             _link = df1['LINK'][i]
             _type = df1['TYPE'][i]
 
-            st.write(_title)
-
             if i == 1:
                 continue
             elif _type == 'Online News':
                 if _source not in bsp[main_source]:
-                    pass
+                    continue
                 elif _source in bsp[main_source]:
+                    st.write(_title)
                     similarity_ratio = similar_title(main_title, _title)
-                    if similarity_ratio >= 0.9:
+                    st.write(similarity_ratio)
+                    if similarity_ratio >= 0.8:
                         df1.at[1, 'ONLINE LINK'] = _link
                         df1.at[1, 'PRINT LINK'] = main_link
                         df1.at[1, 'DELETE'] = 'NO'
