@@ -33,6 +33,7 @@ def dataframe_create(uploaded_file):
             row[4].value = 'TYPE'
             row[5].value = 'CATEGORY'
             row[6].value = 'LINK'
+            continue
         
         if row[2].hyperlink != None:
             row[4].value = row[6].value
