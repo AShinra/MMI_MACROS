@@ -173,20 +173,16 @@ if st.session_state['bsp_raw'] != None:
             # st.dataframe(_df)
             new_dfs.append(_df)
 
-
         for df in new_dfs:
             df['TYPE'] = pd.Categorical(df['TYPE'], ['Broadsheet', 'Tabloid', 'Provincial', 'Magazine', 'Online News', 'Blogs'])
             df.sort_values('TYPE')
-            st.dataframe(df)
 
-
-
+        df_merged = pd.concat([dfs[0], dfs[1], dfs[2]], sort=False)
+        df_merged.to_excel(REPORT_FILE)
         
-        
-
-        # result_file = open(REPORT_FILE, 'rb')
-        # st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
-        # st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
+        result_file = open(REPORT_FILE, 'rb')
+        st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
+        st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
 
 
          
