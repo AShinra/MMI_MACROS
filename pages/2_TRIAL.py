@@ -169,7 +169,7 @@ if st.session_state['bsp_raw'] != None:
                                 if sub_delete == 'FPR DELETION':
                                     continue
                                 else:
-                                    similarity_ratio = similar_title(main_title, sub_title)
+                                    similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
                                     if similarity_ratio < 0.75:
                                         continue
                                     else:
