@@ -5,6 +5,7 @@ from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
 import json
 import spacy
+import subprocess
 
 # try:
 #     nlp = spacy.load('en_core_web_md')
@@ -13,6 +14,13 @@ import spacy
 #     download('en_core_web_md')
 #     nlp = spacy.load('en_core_web_md')
 
+# nlp = spacy.load('en_core_web_md')
+
+@st.cache_resource
+def download_en_core_web_md():
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_md"])
+
+download_en_core_web_md()
 nlp = spacy.load('en_core_web_md')
 
 def json_publications():
