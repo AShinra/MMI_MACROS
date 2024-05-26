@@ -144,9 +144,11 @@ if st.session_state['bsp_raw'] != None:
                     continue
                 elif main_type in ['Tabloid', 'Magazine', 'Provincial']:
                     _df.at[j, 'PRINT LINK'] = main_link
+                    _df.at[j, 'DELETE'] = 'DONE'
                     continue
                 elif main_source not in broadsheet_list:
                     _df.at[j, 'PRINT LINK'] = main_link
+                    _df.at[j, 'DELETE'] = 'DONE'
                     continue
                 else:
                     _df.at[j, 'PRINT LINK'] = main_link
@@ -167,12 +169,15 @@ if st.session_state['bsp_raw'] != None:
                                 if sub_delete == 'FPR DELETION':
                                     continue
                                 else:
-                                    similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
+                                    similarity_ratio = similar_title(main_title, sub_title)
                                     if similarity_ratio < 0.7:
                                         continue
                                     else:
                                         _df.at[j, 'ONLINE LINK'] = sub_link
                                         _df.at[k, 'DELETE'] = 'FOR DELETION'
+
+                    _df.at[j, 'DELETE'] = 'DONE'                    
+
 
             st.dataframe(_df)
 
