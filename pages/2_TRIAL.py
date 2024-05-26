@@ -13,6 +13,7 @@ import spacy
 #     download('en_core_web_md')
 #     nlp = spacy.load('en_core_web_md')
 
+nlp = spacy.load('en_core_web_md')
 
 def json_publications():
 
@@ -23,8 +24,6 @@ def json_publications():
 
 
 def similar_title(a, b):
-    nlp = spacy.load('en_core_web_md')
-
     a1 = nlp(a)
     b1 = nlp(b)
     return a1.similarity(b1)
