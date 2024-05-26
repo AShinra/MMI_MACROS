@@ -7,20 +7,6 @@ import json
 import spacy
 import subprocess
 
-# try:
-#     nlp = spacy.load('en_core_web_md')
-# except OSError:
-#     from spacy.cli import download
-#     download('en_core_web_md')
-#     nlp = spacy.load('en_core_web_md')
-
-# nlp = spacy.load('en_core_web_md')
-
-@st.cache_resource
-def download_en_core_web_md():
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_md"])
-
-
 
 
 def json_publications():
@@ -105,7 +91,6 @@ if st.session_state['bsp_raw'] != None:
 
     if button_process:
 
-        # download_en_core_web_md()
         nlp = spacy.load('en_core_web_sm')
 
         df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
@@ -132,6 +117,7 @@ if st.session_state['bsp_raw'] != None:
         for k, v in bsp.items():
             broadsheet_list.append(k)
 
+        new_dfs = []
         for _df in dfs:
             for j in _df.index:
                 main_title = _df.at[j, 'TITLE']
@@ -182,9 +168,16 @@ if st.session_state['bsp_raw'] != None:
             _df = _df[_df.DELETE != 'FOR DELETION']
 
             # drop other columns
-            _df = _df.drop(["TYPE", "LINK", "DELETE"], axis='columns')
+            _df = _df.drop(["LINK", "DELETE"], axis='columns')
 
-            st.dataframe(_df)
+            # st.dataframe(_df)
+            new_dfs.append(_df)
+
+
+        for df in new_dfs:
+            df['TYPE'] = pd.Categorical(df['TYPE'], ['Broadsheet', 'Tabloid', 'Provincial', 'Magazine', 'Online News', 'Blogs'])
+            df.sort_values('TYPE')
+            st.dataframe(df)
 
 
 
