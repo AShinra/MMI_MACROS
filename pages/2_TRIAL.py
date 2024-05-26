@@ -178,113 +178,15 @@ if st.session_state['bsp_raw'] != None:
 
                     _df.at[j, 'DELETE'] = 'DONE'                    
 
+            # drop rows for deletion
+            _del = _df[_df.DELETE == 'FOR DELETION']
+            _df.drop(_del)
 
             st.dataframe(_df)
 
 
-        exit()
-        # l, w = df3.shape
-        # st.write(l)
-        # st.write(w)
-        # st.write(df3['TITLE'][1])
 
-        # load print/online counterparts
-        bsp = json_publications()
-
-        # create publication list
-        print_list = []
-        online_list = []
-        for k, v in bsp.items():
-            print_list.append(k)
-            for w in v:
-                online_list.append(w)
         
-
-        for _df in dfs:
-            st.dataframe(_df)
-            for j in _df.index:
-                main_title = _df['TITLE'][j]
-                main_source = _df['SOURCE'][j]
-                main_link = _df['LINK'][j]
-                main_type = _df['TYPE'][j]
-
-                if main_source not in print_list and main_type not in ['Online News', 'Blogs']:
-                    _df.at[j, 'DELETE'] = 'DONE'
-                    _df.at[j, 'PRINT LINK'] = main_link
-                    continue
-                
-                elif main_source not in online_list and main_type in ['Online News', 'Blogs']:
-                    _df.at[j, 'DELETE'] = 'DONE'
-                    _df.at[j, 'ONLINE LINK'] = main_link
-                    continue
-                
-                else:
-                    for k in _df.index:
-                        sample_title = _df['TITLE'][k]
-                        sample_source = _df['SOURCE'][k]
-                        sample_link = _df['LINK'][k]
-                        sample_type = _df['TYPE'][k]
-                        sample_delete = _df['DELETE'][k]
-
-                        if sample_delete != '' or sample_type not in ['Online News', 'Blogs']:
-                            continue
-
-                        elif sample_source in bsp[main_source]:
-                            similarity_ratio = similar_title(main_title, sample_title)
-                            if similarity_ratio >= 0.75:
-                                _df.at[j, 'PRINT LINK'] = main_link
-                                _df.at[j, 'ONLINE LINK'] = sample_link
-                                _df.at[j, 'DELETE'] = 'DONE'
-                                _df.at[k, 'DELETE'] = 'FOR DELETION'
-                        else:
-                            _df.at[j, 'PRINT LINK'] = main_link
-                            _df.at[j, 'DELETE'] = 'DONE'
-                            
-
-            st.dataframe(_df)
-
-
-        # for j in df3.index:
-        #     main_title = df3['TITLE'][j]
-        #     main_source = df3['SOURCE'][j]
-        #     main_link = df3['LINK'][j]
-        #     df3.at[j, 'PRINT LINK'] = main_link
-
-        #     if main_source not in pub_list:
-        #         st.write(main_source)
-        #         continue
-        #     elif df3.at[j, 'DELETE'] == '' and df3.at[j, 'TYPE'] != 'Online News':
-        #         df3.at[j, 'DELETE'] = 'DONE'
-            
-        #     for i in df3.index:
-        #         _title = df3['TITLE'][i]
-        #         _source = df3['SOURCE'][i]
-        #         _link = df3['LINK'][i]
-        #         _type = df3['TYPE'][i]
-
-        #         if i == j or df3['DELETE'][i] != '':
-        #             continue
-        #         elif _type == 'Online News':
-        #             if _source not in bsp[main_source]:
-        #                 continue
-        #             elif _source in bsp[main_source]:
-        #                 # st.write(_title)
-        #                 similarity_ratio = similar_title(main_title, _title)
-        #                 # st.write(similarity_ratio)
-        #                 if similarity_ratio >= 0.8:
-        #                     df3.at[j, 'ONLINE LINK'] = _link
-        #                     df3.at[j, 'DELETE'] = 'DONE'
-        #                     df3.at[i, 'DELETE'] = 'YES'
-        #                 elif similarity_ratio < 0.8:
-        #                     df3.at[i, 'ONLINE LINK'] = _link
-        #                     df3.at[i, 'DELETE'] = 'DONE'
-        #                 else:
-        #                     st.write('THey are not similar')
-        #         else:
-        #             continue
-
-
-        # st.dataframe(df3)    
         
 
         # result_file = open(REPORT_FILE, 'rb')
