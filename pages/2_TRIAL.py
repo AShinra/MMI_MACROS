@@ -179,8 +179,7 @@ if st.session_state['bsp_raw'] != None:
                     _df.at[j, 'DELETE'] = 'DONE'                    
 
             # drop rows for deletion
-            _del = _df[(_df.DELETE == 'FOR DELETION')]
-            _df.drop(_del)
+            _df = _df[_df.DELETE != 'FOR DELETION']
 
             st.dataframe(_df)
 
