@@ -20,7 +20,7 @@ import subprocess
 def download_en_core_web_md():
     subprocess.run(["python", "-m", "spacy", "download", "en_core_web_md"])
 
-download_en_core_web_md()
+
 
 
 def json_publications():
@@ -32,7 +32,6 @@ def json_publications():
 
 
 def similar_title(a, b):
-    nlp = spacy.load('en_core_web_md')
     a1 = nlp(a)
     b1 = nlp(b)
     return a1.similarity(b1)
@@ -105,6 +104,9 @@ if st.session_state['bsp_raw'] != None:
     button_process = st.button('Process File')
 
     if button_process:
+
+        download_en_core_web_md()
+        nlp = spacy.load('en_core_web_md')
 
         df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
 
