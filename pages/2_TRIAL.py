@@ -173,12 +173,13 @@ if st.session_state['bsp_raw'] != None:
             # st.dataframe(_df)
             new_dfs.append(_df)
 
+
         for df in new_dfs:
             df['TYPE'] = pd.Categorical(df['TYPE'], ['Broadsheet', 'Tabloid', 'Provincial', 'Magazine', 'Online News', 'Blogs'])
             df.sort_values('TYPE')
 
-        df_merged = pd.concat([dfs[0], dfs[1], dfs[2]], sort=False)
-        df_merged.to_excel(REPORT_FILE)
+        df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
+        df_merged.to_excel(REPORT_FILE, index=False)
         
         result_file = open(REPORT_FILE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
