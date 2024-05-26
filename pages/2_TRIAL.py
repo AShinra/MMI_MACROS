@@ -181,6 +181,9 @@ if st.session_state['bsp_raw'] != None:
             # drop rows for deletion
             _df = _df[_df.DELETE != 'FOR DELETION']
 
+            # drop other columns
+            _df = _df.drop(["TYPE", "LINK", "DELETE"], axis='columns')
+
             st.dataframe(_df)
 
 
