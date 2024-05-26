@@ -176,15 +176,14 @@ if st.session_state['bsp_raw'] != None:
             df['TYPE'] = pd.Categorical(df['TYPE'], ['Broadsheet', 'Tabloid', 'Provincial', 'Magazine', 'Online News', 'Blogs'])
             df.sort_values('TYPE')
 
+        # convert to excel
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
         df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
         
-        
-
         # wb = openpyxl.load_workbook(REPORT_FILE)
         # ws  = wb.active
 
-        # append_df_to_excel()
+        
 
 
         # wb.save(REPORT_FILE)
