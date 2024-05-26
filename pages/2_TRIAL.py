@@ -72,9 +72,7 @@ def dataframe_create(uploaded_file):
     wb.save(REPORT_FILE)
     wb.close()
 
-    df = pd.read_excel(REPORT_FILE)
-    # df.columns = df.iloc[0]
-    # df = df.drop(df.index[0])    
+    df = pd.read_excel(REPORT_FILE) 
 
     return df, REPORT_FILE
 
@@ -179,8 +177,17 @@ if st.session_state['bsp_raw'] != None:
             df.sort_values('TYPE')
 
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
-        df_merged.to_excel(REPORT_FILE, index=False)
+        df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
         
+        # wb = openpyxl.load_workbook(REPORT_FILE)
+        # ws  = wb.active
+
+        # append_df_to_excel()
+
+
+        # wb.save(REPORT_FILE)
+        # wb.close()
+
         result_file = open(REPORT_FILE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
         st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
