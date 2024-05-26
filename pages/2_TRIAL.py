@@ -105,8 +105,8 @@ if st.session_state['bsp_raw'] != None:
 
     if button_process:
 
-        download_en_core_web_md()
-        nlp = spacy.load('en_core_web_md')
+        # download_en_core_web_md()
+        nlp = spacy.load('en_core_web_sm')
 
         df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
 
