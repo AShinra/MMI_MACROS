@@ -183,7 +183,7 @@ if st.session_state['bsp_raw'] != None:
         new_dfs[0].to_excel(REPORT_FILE, index=False, startrow=s_row)
         l, w = new_dfs[0].shape
 
-        new_dfs[1].to_excel(REPORT_FILE, index=False, startrow=s_row+l)
+        new_dfs[1].to_excel(REPORT_FILE, index=False, startrow=s_row+l, mode="a")
 
 
         # wb = openpyxl.load_workbook(REPORT_FILE)
