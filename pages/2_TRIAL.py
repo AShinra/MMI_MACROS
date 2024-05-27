@@ -162,13 +162,11 @@ if st.session_state['bsp_raw'] != None:
 
                     _df.at[j, 'DELETE'] = 'DONE'                    
 
-            st.dataframe(_df)
-
             # drop rows for deletion
             _df = _df[_df.DELETE != 'FOR DELETION']
 
             # drop other columns
-            _df = _df.drop(["LINK", "DELETE"], axis='columns')
+            _df = _df.drop(["AUTHOR", "LINK", "DELETE"], axis='columns')
 
             # st.dataframe(_df)
             new_dfs.append(_df)
