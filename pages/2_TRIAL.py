@@ -162,10 +162,11 @@ if st.session_state['bsp_raw'] != None:
 
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
                                     if similarity_ratio < 0.8:
-                                        break
+                                        continue
                                     else:
                                         _df.at[j, 'ONLINE LINK'] = sub_link
                                         _df.at[k, 'DELETE'] = 'FOR DELETION'
+                                        break
 
                     _df.at[j, 'DELETE'] = 'DONE'                    
 
