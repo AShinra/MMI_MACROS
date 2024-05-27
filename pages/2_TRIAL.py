@@ -181,20 +181,20 @@ if st.session_state['bsp_raw'] != None:
         # convert to excel
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
         # df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
-        df_merged.to_excel(BSP_TEMPLATE, index=False, startrow=8, engine='openpyxl', mode='a')
+        # df_merged.to_excel(BSP_TEMPLATE, index=False, startrow=8, engine='openpyxl')
 
         # with pd.ExcelWriter(BSP_TEMPLATE, engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer: 
         #     df_merged.to_excel(writer)
 
         
-        # wb = openpyxl.load_workbook(REPORT_FILE)
-        # ws  = wb.active
+        wb = openpyxl.load_workbook(BSP_TEMPLATE)
+        ws  = wb.active
 
-        
+        for i, row in df_merged.iterrows():
+            ws.append(row.values.tolist())
 
-
-        # wb.save(REPORT_FILE)
-        # wb.close()
+        wb.save(BSP_TEMPLATE)
+        wb.close()
 
         result_file = open(BSP_TEMPLATE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
