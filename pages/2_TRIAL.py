@@ -181,7 +181,7 @@ if st.session_state['bsp_raw'] != None:
         # convert to excel
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
         # df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
-        df_merged.to_excel(BSP_TEMPLATE, index=False, startrow=8, mode='a', if_sheet_exists='overlay', engine='openpyxl')
+        df_merged.to_excel(BSP_TEMPLATE, index=False, startrow=8, if_sheet_exists='overlay', engine='openpyxl')
 
         # with pd.ExcelWriter(BSP_TEMPLATE, engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer: 
         #     df_merged.to_excel(writer)
