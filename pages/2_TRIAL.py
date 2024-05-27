@@ -55,15 +55,10 @@ def dataframe_create(uploaded_file):
         elif row[0].value == 'BSPNEWS':
             cat = 'BSP NEWS'
         
-        # if row[2].hyperlink != None:
-        #     row[4].value = row[6].value
-        #     row[5].value = cat
-        #     row[6].value = row[2].hyperlink.target
-        #     row[2].hyperlink = None
         if row[2].hyperlink != None:
-            row[3].value = row[5].value
-            row[4].value = cat
-            row[4].value = row[2].hyperlink.target
+            row[4].value = row[6].value
+            row[5].value = cat
+            row[6].value = row[2].hyperlink.target
             row[2].hyperlink = None
 
     for row in ws.iter_rows(max_col=7):
@@ -98,7 +93,7 @@ if st.session_state['bsp_raw'] != None:
 
         df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
 
-        df.columns = ['DATE', 'SOURCE', 'TITLE', 'TYPE', 'CATEGORY', 'LINK']
+        df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
 
         df['PRINT LINK'] = 'N/A'
         df['ONLINE LINK'] = 'N/A'
