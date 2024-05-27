@@ -93,7 +93,7 @@ if st.session_state['bsp_raw'] != None:
 
         df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
 
-        df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
+        df.columns = ['DATE', 'SOURCE', 'TITLE', 'TYPE', 'CATEGORY', 'LINK']
 
         df['PRINT LINK'] = 'N/A'
         df['ONLINE LINK'] = 'N/A'
