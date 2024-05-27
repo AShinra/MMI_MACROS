@@ -176,9 +176,15 @@ if st.session_state['bsp_raw'] != None:
             df['TYPE'] = pd.Categorical(df['TYPE'], ['Broadsheet', 'Tabloid', 'Provincial', 'Magazine', 'Online News', 'Blogs'])
             df.sort_values('TYPE')
 
+        BSP_TEMPLATE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
+
         # convert to excel
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
-        df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
+        # df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
+
+        with pd.ExcelWriter(BSP_TEMPLATE, mode='A') as writer: 
+            df_merged.to_excel(writer)
+
         
         # wb = openpyxl.load_workbook(REPORT_FILE)
         # ws  = wb.active
@@ -189,7 +195,7 @@ if st.session_state['bsp_raw'] != None:
         # wb.save(REPORT_FILE)
         # wb.close()
 
-        result_file = open(REPORT_FILE, 'rb')
+        result_file = open(BSP_TEMPLATE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
         st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
 
