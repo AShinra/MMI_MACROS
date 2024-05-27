@@ -155,10 +155,13 @@ if st.session_state['bsp_raw'] != None:
                                 else:
                                     
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
-                                    if similarity_ratio < 0.75:
+                                    if similarity_ratio < 0.8:
                                         continue
                                     else:
-                                        # sub_title = sub_title.replace(sub_title, sub_source)
+                                        try:
+                                            sub_title = sub_title.replace(sub_title, 'BusinessWorld Online')
+                                        except:
+                                            pass
                                         _df.at[j, 'ONLINE LINK'] = sub_link
                                         _df.at[k, 'DELETE'] = 'FOR DELETION'
 
