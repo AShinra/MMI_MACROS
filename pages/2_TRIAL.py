@@ -150,18 +150,18 @@ if st.session_state['bsp_raw'] != None:
                             if sub_source not in bsp[main_source]:
                                 continue
                             else:
-                                if sub_delete == 'FPR DELETION':
+                                if sub_delete == 'FOR DELETION':
                                     continue
                                 else:
-                                    try:
+                                    # try:
                                         # st.write(sub_title)
-                                        sub_title = sub_title.replace('BusinessWorld Online', '')
+                                        # sub_title = sub_title.replace('BusinessWorld Online', '')
                                         # st.write(sub_title)
-                                    except:
-                                        pass
+                                    # except:
+                                    #     pass
 
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
-                                    if similarity_ratio < 0.8:
+                                    if similarity_ratio < 0.75:
                                         continue
                                     else:
                                         _df.at[j, 'ONLINE LINK'] = sub_link
