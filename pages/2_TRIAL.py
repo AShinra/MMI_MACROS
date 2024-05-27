@@ -154,9 +154,9 @@ if st.session_state['bsp_raw'] != None:
                                     continue
                                 else:
                                     try:
-                                        st.write(sub_title)
-                                        sub_title = sub_title.replace(sub_title, 'BusinessWorld Online')
-                                        st.write(sub_title)
+                                        # st.write(sub_title)
+                                        sub_title = sub_title.replace('BusinessWorld Online', '')
+                                        # st.write(sub_title)
                                     except:
                                         pass
 
