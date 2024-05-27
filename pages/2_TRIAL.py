@@ -153,15 +153,15 @@ if st.session_state['bsp_raw'] != None:
                                 if sub_delete == 'FPR DELETION':
                                     continue
                                 else:
-                                    
+                                    try:
+                                        sub_title = sub_title.replace(sub_title, 'BusinessWorld Online')
+                                    except:
+                                        pass
+
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
                                     if similarity_ratio < 0.8:
                                         continue
                                     else:
-                                        try:
-                                            sub_title = sub_title.replace(sub_title, 'BusinessWorld Online')
-                                        except:
-                                            pass
                                         _df.at[j, 'ONLINE LINK'] = sub_link
                                         _df.at[k, 'DELETE'] = 'FOR DELETION'
 
