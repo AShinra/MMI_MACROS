@@ -6,6 +6,7 @@ from openpyxl.styles.borders import Border, Side
 from pathlib import Path
 import json
 import spacy
+from openpyxl.drawing.image import Image
 
 def sheet_formating(df):
 
@@ -47,6 +48,11 @@ def sheet_formating(df):
 
     wb = openpyxl.Workbook()
     ws = wb.active
+
+    # insert bsp logo
+    image_path = Path(__file__).parent/f'BSP_Temp/bsp_logo.jpg'
+    bsp_logo = Image(image_path)
+    ws.add_image(bsp_logo, 'A3')
 
     l, w = df_cat1.shape
     
