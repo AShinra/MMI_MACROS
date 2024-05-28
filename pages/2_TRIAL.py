@@ -54,7 +54,7 @@ def sheet_formating(df):
             ws.cell(row=s_row+2+i, column=4).value = _df.at[i, 'ONLINE LINK']
             ws.cell(row=s_row+2+i, column=5).value = _df.at[i, 'PRINT LINK']
             st.write(i)
-        s_row = s_row + l + 3
+        s_row = s_row + l + 2
         c += 1
 
     wb.save(BSP_FILE)
