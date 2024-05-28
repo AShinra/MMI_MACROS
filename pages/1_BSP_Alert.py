@@ -260,9 +260,6 @@ def dataframe_create(uploaded_file):
 
 
 
-LOGO_FILE = Path(__file__).parent/f'BSP_Temp/bsp_logonew.jpg'
-st.image(LOGO_FILE)
-
 with st.container(border=True):
     
     st.header('Bangko Sentral ng Pilipinas')
