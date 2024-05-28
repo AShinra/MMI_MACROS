@@ -127,23 +127,25 @@ def sheet_formating(df):
             online_cell = ws.cell(row=s_row+2+i, column=4)
             if s_online == 'N/A':
                 online_cell.value = 'N/A'
+                online_cell.font = general_font
             else:
                 online_cell.value = 'Online Link'
                 online_cell.hyperlink = s_online
                 online_cell.style = 'Hyperlink'
+            
             online_cell.alignment = Alignment(horizontal='center')
-            online_cell.font = general_font
             online_cell.border = thin_border
 
             print_cell = ws.cell(row=s_row+2+i, column=5)
             if s_print == 'N/A':    
                 print_cell.value = 'N/A'
+                print_cell.font = general_font
             else:
                 print_cell.value = 'Print Link'
                 print_cell.hyperlink = s_print
                 print_cell.style = 'Hyperlink'
+            
             print_cell.alignment = Alignment(horizontal='center')
-            print_cell.font = general_font
             print_cell.border = thin_border
 
 
