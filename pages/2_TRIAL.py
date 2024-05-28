@@ -54,6 +54,7 @@ def sheet_formating(df):
         category_cell.fill = color_fill
         category_cell.border = thin_border
         category_cell.font = bold_white_text
+        category_cell.aligment = Alignment(horizontal='center')
 
         ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=5)
 
