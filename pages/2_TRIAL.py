@@ -191,6 +191,7 @@ def dataframe_create(uploaded_file):
     wb = openpyxl.load_workbook(uploaded_file)
     ws = wb.active
 
+    st.write(ws.cell(row=1, column=1).value)
 
     s_row = 1
     for row in ws.iter_rows():
