@@ -198,7 +198,7 @@ if st.session_state['bsp_raw'] != None:
         # convert to excel
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
 
-        df_merged = df_merged['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']
+        df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']]
 
         df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
         
