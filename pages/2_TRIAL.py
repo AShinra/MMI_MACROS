@@ -39,8 +39,8 @@ def sheet_formating(df):
         ws.cell(row=s_row+1, column=3).value = 'TITLE'
         ws.cell(row=s_row+1, column=4).value = 'ONLINE'
         ws.cell(row=s_row+1, column=5).value = 'PRINT'
+        ws.cell(row=s_row, column=1).value = _df.at[1, 'CATEGORY']
         for i in _df.index:
-            ws.cell(row=s_row, column=1).value = _df.at[i, 'CATEGORY']
             ws.cell(row=s_row+1+i, column=1).value = _df.at[i, 'DATE']
             ws.cell(row=s_row+1+i, column=2).value = _df.at[i, 'SOURCE']
             ws.cell(row=s_row+1+i, column=3).value = _df.at[i, 'TITLE']
