@@ -8,7 +8,7 @@ import json
 import spacy
 from openpyxl.drawing.image import Image
 
-def sheet_formating(df):
+def sheet_formating(df, sendout_date):
 
     # category cell formats
     category_color_fill = PatternFill(start_color='06A2E5', end_color='06A2E5', fill_type='solid')
@@ -48,6 +48,8 @@ def sheet_formating(df):
 
     wb = openpyxl.Workbook()
     ws = wb.active
+
+    ws.cell(row=1, column=1).value = sendout_date
 
     # insert bsp logo
     image_path = Path(__file__).parent/f'BSP_Temp/bsp_logo.jpg'
@@ -191,7 +193,7 @@ def dataframe_create(uploaded_file):
     wb = openpyxl.load_workbook(uploaded_file)
     ws = wb.active
 
-    st.write(ws.cell(row=1, column=1).value)
+    sendout_date = ws.cell(row=1, column=1).value
 
     s_row = 1
     for row in ws.iter_rows():
@@ -231,7 +233,7 @@ def dataframe_create(uploaded_file):
 
     df = pd.read_excel(REPORT_FILE) 
 
-    return df, REPORT_FILE
+    return df, REPORT_FILE, sendout_date
 
 
 
@@ -248,7 +250,7 @@ if st.session_state['bsp_raw'] != None:
 
         nlp = spacy.load('en_core_web_sm')
 
-        df, REPORT_FILE = dataframe_create(st.session_state['bsp_raw'])
+        df, REPORT_FILE, sendout_date = dataframe_create(st.session_state['bsp_raw'])
 
         df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
 
@@ -347,7 +349,7 @@ if st.session_state['bsp_raw'] != None:
 
         df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
         
-        BSP_FILE = sheet_formating(df_merged)
+        BSP_FILE = sheet_formating(df_merged, sendout_date)
 
         result_file = open(BSP_FILE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
