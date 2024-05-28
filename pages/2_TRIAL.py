@@ -15,8 +15,8 @@ def sheet_formating(df):
     wb.save(BSP_TEMPLATE)
     ws = wb.active
 
-    ws[1][1].value = 'TEST'
-
+    # ws[1][1].value = 'TEST'
+    ws.cell(row=2, column=2).value = 2
     for i in df.index:
         # cat = df.at[i, 'CATEGORY']
         _date = df.at[i, 'DATE']
