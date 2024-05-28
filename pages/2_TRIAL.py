@@ -16,11 +16,11 @@ def sheet_formating(REPORT_FILE, df):
 
     for i in df.index:
         # cat = df.at[i, 'CATEGORY']
-        df.at[i, 'DATE']
-        df.at[i, 'SOURCE']
-        df.at[i, 'TITLE']
-        df.at[i, 'ONLINE LINK']
-        df.at[i, 'PRINT LINK']
+        _date = df.at[i, 'DATE']
+        _source = df.at[i, 'SOURCE']
+        _title = df.at[i, 'TITLE']
+        _online = df.at[i, 'ONLINE LINK']
+        _print = df.at[i, 'PRINT LINK']
         
 
     wb.save(REPORT_FILE)
