@@ -16,6 +16,7 @@ def sheet_formating(df):
                 bottom=Side(style='thin'))
     bold_text = Font(bold=True)
     bold_white_text = Font(bold=True, color='FFFFFF')
+    henry_sans_fname = Font(name='Henry Sans')
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
 
@@ -55,6 +56,7 @@ def sheet_formating(df):
         category_cell.border = thin_border
         category_cell.font = bold_white_text
         category_cell.alignment = Alignment(horizontal='center')
+        category_cell.font = henry_sans_fname
 
         ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=5)
 
