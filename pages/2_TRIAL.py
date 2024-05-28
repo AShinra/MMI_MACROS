@@ -10,18 +10,36 @@ def sheet_formating(df):
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
 
-    df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
-    df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
-    df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
+    # df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
+    # df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
+    # df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
 
-    st.dataframe(df_cat1)
-    st.dataframe(df_cat2)
-    st.dataframe(df_cat3)
+    # st.dataframe(df_cat1)
+    # st.dataframe(df_cat2)
+    # st.dataframe(df_cat3)
 
     wb = openpyxl.Workbook()
     ws = wb.active
 
-    ws.cell(row=8, column=1).value = 'TODAYS HEADLINENEWS'
+    ws.cell(row=8, column=1).value = 'TODAYS HEADLINE NEWS'
+    ws.cell(row=9, column=1).value = 'DATE'
+    ws.cell(row=9, column=2).value = 'SOURCE'
+    ws.cell(row=9, column=3).value = 'TITLE'
+    ws.cell(row=9, column=4).value = 'ONLINE'
+    ws.cell(row=9, column=5).value = 'PRINT'
+
+    _initial_cat = 'TODAYS HEADLINENEWS'
+    for i in df.index:
+        s_date = df.at[i, 'DATE']
+        s_source = df.at[i, 'SOURCE']
+        s_title = df.at[i, 'TITLE']
+        s_online = df.at[i, 'ONLINE LINK']
+        s_print = df.at[i, 'PRINT LINK']
+        s_cat = df.at[i, 'CATEGORY']
+
+        if s_cat == _initial_cat:
+            ws.cell(row=10+i, column=1).value = s_date
+
     wb.save(BSP_FILE)
     wb.close()
 
