@@ -10,7 +10,7 @@ def sheet_formating(df):
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
 
-    st.dataframe(df)
+    # st.dataframe(df)
 
     # df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
     # df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
@@ -59,6 +59,8 @@ def sheet_formating(df):
 
         elif s_cat == 'TODAYS BUSINESS HEADLINENEWS':
             ws.cell(row=s_row+i, column=1).value = 'TODAYS BUSINESS HEADLINE NEWS'
+        
+        st.write(i)
 
     wb.save(BSP_FILE)
     wb.close()
