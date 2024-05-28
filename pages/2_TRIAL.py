@@ -7,14 +7,26 @@ import json
 import spacy
 
 
-def sheet_formating(FILE):
+def sheet_formating(REPORT_FILE, df):
 
     wb = openpyxl.load_workbook(REPORT_FILE)
     ws = wb.active
 
+    ws[1][1].value = 'TEST'
 
+    for i in df.index:
+        # cat = df.at[i, 'CATEGORY']
+        df.at[i, 'DATE']
+        df.at[i, 'SOURCE']
+        df.at[i, 'TITLE']
+        df.at[i, 'ONLINE LINK']
+        df.at[i, 'PRINT LINK']
+        
 
-    return
+    wb.save(REPORT_FILE)
+    wb.close()
+
+    return REPORT_FILE
 
 
 
@@ -200,13 +212,12 @@ if st.session_state['bsp_raw'] != None:
 
         df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']]
 
-        df_merged.to_excel(REPORT_FILE, index=False, startrow=0)
+        # df_merged.to_excel(REPORT_FILE, index=False, startrow=0)
         
-        # sheet_formating(REPORT_FILE)
+        REPORT_FILE = sheet_formating(REPORT_FILE, df_merged)
 
         result_file = open(REPORT_FILE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
         st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
-
 
          
