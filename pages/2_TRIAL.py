@@ -12,55 +12,20 @@ def sheet_formating(df):
 
     # st.dataframe(df)
 
-    # df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
-    # df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
-    # df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
+    df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
+    df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
+    df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
 
-    # st.dataframe(df_cat1)
+    st.dataframe(df_cat1)
     # st.dataframe(df_cat2)
     # st.dataframe(df_cat3)
 
     wb = openpyxl.Workbook()
     ws = wb.active
 
-    ws.cell(row=8, column=1).value = 'TODAYS HEADLINE NEWS'
-    ws.cell(row=9, column=1).value = 'DATE'
-    ws.cell(row=9, column=2).value = 'SOURCE'
-    ws.cell(row=9, column=3).value = 'TITLE'
-    ws.cell(row=9, column=4).value = 'ONLINE'
-    ws.cell(row=9, column=5).value = 'PRINT'
-
-    _initial_cat = 'TODAYS HEADLINENEWS'
-    s_row = 9
-    for i in df.index:
-        s_date = df.at[i, 'DATE']
-        s_source = df.at[i, 'SOURCE']
-        s_title = df.at[i, 'TITLE']
-        s_online = df.at[i, 'ONLINE LINK']
-        s_print = df.at[i, 'PRINT LINK']
-        s_cat = df.at[i, 'CATEGORY']
-
-        if s_cat == 'TODAYS HEADLINENEWS':
-            ws.cell(row=s_row+i, column=1).value = s_date
-            ws.cell(row=s_row+i, column=2).value = s_source
-            ws.cell(row=s_row+i, column=3).value = s_title
-            if s_online == 'N/A':
-                ws.cell(row=s_row+i, column=4).value = 'N/A'
-            else:
-                ws.cell(row=s_row+i, column=4).value = 'Online Link'
-                ws.cell(row=s_row+i, column=4).hyperlink = s_online
-                ws.cell(row=s_row+i, column=4).style = 'Hyperlink'
-            if s_print == 'N/A':
-                ws.cell(row=s_row+i, column=5).value
-            else:    
-                ws.cell(row=s_row+i, column=5).value = 'Print Link'
-                ws.cell(row=s_row+i, column=5).hyperlink = s_print
-                ws.cell(row=s_row+i, column=5).style = 'Hyperlink'
-
-        elif s_cat == 'TODAYS BUSINESS HEADLINENEWS':
-            ws.cell(row=s_row+i, column=1).value = 'TODAYS BUSINESS HEADLINE NEWS'
-        
-        st.write(i)
+    l, w = df_cat1.shape()
+    st.write(l)
+    
 
     wb.save(BSP_FILE)
     wb.close()
