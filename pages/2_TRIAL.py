@@ -53,7 +53,7 @@ def sheet_formating(df, sendout_date):
 
     sendout_date_cell = ws.cell(row=1, column=1)
     sendout_date_cell.value = sendout_date
-    sendout_date.font = sendout_font
+    sendout_date_cell.font = sendout_font
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=5)
 
     ws.cell(row=5, column=1).value = 'Kindly click on the following links to view your respective news. For best result in viewing the links your default browser should be set to Google Chrome, Mozilla Firefox, Internet Explorer version 10 or higher.'
