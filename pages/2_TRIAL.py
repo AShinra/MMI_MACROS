@@ -23,7 +23,7 @@ def sheet_formating(df):
     wb = openpyxl.Workbook()
     ws = wb.active
 
-    l, w = df_cat1.shape()
+    l, w = df_cat1.shape
     st.write(l)
     
 
