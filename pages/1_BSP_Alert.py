@@ -263,8 +263,10 @@ def dataframe_create(uploaded_file):
 
 with st.container(border=True):
     LOGO_FILE = Path(__file__).parent/f'BSP_Temp/bsp_logo.jpg'
-    st.image(LOGO_FILE)
+    
     st.header('Bangko Sentral ng Pilipinas')
+
+    st.image(LOGO_FILE)
 
 st.file_uploader('Input Raw File', key='bsp_raw')
 
