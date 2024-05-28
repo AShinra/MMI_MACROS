@@ -30,6 +30,8 @@ def sheet_formating(df):
 
     l, w = df_cat1.shape
     
+    cats = ['TODAYS HEADLINE NEWS', 'TODAYS BUSINESS HEADLINENEWS', 'BSP NEWS']
+    c = 0
     s_row = 8
     for _df in dfs:
         l, w = _df.shape
@@ -39,7 +41,7 @@ def sheet_formating(df):
         ws.cell(row=s_row+1, column=3).value = 'TITLE'
         ws.cell(row=s_row+1, column=4).value = 'ONLINE'
         ws.cell(row=s_row+1, column=5).value = 'PRINT'
-        ws.cell(row=s_row, column=1).value = _df.at[1, 'CATEGORY']
+        ws.cell(row=s_row, column=1).value = c
         for i in _df.index:
             ws.cell(row=s_row+1+i, column=1).value = _df.at[i, 'DATE']
             ws.cell(row=s_row+1+i, column=2).value = _df.at[i, 'SOURCE']
@@ -48,7 +50,7 @@ def sheet_formating(df):
             ws.cell(row=s_row+1+i, column=5).value = _df.at[i, 'PRINT LINK']
 
         s_row = s_row + l + 2
-    
+        c += 1
 
     wb.save(BSP_FILE)
     wb.close()
