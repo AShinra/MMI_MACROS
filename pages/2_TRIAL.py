@@ -2,11 +2,18 @@ import streamlit as st
 import pandas as pd
 import openpyxl
 from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
+from openpyxl.styles.borders import Border, Side
 from pathlib import Path
 import json
 import spacy
 
 def sheet_formating(df):
+
+    color_fill = PatternFill(start_color='06A2E5', end_color='06A2E5', fill_type='solid')
+    thin_border = Border(left=Side(style='thin'), 
+                right=Side(style='thin'), 
+                top=Side(style='thin'), 
+                bottom=Side(style='thin'))
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
 
@@ -40,7 +47,10 @@ def sheet_formating(df):
         # st.write(s_row)
         l, w = _df.shape
         # st.write(l)
-        ws.cell(row=s_row, column=1).value = cats[c]
+        category_cell = ws.cell(row=s_row, column=1)
+        category_cell.value = cats[c]
+        category_cell.fill = color_fill
+
         ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=5)
         ws.cell(row=s_row+1, column=1).value = 'DATE'
         ws.cell(row=s_row+1, column=2).value = 'SOURCE'
@@ -60,7 +70,12 @@ def sheet_formating(df):
             date_cell = ws.cell(row=s_row+2+i, column=1)
             date_cell.value = s_date
             date_cell.number_format = 'MMM DD, YYYY'
-            ws.cell(row=s_row+2+i, column=2).value = s_source
+            date_cell.alignment = Alignment(horizontal='center')
+
+            source_cell = ws.cell(row=s_row+2+i, column=2)
+            source_cell.value = s_source
+            date_cell.alignment = Alignment(horizontal='center')
+
             ws.cell(row=s_row+2+i, column=3).value = s_title
             if s_online == 'N/A':
                 ws.cell(row=s_row+2+i, column=4).value = 'N/A'
