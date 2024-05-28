@@ -48,13 +48,13 @@ def sheet_formating(df):
         ws.cell(row=s_row+1, column=5).value = 'PRINT'
         
         for i in _df.index:
-            ws.cell(row=s_row+1+i, column=1).value = _df.at[i, 'DATE']
-            ws.cell(row=s_row+1+i, column=2).value = _df.at[i, 'SOURCE']
-            ws.cell(row=s_row+1+i, column=3).value = _df.at[i, 'TITLE']
-            ws.cell(row=s_row+1+i, column=4).value = _df.at[i, 'ONLINE LINK']
-            ws.cell(row=s_row+1+i, column=5).value = _df.at[i, 'PRINT LINK']
+            ws.cell(row=s_row+2+i, column=1).value = _df.at[i, 'DATE']
+            ws.cell(row=s_row+2+i, column=2).value = _df.at[i, 'SOURCE']
+            ws.cell(row=s_row+2+i, column=3).value = _df.at[i, 'TITLE']
+            ws.cell(row=s_row+2+i, column=4).value = _df.at[i, 'ONLINE LINK']
+            ws.cell(row=s_row+2+i, column=5).value = _df.at[i, 'PRINT LINK']
             st.write(i)
-        s_row = s_row + l + 2
+        s_row = s_row + l + 3
         c += 1
 
     wb.save(BSP_FILE)
