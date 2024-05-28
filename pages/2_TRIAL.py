@@ -40,7 +40,7 @@ def sheet_formating(df):
         ws.cell(row=s_row+1, column=4).value = 'ONLINE'
         ws.cell(row=s_row+1, column=5).value = 'PRINT'
         for i in _df.index:
-            ws.cell(row=s_row, column=1).value = _df.at[0, 'CATEGORY']
+            ws.cell(row=s_row, column=1).value = _df.at[1, 'CATEGORY']
             ws.cell(row=s_row+1+i, column=1).value = _df.at[i, 'DATE']
 
 
