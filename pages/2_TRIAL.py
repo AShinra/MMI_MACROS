@@ -10,6 +10,8 @@ def sheet_formating(df):
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
 
+    st.dataframe(df)
+
     # df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
     # df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
     # df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
