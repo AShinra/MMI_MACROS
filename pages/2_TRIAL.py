@@ -200,7 +200,7 @@ if st.session_state['bsp_raw'] != None:
 
         df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']]
 
-        df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
+        df_merged.to_excel(REPORT_FILE, index=False, startrow=0)
         
         # sheet_formating(REPORT_FILE)
 
