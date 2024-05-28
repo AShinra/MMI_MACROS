@@ -15,8 +15,8 @@ def sheet_formating(df):
                 top=Side(style='thin'), 
                 bottom=Side(style='thin'))
     bold_text = Font(bold=True)
-    bold_white_text = Font(bold=True, color='FFFFFF')
-    henry_sans_fname = Font(name='Henry Sans')
+    category_font = Font(bold=True, color='FFFFFF', name='Henry Sans', size=9)
+    
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
 
@@ -54,10 +54,9 @@ def sheet_formating(df):
         category_cell.value = cats[c]
         category_cell.fill = color_fill
         category_cell.border = thin_border
-        category_cell.font = bold_white_text
+        category_cell.font = category_font
         category_cell.alignment = Alignment(horizontal='center')
-        category_cell.font = henry_sans_fname
-
+    
         ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=5)
 
         ws.cell(row=s_row+1, column=1).value = 'DATE'
