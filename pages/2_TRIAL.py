@@ -29,6 +29,7 @@ def sheet_formating(df):
     ws.cell(row=9, column=5).value = 'PRINT'
 
     _initial_cat = 'TODAYS HEADLINENEWS'
+    s_row = 9
     for i in df.index:
         s_date = df.at[i, 'DATE']
         s_source = df.at[i, 'SOURCE']
@@ -37,14 +38,25 @@ def sheet_formating(df):
         s_print = df.at[i, 'PRINT LINK']
         s_cat = df.at[i, 'CATEGORY']
 
-        if s_cat == _initial_cat:
-            ws.cell(row=9+i, column=1).value = s_date
-            ws.cell(row=9+i, column=2).value = s_source
-            ws.cell(row=9+i, column=3).value = s_title
-            ws.cell(row=9+i, column=4).value = s_online
-            ws.cell(row=9+i, column=5).value = 'Print Link'
-            ws.cell(row=9+i, column=5).hyperlink = s_print
-            ws.cell(row=9+i, column=5).style = 'Hyperlink'
+        if s_cat == 'TODAYS HEADLINENEWS':
+            ws.cell(row=s_row+i, column=1).value = s_date
+            ws.cell(row=s_row+i, column=2).value = s_source
+            ws.cell(row=s_row+i, column=3).value = s_title
+            if s_online == 'N/A':
+                ws.cell(row=s_row+i, column=4).value = 'N/A'
+            else:
+                ws.cell(row=s_row+i, column=4).value = 'Online Link'
+                ws.cell(row=s_row+i, column=4).hyperlink = s_online
+                ws.cell(row=s_row+i, column=4).style = 'Hyperlink'
+            if s_print == 'N/A':
+                ws.cell(row=s_row+i, column=5).value
+            else:    
+                ws.cell(row=s_row+i, column=5).value = 'Print Link'
+                ws.cell(row=s_row+i, column=5).hyperlink = s_print
+                ws.cell(row=s_row+i, column=5).style = 'Hyperlink'
+
+        elif s_cat == 'TODAYS BUSINESS HEADLINENEWS':
+            ws.cell(row=s_row+i, column=1).value = 'TODAYS BUSINESS HEADLINE NEWS'
 
     wb.save(BSP_FILE)
     wb.close()
