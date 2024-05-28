@@ -22,6 +22,7 @@ def sheet_formating(df):
                 top=Side(style='thin'), 
                 bottom=Side(style='thin'))
     
+    general_font = Font(bold=False, name='Aptos Narrow', size=11)
     
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
@@ -70,26 +71,31 @@ def sheet_formating(df):
         date_header.value = 'DATE'
         date_header.font = header_font
         date_header.alignment = Alignment(horizontal='center')
+        date_header.border = thin_border
 
         source_header = ws.cell(row=s_row+1, column=2)
         source_header.value = 'SOURCE'
         source_header.font = header_font
         source_header.alignment = Alignment(horizontal='center')
+        source_header.border = thin_border
 
         title_header = ws.cell(row=s_row+1, column=3)
         title_header.value = 'TITLE'
         title_header.font = header_font
         title_header.alignment = Alignment(horizontal='center')
+        title_header.border = thin_border
 
         online_header = ws.cell(row=s_row+1, column=4)
         online_header.value = 'ONLINE'
         online_header.font = header_font
         online_header.alignment = Alignment(horizontal='center')
+        online_header.border = thin_border
 
         print_header = ws.cell(row=s_row+1, column=5)
         print_header.value = 'PRINT'
         print_header.font = header_font
         print_header.alignment = Alignment(horizontal='center')
+        print_header.border = thin_border
         
         for i in _df.index:
 
@@ -99,30 +105,48 @@ def sheet_formating(df):
             s_online = _df.at[i, 'ONLINE LINK']
             s_print = _df.at[i, 'PRINT LINK']    
 
-            # date_value = s_date
+            # populate and format cells
             date_cell = ws.cell(row=s_row+2+i, column=1)
             date_cell.value = s_date
             date_cell.number_format = 'MMM DD, YYYY'
             date_cell.alignment = Alignment(horizontal='center')
-
+            date_cell.font = general_font
+            date_cell.border = thin_border
+            
             source_cell = ws.cell(row=s_row+2+i, column=2)
             source_cell.value = s_source
-            date_cell.alignment = Alignment(horizontal='center')
+            source_cell.alignment = Alignment(horizontal='center')
+            source_cell.font = general_font
+            source_cell.border = thin_border
 
-            ws.cell(row=s_row+2+i, column=3).value = s_title
+            title_cell = ws.cell(row=s_row+2+i, column=3)
+            title_cell.value = s_title
+            title_cell.font = general_font
+            title_cell.border = thin_border
+
+            online_cell = ws.cell(row=s_row+2+i, column=4)
             if s_online == 'N/A':
-                ws.cell(row=s_row+2+i, column=4).value = 'N/A'
+                online_cell.value = 'N/A'
             else:
-                ws.cell(row=s_row+2+i, column=4).value = 'Online Link'
-                ws.cell(row=s_row+2+i, column=4).hyperlink = s_online
-                ws.cell(row=s_row+2+i, column=4).style = 'Hyperlink'
+                online_cell.value = 'Online Link'
+                online_cell.hyperlink = s_online
+                online_cell.style = 'Hyperlink'
+            online_cell.alignment = Alignment(horizontal='center')
+            online_cell.font = general_font
+            online_cell.border = thin_border
+
+            print_cell = ws.cell(row=s_row+2+i, column=5)
             if s_print == 'N/A':    
-                ws.cell(row=s_row+2+i, column=5).value = 'N/A'
+                print_cell.value = 'N/A'
             else:
-                ws.cell(row=s_row+2+i, column=5).value = 'Print Link'
-                ws.cell(row=s_row+2+i, column=5).hyperlink = s_print
-                ws.cell(row=s_row+2+i, column=5).style = 'Hyperlink'
-            st.write(i)
+                print_cell.value = 'Print Link'
+                print_cell.hyperlink = s_print
+                print_cell.style = 'Hyperlink'
+            print_cell.alignment = Alignment(horizontal='center')
+            print_cell.font = general_font
+            print_cell.border = thin_border
+
+
         s_row = s_row + l + 2
         c += 1
 
