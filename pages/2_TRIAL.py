@@ -7,31 +7,6 @@ import json
 import spacy
 
 
-def sheet_formating(df):
-
-    BSP_TEMPLATE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
-
-    wb = openpyxl.Workbook()
-    wb.save(BSP_TEMPLATE)
-    ws = wb.active
-
-    # ws[1][1].value = 'TEST'
-    ws.cell(row=2, column=2).value = 2
-    for i in df.index:
-        # cat = df.at[i, 'CATEGORY']
-        _date = df.at[i, 'DATE']
-        _source = df.at[i, 'SOURCE']
-        _title = df.at[i, 'TITLE']
-        _online = df.at[i, 'ONLINE LINK']
-        _print = df.at[i, 'PRINT LINK']
-        
-
-    wb.save(BSP_TEMPLATE)
-    wb.close()
-
-    return REPORT_FILE
-
-
 
 def json_publications():
 
@@ -212,11 +187,11 @@ if st.session_state['bsp_raw'] != None:
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
         df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']]
 
-        # df_merged.to_excel(REPORT_FILE, index=False, startrow=0)
+        df_merged.to_excel(REPORT_FILE, index=False, startrow=0)
         
-        BSP_TEMPLATE = sheet_formating(df_merged)
+        # BSP_TEMPLATE = sheet_formating(df_merged)
 
-        result_file = open(BSP_TEMPLATE, 'rb')
+        result_file = open(REPORT_FILE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
         st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp_template.xlsx')
 
