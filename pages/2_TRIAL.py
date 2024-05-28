@@ -34,22 +34,23 @@ def sheet_formating(df):
     c = 0
     s_row = 8
     for _df in dfs:
-        st.write(s_row)
+        # st.write(s_row)
         l, w = _df.shape
-        st.write(l)
+        # st.write(l)
+        ws.cell(row=s_row, column=1).value = cats[c]
         ws.cell(row=s_row+1, column=1).value = 'DATE'
         ws.cell(row=s_row+1, column=2).value = 'SOURCE'
         ws.cell(row=s_row+1, column=3).value = 'TITLE'
         ws.cell(row=s_row+1, column=4).value = 'ONLINE'
         ws.cell(row=s_row+1, column=5).value = 'PRINT'
-        ws.cell(row=s_row, column=1).value = cats[c]
+        
         for i in _df.index:
             ws.cell(row=s_row+1+i, column=1).value = _df.at[i, 'DATE']
             ws.cell(row=s_row+1+i, column=2).value = _df.at[i, 'SOURCE']
             ws.cell(row=s_row+1+i, column=3).value = _df.at[i, 'TITLE']
             ws.cell(row=s_row+1+i, column=4).value = _df.at[i, 'ONLINE LINK']
             ws.cell(row=s_row+1+i, column=5).value = _df.at[i, 'PRINT LINK']
-
+            st.write(i)
         s_row = s_row + l + 2
         c += 1
 
