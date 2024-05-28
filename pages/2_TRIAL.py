@@ -42,7 +42,8 @@ def sheet_formating(df):
             ws.cell(row=9+i, column=2).value = s_source
             ws.cell(row=9+i, column=3).value = s_title
             ws.cell(row=9+i, column=4).value = s_online
-            ws.cell(row=9+i, column=5).value = s_print
+            ws.cell(row=9+i, column=5).value = 'Print Link'
+            ws.cell(row=9+i, column=5).hyperlink = s_print
 
     wb.save(BSP_FILE)
     wb.close()
