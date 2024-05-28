@@ -14,6 +14,8 @@ def sheet_formating(df):
                 right=Side(style='thin'), 
                 top=Side(style='thin'), 
                 bottom=Side(style='thin'))
+    bold_text = Font(bold=True)
+    bold_white_text = Font(bold=True, color='FFFFFF')
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
 
@@ -44,14 +46,17 @@ def sheet_formating(df):
     c = 0
     s_row = 8
     for _df in dfs:
-        # st.write(s_row)
+        
         l, w = _df.shape
-        # st.write(l)
+        
         category_cell = ws.cell(row=s_row, column=1)
         category_cell.value = cats[c]
         category_cell.fill = color_fill
+        category_cell.border = thin_border
+        category_cell.font = bold_white_text
 
         ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=5)
+
         ws.cell(row=s_row+1, column=1).value = 'DATE'
         ws.cell(row=s_row+1, column=2).value = 'SOURCE'
         ws.cell(row=s_row+1, column=3).value = 'TITLE'
