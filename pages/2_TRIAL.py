@@ -40,9 +40,9 @@ def sheet_formating(df):
         if s_cat == _initial_cat:
             ws.cell(row=9+i, column=1).value = s_date
             ws.cell(row=9+i, column=2).value = s_source
-            ws.cell(row=9+i, column=2).value = s_title
-            ws.cell(row=9+i, column=2).value = s_online
-            ws.cell(row=9+i, column=2).value = s_print
+            ws.cell(row=9+i, column=3).value = s_title
+            ws.cell(row=9+i, column=4).value = s_online
+            ws.cell(row=9+i, column=5).value = s_print
 
     wb.save(BSP_FILE)
     wb.close()
