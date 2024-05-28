@@ -292,7 +292,7 @@ if st.session_state['bsp_raw'] != None:
                 if main_type in ['Online News', 'Blogs']:
                     _df.at[j, 'ONLINE LINK'] = main_link
                     continue
-                elif main_type in ['Tabloid', 'Magazine', 'Provincial']:
+                elif main_type in ['Magazine', 'Provincial']:
                     _df.at[j, 'PRINT LINK'] = main_link
                     _df.at[j, 'DELETE'] = 'DONE'
                     continue

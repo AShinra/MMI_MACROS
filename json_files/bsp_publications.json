@@ -2,11 +2,12 @@
     "Manila Bulletin":["Manila Bulletin Online"],
     "Philippine Daily Inquirer":["Inquirer.NET"],
     "Philippine Star":["Philstar"],
-    "Malaya Business Insight":["Malaya Business Insight Online"],
+    "Malaya Business Insight":["Malaya Business Insight Online", "Malaya Business Insight"],
     "Manila Times":["Manila Times Online"],
     "BusinessWorld":["Business World Online"],
     "BusinessMirror":["Business Mirror Online", "Business Mirror"],
     "Business Mirror":["Business Mirror Online", "Business Mirror"],
     "Daily Tribune":["Daily Tribune Online"],
-    "Manila Standard":["Manila Standard Online"]
+    "Manila Standard":["Manila Standard Online"],
+    "Pilipino Mirror":["Pilipino Mirror Online"]
 }
