@@ -9,13 +9,19 @@ import spacy
 
 def sheet_formating(df):
 
-    color_fill = PatternFill(start_color='06A2E5', end_color='06A2E5', fill_type='solid')
+    # category cell formats
+    category_color_fill = PatternFill(start_color='06A2E5', end_color='06A2E5', fill_type='solid')
+    category_font = Font(bold=True, color='FFFFFF', name='Henry Sans', size=9)
+
+    # header cell formats
+    header_font = Font(bold=True, name='Aptos Narrow', size=11)
+
+    # general formats
     thin_border = Border(left=Side(style='thin'), 
                 right=Side(style='thin'), 
                 top=Side(style='thin'), 
                 bottom=Side(style='thin'))
-    bold_text = Font(bold=True)
-    category_font = Font(bold=True, color='FFFFFF', name='Henry Sans', size=9)
+    
     
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
@@ -50,20 +56,40 @@ def sheet_formating(df):
         
         l, w = _df.shape
         
+        # create category header
         category_cell = ws.cell(row=s_row, column=1)
         category_cell.value = cats[c]
-        category_cell.fill = color_fill
+        category_cell.fill = category_color_fill
         category_cell.border = thin_border
         category_cell.font = category_font
         category_cell.alignment = Alignment(horizontal='center')
-    
         ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=5)
 
-        ws.cell(row=s_row+1, column=1).value = 'DATE'
-        ws.cell(row=s_row+1, column=2).value = 'SOURCE'
-        ws.cell(row=s_row+1, column=3).value = 'TITLE'
-        ws.cell(row=s_row+1, column=4).value = 'ONLINE'
-        ws.cell(row=s_row+1, column=5).value = 'PRINT'
+        # create header
+        date_header = ws.cell(row=s_row+1, column=1)
+        date_header.value = 'DATE'
+        date_header.font = header_font
+        date_header.alignment = Alignment(horizontal='center')
+
+        source_header = ws.cell(row=s_row+1, column=2)
+        source_header.value = 'SOURCE'
+        source_header.font = header_font
+        source_header.alignment = Alignment(horizontal='center')
+
+        title_header = ws.cell(row=s_row+1, column=3)
+        title_header.value = 'TITLE'
+        title_header.font = header_font
+        title_header.alignment = Alignment(horizontal='center')
+
+        online_header = ws.cell(row=s_row+1, column=4)
+        online_header.value = 'ONLINE'
+        online_header.font = header_font
+        online_header.alignment = Alignment(horizontal='center')
+
+        print_header = ws.cell(row=s_row+1, column=5)
+        print_header.value = 'PRINT'
+        print_header.font = header_font
+        print_header.alignment = Alignment(horizontal='center')
         
         for i in _df.index:
 
