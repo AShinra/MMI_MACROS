@@ -34,6 +34,7 @@ def sheet_formating(df):
     c = 0
     s_row = 8
     for _df in dfs:
+        st.write(s_row)
         l, w = _df.shape
         st.write(l)
         ws.cell(row=s_row+1, column=1).value = 'DATE'
@@ -43,7 +44,6 @@ def sheet_formating(df):
         ws.cell(row=s_row+1, column=5).value = 'PRINT'
         ws.cell(row=s_row, column=1).value = cats[c]
         for i in _df.index:
-            st.write(i)
             ws.cell(row=s_row+1+i, column=1).value = _df.at[i, 'DATE']
             ws.cell(row=s_row+1+i, column=2).value = _df.at[i, 'SOURCE']
             ws.cell(row=s_row+1+i, column=3).value = _df.at[i, 'TITLE']
