@@ -182,6 +182,22 @@ def json_publications():
     return bsp_pub
 
 
+def title_clean(title, pub):
+
+    f = open('json_files/title_cleaner.json')
+    title_json = json.load(f)
+
+    pub_check = title_json[pub]
+
+    for i in pub_check:
+        try:
+            title = title.replace(i, '')
+        except:
+            pass
+        
+    return title
+
+
 def similar_title(a, b):
     a1 = nlp(a)
     b1 = nlp(b)
@@ -325,6 +341,8 @@ if st.session_state['bsp_raw'] != None:
                                         # st.write(sub_title)
                                     # except:
                                     #     pass
+
+                                    sub_title = title_clean(sub_title, sub_source)
 
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
                                     if similarity_ratio < 0.8:
