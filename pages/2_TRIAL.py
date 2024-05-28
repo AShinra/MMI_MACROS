@@ -41,6 +41,7 @@ def sheet_formating(df):
         l, w = _df.shape
         # st.write(l)
         ws.cell(row=s_row, column=1).value = cats[c]
+        ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=5)
         ws.cell(row=s_row+1, column=1).value = 'DATE'
         ws.cell(row=s_row+1, column=2).value = 'SOURCE'
         ws.cell(row=s_row+1, column=3).value = 'TITLE'
