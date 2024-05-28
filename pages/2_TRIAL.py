@@ -24,6 +24,8 @@ def sheet_formating(df, sendout_date):
                 bottom=Side(style='thin'))
     
     general_font = Font(bold=False, name='Aptos Narrow', size=11)
+
+    sendout_font = Font(bold=True, name='Henry Sans', size=20)
     
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
@@ -49,7 +51,12 @@ def sheet_formating(df, sendout_date):
     wb = openpyxl.Workbook()
     ws = wb.active
 
-    ws.cell(row=1, column=1).value = sendout_date
+    sendout_date_cell = ws.cell(row=1, column=1)
+    sendout_date_cell.value = sendout_date
+    sendout_date.font = sendout_font
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=5)
+
+    ws.cell(row=5, column=1).value = 'Kindly click on the following links to view your respective news. For best result in viewing the links your default browser should be set to Google Chrome, Mozilla Firefox, Internet Explorer version 10 or higher.'
 
     # insert bsp logo
     image_path = Path(__file__).parent/f'BSP_Temp/bsp_logo.jpg'
