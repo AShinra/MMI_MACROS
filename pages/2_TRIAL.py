@@ -33,6 +33,7 @@ def sheet_formating(df):
     s_row = 8
     for _df in dfs:
         l, w = _df.shape
+        st.write(l)
         ws.cell(row=s_row+1, column=1).value = 'DATE'
         ws.cell(row=s_row+1, column=2).value = 'SOURCE'
         ws.cell(row=s_row+1, column=3).value = 'TITLE'
