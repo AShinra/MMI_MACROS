@@ -42,8 +42,10 @@ def sheet_formating(df):
         for i in _df.index:
             ws.cell(row=s_row, column=1).value = _df.at[i, 'CATEGORY']
             ws.cell(row=s_row+1+i, column=1).value = _df.at[i, 'DATE']
-
-
+            ws.cell(row=s_row+1+i, column=2).value = _df.at[i, 'SOURCE']
+            ws.cell(row=s_row+1+i, column=3).value = _df.at[i, 'TITLE']
+            ws.cell(row=s_row+1+i, column=4).value = _df.at[i, 'ONLINE LINK']
+            ws.cell(row=s_row+1+i, column=5).value = _df.at[i, 'PRINT LINK']
 
         s_row = s_row + l + 2
     
