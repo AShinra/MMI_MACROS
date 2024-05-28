@@ -341,9 +341,11 @@ if st.session_state['bsp_raw'] != None:
                                         # st.write(sub_title)
                                     # except:
                                     #     pass
-
-                                    sub_title = title_clean(sub_title, sub_source)
-
+                                    try:
+                                        sub_title = title_clean(sub_title, sub_source)
+                                    except:
+                                        pass
+                                    
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
                                     if similarity_ratio < 0.8:
                                         continue
