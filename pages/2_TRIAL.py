@@ -16,6 +16,11 @@ def sheet_formating(df):
     df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
     df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
 
+    dfs = []
+    dfs.append(df_cat1)
+    dfs.append(df_cat2)
+    dfs.append(df_cat3)
+
     st.dataframe(df_cat1)
     # st.dataframe(df_cat2)
     # st.dataframe(df_cat3)
@@ -24,7 +29,22 @@ def sheet_formating(df):
     ws = wb.active
 
     l, w = df_cat1.shape
-    st.write(l)
+    
+    s_row = 8
+    for _df in dfs:
+        l, w = _df.shape
+        ws.cell(row=s_row+1, column=1).value = 'DATE'
+        ws.cell(row=s_row+1, column=2).value = 'SOURCE'
+        ws.cell(row=s_row+1, column=3).value = 'TITLE'
+        ws.cell(row=s_row+1, column=4).value = 'ONLINE'
+        ws.cell(row=s_row+1, column=5).value = 'PRINT'
+        for i in _df.index:
+            ws.cell(row=s_row, column=1).value = 'TODAYS HEADLINE NEWS'
+            ws.cell(row=s_row+1+i, column=1).value = _df.at[i, 'DATE']
+
+
+
+        s_row = l + 2
     
 
     wb.save(BSP_FILE)
