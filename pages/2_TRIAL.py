@@ -48,11 +48,31 @@ def sheet_formating(df):
         ws.cell(row=s_row+1, column=5).value = 'PRINT'
         
         for i in _df.index:
-            ws.cell(row=s_row+2+i, column=1).value = _df.at[i, 'DATE']
-            ws.cell(row=s_row+2+i, column=2).value = _df.at[i, 'SOURCE']
-            ws.cell(row=s_row+2+i, column=3).value = _df.at[i, 'TITLE']
-            ws.cell(row=s_row+2+i, column=4).value = _df.at[i, 'ONLINE LINK']
-            ws.cell(row=s_row+2+i, column=5).value = _df.at[i, 'PRINT LINK']
+
+            s_date = _df.at[i, 'DATE']
+            s_source = _df.at[i, 'SOURCE']
+            s_title = _df.at[i, 'TITLE']
+            s_online = _df.at[i, 'ONLINE LINK']
+            s_print = _df.at[i, 'PRINT LINK']    
+
+            # date_value = s_date
+            date_cell = ws.cell(row=s_row+2+i, column=1)
+            date_cell.value = s_date
+            date_cell.number_format = 'MMM DD, YYYY'
+            ws.cell(row=s_row+2+i, column=2).value = s_source
+            ws.cell(row=s_row+2+i, column=3).value = s_title
+            if s_online == 'N/A':
+                ws.cell(row=s_row+2+i, column=4).value = 'N/A'
+            else:
+                ws.cell(row=s_row+2+i, column=4).value = 'Online Link'
+                ws.cell(row=s_row+2+i, column=4).hyperlink = s_online
+                ws.cell(row=s_row+2+i, column=4).style = 'Hyperlink'
+            if s_print == 'N/A':    
+                ws.cell(row=s_row+2+i, column=5).value = 'N/A'
+            else:
+                ws.cell(row=s_row+2+i, column=5).value = 'Print Link'
+                ws.cell(row=s_row+2+i, column=5).hyperlink = s_print
+                ws.cell(row=s_row+2+i, column=5).style = 'Hyperlink'
             st.write(i)
         s_row = s_row + l + 2
         c += 1
