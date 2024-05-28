@@ -7,9 +7,12 @@ import json
 import spacy
 
 
-def sheet_formating(REPORT_FILE, df):
+def sheet_formating(df):
 
-    wb = openpyxl.load_workbook(REPORT_FILE)
+    BSP_TEMPLATE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
+
+    wb = openpyxl.Workbook()
+    wb.save(BSP_TEMPLATE)
     ws = wb.active
 
     ws[1][1].value = 'TEST'
@@ -23,7 +26,7 @@ def sheet_formating(REPORT_FILE, df):
         _print = df.at[i, 'PRINT LINK']
         
 
-    wb.save(REPORT_FILE)
+    wb.save(BSP_TEMPLATE)
     wb.close()
 
     return REPORT_FILE
@@ -205,19 +208,16 @@ if st.session_state['bsp_raw'] != None:
             df['TYPE'] = pd.Categorical(df['TYPE'], ['Broadsheet', 'Tabloid', 'Provincial', 'Magazine', 'Online News', 'Blogs'])
             df.sort_values('TYPE')
 
-        BSP_TEMPLATE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
-
         # convert to excel
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
-
         df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']]
 
         # df_merged.to_excel(REPORT_FILE, index=False, startrow=0)
         
-        REPORT_FILE = sheet_formating(REPORT_FILE, df_merged)
+        BSP_TEMPLATE = sheet_formating(df_merged)
 
-        result_file = open(REPORT_FILE, 'rb')
+        result_file = open(BSP_TEMPLATE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
-        st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp.xlsx')
+        st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp_template.xlsx')
 
          
