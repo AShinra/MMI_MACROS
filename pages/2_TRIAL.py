@@ -17,7 +17,7 @@ def sheet_formating(df):
     df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
 
     dfs = []
-    dfs.append(df_cat1)
+    # dfs.append(df_cat1)
     dfs.append(df_cat2)
     dfs.append(df_cat3)
 
