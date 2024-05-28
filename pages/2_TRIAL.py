@@ -5,7 +5,16 @@ from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from pathlib import Path
 import json
 import spacy
-import subprocess
+
+
+def sheet_formating(FILE):
+
+    wb = openpyxl.load_workbook(REPORT_FILE)
+    ws = wb.active
+
+
+
+    return
 
 
 
@@ -161,7 +170,7 @@ if st.session_state['bsp_raw'] != None:
                                     #     pass
 
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
-                                    if similarity_ratio < 0.75:
+                                    if similarity_ratio < 0.8:
                                         continue
                                     else:
                                         _df.at[j, 'ONLINE LINK'] = sub_link
@@ -188,21 +197,12 @@ if st.session_state['bsp_raw'] != None:
 
         # convert to excel
         df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
+
+        df_merged = df_merged['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']
+
         df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
-        # df_merged.to_excel(BSP_TEMPLATE, index=False, startrow=8, engine='openpyxl')
-
-        # with pd.ExcelWriter(BSP_TEMPLATE, engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer: 
-        #     df_merged.to_excel(writer)
-
         
-        # wb = openpyxl.load_workbook(BSP_TEMPLATE)
-        # ws  = wb.active
-
-        # for i, row in df_merged.iterrows():
-        #     ws.append(row.values.tolist(), sta)
-
-        # wb.save(BSP_TEMPLATE)
-        # wb.close()
+        # sheet_formating(REPORT_FILE)
 
         result_file = open(REPORT_FILE, 'rb')
         st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
