@@ -12,10 +12,10 @@ def sheet_formating(df, sendout_date):
 
     # category cell formats
     category_color_fill = PatternFill(start_color='06A2E5', end_color='06A2E5', fill_type='solid')
-    category_font = Font(bold=True, color='FFFFFF', name='Henry Sans', size=9)
+    category_font = Font(bold=True, color='FFFFFF', name='Arial', size=12)
 
     # header cell formats
-    header_font = Font(bold=True, name='Aptos Narrow', size=11)
+    header_font = Font(bold=True, name='Arial', size=10)
 
     # general formats
     thin_border = Border(left=Side(style='thin'), 
@@ -23,9 +23,9 @@ def sheet_formating(df, sendout_date):
                 top=Side(style='thin'), 
                 bottom=Side(style='thin'))
     
-    general_font = Font(bold=False, name='Aptos Narrow', size=11)
+    general_font = Font(bold=False, name='Arial', size=10)
 
-    sendout_font = Font(bold=True, name='Henry Sans', size=20)
+    sendout_font = Font(bold=True, name='Arial', size=20)
     
 
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
