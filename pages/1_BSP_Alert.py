@@ -40,7 +40,7 @@ def sheet_formating(df, sendout_date):
     df_1 = df_1.loc[df_1['PRINT LINK'] != 'N/A']
 
     # get rows whose ONLINE LINK has no value
-    df_2 = df_cat1.loc[df_cat1['ONLINE LINK'] != 'N/A']
+    df_2 = df_cat1.loc[df_cat1['ONLINE LINK'] == 'N/A']
     st.dataframe(df_2)
     
 
