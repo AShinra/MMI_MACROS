@@ -36,7 +36,8 @@ def sheet_formating(df, sendout_date):
     df_cat1.reset_index(drop=True, inplace=True)
 
     # _df = df_cat1.groupby('ONLINE LINK').get_group(df['ONLINE LINK'] != 'N/A')
-    _df = df_cat1.loc[df_cat1['ONLINE LINK','PRINT LINK'] != 'N/A']
+    _df = df_cat1.loc[df_cat1['ONLINE LINK'] != 'N/A']
+    _df = _df.loc[_df['PRINT LINK'] != 'N/A']
     st.dataframe(_df)
 
     df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
