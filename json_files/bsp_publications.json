@@ -11,6 +11,7 @@
     "Manila Standard":["Manila Standard Online"],
     "Abante Tonite":["Abante Tonite Interactive"],
     "Abante":["Abante News Online"],
+    "Balita":["Balitanetph Online"],
     "Bulgar":["Bulgar Online Official", "Bulgar Online"],
     "Hataw":["Hataw Tabloid"],
     "People's Journal":["Journal Online", "Journal News", "journal.com"],
@@ -19,9 +20,26 @@
     "Police Files Tonite":["Police Files! Tonite"],
     "Remate":["Remate Online", "Remate - Online"],
     "Temnpo":["Tempo Online"],
-    "Balita":["Balitanetph Online"],
-    "The Freeman":["Philstar"],
-    "Cebu Daily News":["Cebu Daily News Online"],
     "Baguio Midland Courier":["Baguio Midland Courier Online"],
-    "Business Week":["Business Week Mindanao"]
+    "Business Week":["Business Week Mindanao"],
+    "Cebu Daily News":["Cebu Daily News Online"],
+    "Mindanao DailyNews":["Mindanao Daily News Online"],
+    "Mindanao Gold Star Daily":["Mindanao Gold Star Daily"],
+    "Mindanao Times":["Mindanao Times Online"],
+    "Panay News":["Panay News Online"],
+    "Punto Central":["Punto Central LUzon"],
+    "Sun Star Cebu":["Sun Star/Sunstar"],
+    "Sun Star Super Balita":["Sun Star Superbalita Cebu Online"],
+    "Sun Star Cagayan":["Sun Star", "Sunstar"],
+    "Sunstar Bacolod":["Sun Star", "Sunstar"],
+    "SunStar Baguio":["Sun Star", "Sunstar"],
+    "Sunstar Davao":["Sun Star", "Sunstar"],
+    "Sunstar Pampanga":["Sun Star", "Sunstar"],
+    "The Daily Guardian":["The Daily Guardian Online"],
+    "The Freeman":["Philstar", "The Freeman Online"],
+    "Visayan Daily Star":["News Visayandailystar"],
+    "Watchmen Daily Journal":["Watchmen Daily Journal Online"],
+    "ZigZag Weekly":["ZigZag Weekly Online"]
+
+    
 }
