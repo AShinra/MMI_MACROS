@@ -33,10 +33,15 @@ def sheet_formating(df, sendout_date):
     # st.dataframe(df)
 
     df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
+    df_cat1.sort_values(by=['ONLINE LINK', 'PRINT LINK'])
     df_cat1.reset_index(drop=True, inplace=True)
+
     df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
+    df_cat2.sort_values(by=['ONLINE LINK', 'PRINT LINK'])
     df_cat2.reset_index(drop=True, inplace=True)
+
     df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
+    df_cat3.sort_values(by=['ONLINE LINK', 'PRINT LINK'])
     df_cat3.reset_index(drop=True, inplace=True)
 
     dfs = []
