@@ -8,6 +8,47 @@ import json
 import spacy
 from openpyxl.drawing.image import Image
 
+
+def bg_image():
+
+    background_image = """
+    <style>
+    [data-testid="stAppViewContainer"] > .main {
+        background-image: url("https://bunny-wp-pullzone-te1xobntrf.b-cdn.net/wp-content/uploads/2022/02/BSP-Aims-to-Meet-Its-Financial-Inclusion-Target-by-2023-With-New-Blueprint-1440x564_c.png");
+        background-size: 100vw 100vh;  # This sets the size to cover 100% of the viewport width and height
+        background-position: center;  
+        background-repeat: no-repeat;
+    }
+    </style>
+    """
+
+    st.markdown(background_image, unsafe_allow_html=True)
+
+    input_style = """
+    <style>
+    input[type="text"] {
+        background-color: transparent;
+        color: #a19eae;  // This changes the text color inside the input box
+    }
+    div[data-baseweb="base-input"] {
+        background-color: transparent !important;
+    }
+    [data-testid="stAppViewContainer"] {
+        background-color: transparent !important;
+    }
+    [data-testid="baseButton-header"] {
+        display: none;
+    }
+    [data-testid="baseButton-headerNoPadding"] {
+        display: none;
+    }
+    </style>
+    """
+    st.markdown(input_style, unsafe_allow_html=True)
+    
+    return
+
+
 def sheet_formating(df, sendout_date):
 
     # category cell formats
@@ -306,6 +347,7 @@ def dataframe_create(uploaded_file):
     return df, REPORT_FILE, sendout_date
 
 
+bg_image()
 
 with st.container(border=True):
     
