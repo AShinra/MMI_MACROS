@@ -193,6 +193,7 @@ def sheet_formating(df, sendout_date):
                 online_cell.value = 'Online Link'
                 online_cell.hyperlink = s_online
                 online_cell.style = 'Hyperlink'
+                online_cell.font = general_font
             
             online_cell.alignment = Alignment(horizontal='center')
             online_cell.border = thin_border
@@ -205,7 +206,8 @@ def sheet_formating(df, sendout_date):
                 print_cell.value = 'Print Link'
                 print_cell.hyperlink = s_print
                 print_cell.style = 'Hyperlink'
-            
+                print_cell.font = general_font
+
             print_cell.alignment = Alignment(horizontal='center')
             print_cell.border = thin_border
 
