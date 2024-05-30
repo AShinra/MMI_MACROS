@@ -47,7 +47,6 @@ def sheet_formating(df, sendout_date):
     # combine dataframes
     df_cat1 = pd.concat([df_1, df_2, df_3], sort=False)
     df_cat1.reset_index(drop=True, inplace=True)
-    st.dataframe(df_cat1)
 
     df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
 
@@ -192,8 +191,8 @@ def sheet_formating(df, sendout_date):
             else:
                 online_cell.value = 'Online Link'
                 online_cell.hyperlink = s_online
-                online_cell.style = 'Hyperlink'
-                online_cell.font = general_font
+                # online_cell.style = 'Hyperlink'
+                online_cell.font = Font(bold=True, name='Arial', size=10, color='0000FF', underline='single')
             
             online_cell.alignment = Alignment(horizontal='center')
             online_cell.border = thin_border
@@ -205,8 +204,8 @@ def sheet_formating(df, sendout_date):
             else:
                 print_cell.value = 'Print Link'
                 print_cell.hyperlink = s_print
-                print_cell.style = 'Hyperlink'
-                print_cell.font = general_font
+                # print_cell.style = 'Hyperlink'
+                print_cell.font = Font(bold=True, name='Arial', size=10, color='0000FF', underline='single')
 
             print_cell.alignment = Alignment(horizontal='center')
             print_cell.border = thin_border
