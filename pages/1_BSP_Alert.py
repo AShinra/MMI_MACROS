@@ -14,7 +14,7 @@ def bg_image():
     background_image = """
     <style>
     [data-testid="stAppViewContainer"] > .main {
-        background-image: url("https://bunny-wp-pullzone-te1xobntrf.b-cdn.net/wp-content/uploads/2022/02/BSP-Aims-to-Meet-Its-Financial-Inclusion-Target-by-2023-With-New-Blueprint-1440x564_c.png");
+        background-image: url("https://www.kantar.com/-/media/project/kantar/global/campaigns/analytics/kantar-analytics-live.jpg");
         background-size: 100vw 100vh;  # This sets the size to cover 100% of the viewport width and height
         background-position: center;  
         background-repeat: no-repeat;
@@ -345,6 +345,7 @@ def dataframe_create(uploaded_file):
     df = pd.read_excel(REPORT_FILE) 
 
     return df, REPORT_FILE, sendout_date
+
 
 
 bg_image()
