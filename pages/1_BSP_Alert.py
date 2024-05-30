@@ -47,12 +47,9 @@ def sheet_formating(df, sendout_date):
     df_3 = df_cat1.loc[df_cat1['PRINT LINK'] == 'N/A']
     st.dataframe(df_3)
 
-    df_cat1 = []
-    df_cat1.append(df_1)
-    df_cat1.append(df_2)
-    df_cat1.append(df_3)
+    # combine dataframes
+    df_cat1 = pd.concat([df_1, df_2, df_3], sort=False)
     df_cat1.reset_index(drop=True, inplace=True)
-
     st.dataframe(df_cat1)
 
     df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
