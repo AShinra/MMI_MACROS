@@ -35,10 +35,14 @@ def sheet_formating(df, sendout_date):
     df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
     df_cat1.reset_index(drop=True, inplace=True)
 
-    # _df = df_cat1.groupby('ONLINE LINK').get_group(df['ONLINE LINK'] != 'N/A')
-    _df = df_cat1.loc[df_cat1['ONLINE LINK'] != 'N/A']
-    _df = _df.loc[_df['PRINT LINK'] != 'N/A']
-    st.dataframe(_df)
+    # get rows whose ONLINE LINK and PRINT LINK has values
+    df_1 = df_cat1.loc[df_cat1['ONLINE LINK'] != 'N/A']
+    df_1 = df_1.loc[df_1['PRINT LINK'] != 'N/A']
+
+    # get rows whose ONLINE LINK has no value
+    df_2 = df_cat1.loc[df_cat1['ONLINE LINK'] != 'N/A']
+    st.dataframe(df_2)
+    
 
     df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
     df_cat2.reset_index(drop=True, inplace=True)
