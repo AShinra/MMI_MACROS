@@ -33,26 +33,21 @@ def sheet_formating(df, sendout_date):
     # st.dataframe(df)
 
     df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
-    df_cat1_print = df_cat1.query('ONLINE LINK' != 'N/A')
-    st.data_frame(df_cat1_print)
     df_cat1.reset_index(drop=True, inplace=True)
 
+    _df = (df_cat1['ONLINE LINK'] >= 'N/A' and df_cat1['PRINT LINK'] >= 'N/A')
+    st.dataframe(_df)
+
     df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
-    df_cat2.sort_values(by=['ONLINE LINK', 'PRINT LINK'])
     df_cat2.reset_index(drop=True, inplace=True)
 
     df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
-    df_cat3.sort_values(by=['ONLINE LINK', 'PRINT LINK'])
     df_cat3.reset_index(drop=True, inplace=True)
 
     dfs = []
     dfs.append(df_cat1)
     dfs.append(df_cat2)
     dfs.append(df_cat3)
-
-    # st.dataframe(df_cat1)
-    # st.dataframe(df_cat2)
-    # st.dataframe(df_cat3)
 
     wb = openpyxl.Workbook()
     ws = wb.active
