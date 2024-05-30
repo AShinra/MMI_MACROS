@@ -37,15 +37,12 @@ def sheet_formating(df, sendout_date):
     # get rows whose ONLINE LINK and PRINT LINK has values
     df_1 = df_cat1.loc[df_cat1['ONLINE LINK'] != 'N/A']
     df_1 = df_1.loc[df_1['PRINT LINK'] != 'N/A']
-    st.dataframe(df_1)
 
     # get rows whose print rows
     df_2 = df_cat1.loc[df_cat1['ONLINE LINK'] == 'N/A']
-    st.dataframe(df_2)
 
     # get online rows
     df_3 = df_cat1.loc[df_cat1['PRINT LINK'] == 'N/A']
-    st.dataframe(df_3)
 
     # combine dataframes
     df_cat1 = pd.concat([df_1, df_2, df_3], sort=False)
@@ -53,9 +50,43 @@ def sheet_formating(df, sendout_date):
     st.dataframe(df_cat1)
 
     df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
+
+    # get rows whose ONLINE LINK and PRINT LINK has values
+    df_1 = df_cat2.loc[df_cat2['ONLINE LINK'] != 'N/A']
+    df_1 = df_1.loc[df_1['PRINT LINK'] != 'N/A']
+
+    # get rows whose print rows
+    df_2 = df_cat2.loc[df_cat2['ONLINE LINK'] == 'N/A']
+
+    # get online rows
+    df_3 = df_cat2.loc[df_cat2['PRINT LINK'] == 'N/A']
+
+    # combine dataframes
+    df_cat2 = pd.concat([df_1, df_2, df_3], sort=False)
     df_cat2.reset_index(drop=True, inplace=True)
 
     df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
+
+    # get rows whose ONLINE LINK and PRINT LINK has values
+    df_1 = df_cat3.loc[df_cat3['ONLINE LINK'] != 'N/A']
+    df_1 = df_1.loc[df_1['PRINT LINK'] != 'N/A']
+
+    # get rows whose print rows
+    df_2 = df_cat3.loc[df_cat3['ONLINE LINK'] == 'N/A']
+
+    # get online rows
+    df_3 = df_cat3.loc[df_cat3['PRINT LINK'] == 'N/A']
+
+    # combine dataframes
+    df_cat3 = pd.concat([df_1, df_2, df_3], sort=False)
+    df_cat3.reset_index(drop=True, inplace=True)
+
+
+
+
+
+
+
     df_cat3.reset_index(drop=True, inplace=True)
 
     dfs = []
