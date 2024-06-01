@@ -51,9 +51,6 @@ def bg_image():
     [data-testid="baseButton-headerNoPadding"] {
         display: none;
     }
-    button[data-testid="manage-app-button"] {
-        display: none;
-    }
     </style>
     """
     st.markdown(input_style, unsafe_allow_html=True)
