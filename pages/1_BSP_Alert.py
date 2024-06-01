@@ -293,6 +293,8 @@ with st.container(border=True):
     
     st.header('Bangko Sentral ng Pilipinas')
 
+    st.date_input('Date input')
+
 
 st.file_uploader('Input Raw File', key='bsp_raw')
 
