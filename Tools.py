@@ -1,7 +1,21 @@
 import streamlit as st
+import json
 
 
+def title_clean(title, pub):
 
+    f = open('json_files/title_cleaner.json')
+    title_json = json.load(f)
+
+    pub_check = title_json[pub]
+
+    for i in pub_check:
+        try:
+            title = title.replace(i, '')
+        except:
+            pass
+        
+    return title
 
 
 def bg_image():

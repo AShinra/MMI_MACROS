@@ -7,6 +7,7 @@ from pathlib import Path
 import json
 import spacy
 from openpyxl.drawing.image import Image
+from Tools import title_clean
 
 
 def sheet_formating(df, sendout_date):
@@ -28,7 +29,6 @@ def sheet_formating(df, sendout_date):
 
     sendout_font = Font(bold=True, name='Arial', size=20)
     
-
     BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
 
     # st.dataframe(df)
@@ -79,14 +79,6 @@ def sheet_formating(df, sendout_date):
 
     # combine dataframes
     df_cat3 = pd.concat([df_1, df_2, df_3], sort=False)
-    df_cat3.reset_index(drop=True, inplace=True)
-
-
-
-
-
-
-
     df_cat3.reset_index(drop=True, inplace=True)
 
     dfs = []
@@ -230,20 +222,7 @@ def json_publications():
     return bsp_pub
 
 
-def title_clean(title, pub):
 
-    f = open('json_files/title_cleaner.json')
-    title_json = json.load(f)
-
-    pub_check = title_json[pub]
-
-    for i in pub_check:
-        try:
-            title = title.replace(i, '')
-        except:
-            pass
-        
-    return title
 
 
 def similar_title(a, b):
