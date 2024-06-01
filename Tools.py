@@ -51,7 +51,7 @@ def bg_image():
     [data-testid="baseButton-headerNoPadding"] {
         display: none;
     }
-    [data-testid="data-testid="manage-app-button""] {
+    [data-testid="manage-app-button"] {
         display: none;
     }
     </style>
