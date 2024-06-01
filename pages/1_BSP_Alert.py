@@ -7,7 +7,7 @@ from pathlib import Path
 import json
 import spacy
 from openpyxl.drawing.image import Image
-from Tools import title_clean
+from Tools import title_clean, bg_image
 
 
 def sheet_formating(df, sendout_date):
@@ -286,6 +286,8 @@ def dataframe_create(uploaded_file):
     return df, REPORT_FILE, sendout_date
 
 
+
+bg_image()
 
 with st.container(border=True):
     
