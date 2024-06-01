@@ -293,6 +293,9 @@ with st.container(border=True):
     
     st.header('Bangko Sentral ng Pilipinas')
 
+with st.expander('See Instructions'):
+    st.write('Testing')
+
 
 st.file_uploader('Input Raw File', key='bsp_raw')
 
