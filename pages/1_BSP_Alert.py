@@ -303,8 +303,9 @@ if st.session_state['bsp_raw'] != None:
 
     if button_process:
 
-        nlp = spacy.load(en_core_web_sm)
+        # nlp = spacy.load('en_core_web_sm')
         # nlp = load_model('en_core_web_sm')
+        nlp = en_core_web_sm.load()
 
         df, REPORT_FILE, sendout_date = dataframe_create(st.session_state['bsp_raw'])
 
