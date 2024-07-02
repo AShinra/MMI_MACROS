@@ -311,7 +311,7 @@ if st.session_state['bsp_raw'] != None:
 
         st.dataframe(df)
         
-        # df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
+        df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
 
         df['PRINT LINK'] = 'N/A'
         df['ONLINE LINK'] = 'N/A'
