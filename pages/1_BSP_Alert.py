@@ -6,6 +6,7 @@ from openpyxl.styles.borders import Border, Side
 from pathlib import Path
 import json
 import spacy
+import en_core_web_sm
 # import spacy_streamlit
 # from spacy_streamlit import load_model
 from openpyxl.drawing.image import Image
