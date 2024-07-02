@@ -20,7 +20,7 @@ def title_clean(title, pub):
     except:
         pass
     else:
-        title = title.replace(end_text, '')
+        st.write(end_text)
         
     return title
 
