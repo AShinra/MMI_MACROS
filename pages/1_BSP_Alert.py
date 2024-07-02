@@ -5,9 +5,9 @@ from openpyxl.styles import Color, PatternFill, Font, Border, Alignment
 from openpyxl.styles.borders import Border, Side
 from pathlib import Path
 import json
-# import spacy
+import spacy
 # import spacy_streamlit
-from spacy_streamlit import load_model
+# from spacy_streamlit import load_model
 from openpyxl.drawing.image import Image
 from Tools import title_clean, bg_image
 
@@ -302,8 +302,8 @@ if st.session_state['bsp_raw'] != None:
 
     if button_process:
 
-        # nlp = spacy.load('en_core_web_sm')
-        nlp = load_model('en_core_web_sm')
+        nlp = spacy.load('en_core_web_sm')
+        # nlp = load_model('en_core_web_sm')
 
         df, REPORT_FILE, sendout_date = dataframe_create(st.session_state['bsp_raw'])
 
