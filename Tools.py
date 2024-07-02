@@ -17,6 +17,7 @@ def title_clean(title, pub):
     
     if '|' in title:
         end_text = title.split('|')
+        st.write(end_text)
         title = title.replace(end_text, '')
         
     return title
