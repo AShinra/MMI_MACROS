@@ -14,6 +14,13 @@ def title_clean(title, pub):
             title = title.replace(i, '')
         except:
             pass
+    
+    try:
+        end_text = title.split('|')[-1]
+    except:
+        pass
+    else:
+        title = title.replace(end_text, '')
         
     return title
 
