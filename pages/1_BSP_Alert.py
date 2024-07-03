@@ -343,8 +343,6 @@ if st.session_state['bsp_raw'] != None:
                     end_text = main_title.split('|')[-1]
                     main_title = main_title.replace(end_text, '')
 
-                    st.write(main_title)
-
                 main_source = _df.at[j, 'SOURCE']
                 main_link = _df.at[j, 'LINK']
                 main_type = _df.at[j, 'TYPE']
@@ -390,6 +388,7 @@ if st.session_state['bsp_raw'] != None:
                                     except:
                                         pass
                                     
+
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
                                     if similarity_ratio < 0.8:
                                         continue
