@@ -280,7 +280,7 @@ def dataframe_create(uploaded_file):
                             'BSPNEWS']:
             row[0].value = ''
 
-    ws.delete_rows(1,4)
+    ws.delete_rows(1,6)
     wb.save(REPORT_FILE)
     wb.close()
 
