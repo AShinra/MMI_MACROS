@@ -335,14 +335,6 @@ if st.session_state['bsp_raw'] != None:
         for _df in dfs:
             for j in _df.index:
                 main_title = _df.at[j, 'TITLE']
-
-                if main_title[:10].lower() == 'headlines:':
-                    main_title = main_title[11:]
-                
-                if '|' in main_title:
-                    end_text = main_title.split('|')[-1]
-                    main_title = main_title.replace(end_text, '')
-
                 main_source = _df.at[j, 'SOURCE']
                 main_link = _df.at[j, 'LINK']
                 main_type = _df.at[j, 'TYPE']
@@ -387,6 +379,20 @@ if st.session_state['bsp_raw'] != None:
                                         sub_title = title_clean(sub_title, sub_source)
                                     except:
                                         pass
+
+                                    if main_title[:10].lower() == 'headlines:':
+                                        main_title = main_title[11:]
+                                    
+                                    if '|' in main_title:
+                                        end_text = main_title.split('|')[-1]
+                                        main_title = main_title.replace(end_text, '')
+                                    
+                                    if sub_title[:10].lower() == 'headlines:':
+                                        sub_title = sub_title[11:]
+                                    
+                                    if '|' in sub_title:
+                                        end_text = sub_title.split('|')[-1]
+                                        sub_title = sub_title.replace(end_text, '')
                                     
 
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
