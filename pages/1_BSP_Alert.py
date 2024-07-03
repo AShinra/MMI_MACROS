@@ -328,11 +328,31 @@ if st.session_state['bsp_raw'] != None:
                 end_text = _title.split('|')[-1]
                 df_cat1.at[i, 'TITLE'] = _title.replace(end_text, '')
 
-        
-        st.dataframe(df_cat1)
-
         df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
+
+        for i in df_cat2.index:
+            _title = df_cat2.at[i, 'TITLE']
+            
+            if _title[:10].lower() == 'headlines:':
+                df_cat2.at[i, 'TITLE'] = _title[11:]
+                _title = df_cat2.at[i, 'TITLE']
+            
+            if '|' in _title:
+                end_text = _title.split('|')[-1]
+                df_cat2.at[i, 'TITLE'] = _title.replace(end_text, '')
+
         df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
+
+        for i in df_cat3.index:
+            _title = df_cat3.at[i, 'TITLE']
+            
+            if _title[:10].lower() == 'headlines:':
+                df_cat3.at[i, 'TITLE'] = _title[11:]
+                _title = df_cat3.at[i, 'TITLE']
+            
+            if '|' in _title:
+                end_text = _title.split('|')[-1]
+                df_cat3.at[i, 'TITLE'] = _title.replace(end_text, '')
 
         dfs = []
         dfs.append(df_cat1)
@@ -384,12 +404,6 @@ if st.session_state['bsp_raw'] != None:
                                 if sub_delete == 'FOR DELETION':
                                     continue
                                 else:
-                                    # try:
-                                        # st.write(sub_title)
-                                        # sub_title = sub_title.replace('BusinessWorld Online', '')
-                                        # st.write(sub_title)
-                                    # except:
-                                    #     pass
                                     try:
                                         sub_title = title_clean(sub_title, sub_source)
                                     except:
