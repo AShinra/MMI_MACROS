@@ -319,10 +319,8 @@ if st.session_state['bsp_raw'] != None:
 
         for i in df_cat1.index:
             _title = df_cat1.at[i, 'TITLE']
-            st.write(_title[:10].lower())
-            if _title[:10].lower() == 'headlines':
+            if _title[:10].lower() == 'headlines:':
                 df_cat1.at[i, 'TITLE'] = _title[11:]
-                st.write(df_cat1.at[i, 'TITLE'])
         
         st.dataframe(df_cat1)
 
