@@ -340,7 +340,8 @@ if st.session_state['bsp_raw'] != None:
                     main_title = main_title[11:]
                 
                 if '|' in main_title:
-                    st.write(main_title)
+                    end_text = main_title.split('|')[-1]
+                    st.write(end_text)
 
                 main_source = _df.at[j, 'SOURCE']
                 main_link = _df.at[j, 'LINK']
