@@ -338,7 +338,10 @@ if st.session_state['bsp_raw'] != None:
 
                 if main_title[:10].lower() == 'headlines:':
                     main_title = main_title[11:]
-                    
+                
+                if '|' in main_title:
+                    st.write(main_title)
+
                 main_source = _df.at[j, 'SOURCE']
                 main_link = _df.at[j, 'LINK']
                 main_type = _df.at[j, 'TYPE']
