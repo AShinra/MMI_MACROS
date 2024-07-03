@@ -389,7 +389,7 @@ if st.session_state['bsp_raw'] != None:
                                         pass
 
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
-                                    if similarity_ratio < 0.8:
+                                    if similarity_ratio < 0.7:
                                         continue
                                     else:
                                         _df.at[j, 'ONLINE LINK'] = sub_link
