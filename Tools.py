@@ -14,6 +14,8 @@ def title_clean(title, pub):
             title = title.replace(i, '')
         except:
             pass
+    
+    st.write(title[:9])
         
     return title
 
