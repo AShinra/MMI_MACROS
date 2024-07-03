@@ -316,6 +316,12 @@ if st.session_state['bsp_raw'] != None:
         df['DELETE'] = ''
 
         df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
+
+        for i in df_cat1.index:
+            _title = df_cat1.at[i, 'TITLE']
+            if _title[:10].lower() == 'headlines':
+                df_cat1.at[i, 'TITLE'] = _title[11:]
+
         df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
         df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
 
