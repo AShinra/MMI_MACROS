@@ -308,6 +308,9 @@ if st.session_state['bsp_raw'] != None:
         # nlp = en_core_web_sm.load()
 
         df, REPORT_FILE, sendout_date = dataframe_create(st.session_state['bsp_raw'])
+
+        st.dataframe(df)
+        exit()
         
         df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
 
