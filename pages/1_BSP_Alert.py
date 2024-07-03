@@ -335,6 +335,7 @@ if st.session_state['bsp_raw'] != None:
         for _df in dfs:
             for j in _df.index:
                 main_title = _df.at[j, 'TITLE']
+                st.write(main_title[:9])
                 main_source = _df.at[j, 'SOURCE']
                 main_link = _df.at[j, 'LINK']
                 main_type = _df.at[j, 'TYPE']
