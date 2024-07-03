@@ -380,21 +380,6 @@ if st.session_state['bsp_raw'] != None:
                                     except:
                                         pass
 
-                                    if main_title[:10].lower() == 'headlines:':
-                                        main_title = main_title[11:]
-                                    
-                                    if '|' in main_title:
-                                        end_text = main_title.split('|')[-1]
-                                        main_title = main_title.replace(end_text, '')
-                                    
-                                    if sub_title[:10].lower() == 'headlines:':
-                                        sub_title = sub_title[11:]
-                                    
-                                    if '|' in sub_title:
-                                        end_text = sub_title.split('|')[-1]
-                                        sub_title = sub_title.replace(end_text, '')
-                                    
-
                                     similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
                                     if similarity_ratio < 0.8:
                                         continue
