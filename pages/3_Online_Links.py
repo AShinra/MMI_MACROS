@@ -67,7 +67,7 @@ def mb_scraper2():
     import requests
     from bs4 import BeautifulSoup
 
-    URL = "https://realpython.github.io/fake-jobs/"
+    URL = "https://mb.com.ph/category/2023-sea-games"
     page = requests.get(URL)
 
     soup = BeautifulSoup(page.content, "html.parser")
