@@ -24,7 +24,7 @@ def mb_scraper():
     # run firefox as headless
     
     driver = get_driver() 
-    driver.get("https://discuss.streamlit.io/t/every-selenium-example-failed/63079")
+    driver.get("https://www.merriam-webster.com/dictionary/sample")
 
     st.code(driver.page_source)
 
