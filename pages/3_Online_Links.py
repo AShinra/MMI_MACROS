@@ -16,7 +16,7 @@ def mb_scraper():
     st.write(chrome_path)
 
     # run firefox as headless
-    options_browser = webdriver.ChromeOptions
+    options_browser = webdriver.ChromeOptions()
     options_browser.add_argument("--headless")
     driver = webdriver.Chrome(options=options_browser)
 
