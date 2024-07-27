@@ -26,10 +26,7 @@ def mb_scraper():
     driver = get_driver() 
     driver.get("https://mb.com.ph/category/business")
 
-    s = driver.find_element(By.TAG_NAME, 'body')
-    bod = s.get_attribute('innerHTML')
-
-    st.code(bod)
+    st.code(driver.page_source)
 
     # s = driver.find_element(By.ID, 'adbro-ads-anymind')
 
