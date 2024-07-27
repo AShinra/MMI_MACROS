@@ -33,12 +33,6 @@ def mb_scraper():
     # link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
     link_objects = driver.find_elements(By.CSS_SELECTOR, '#category.title-label')
 
-    st.write(link_objects)
-
-    driver.quit()
-
-    exit()
-
     all_category_links = {}
     for i in link_objects:
         link = i.get_attribute('href')
@@ -52,6 +46,7 @@ def mb_scraper():
             None]:
             if cat != '':
                 all_category_links[cat] = link
+                st.write(link)
                 
     for cat_name, cat_link in all_category_links.items():
         driver.get(cat_link)
