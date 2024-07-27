@@ -30,7 +30,8 @@ def mb_scraper():
     # get google.co.in 
     driver.get("https://mb.com.ph/sitemap")
 
-    link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
+    # link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
+    link_objects = driver.find_elements(By.CSS_SELECTOR, '#category.title-label')
 
     st.write(link_objects)
 
