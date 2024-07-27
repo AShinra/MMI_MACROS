@@ -31,10 +31,9 @@ def mb_scraper():
     # get google.co.in 
     driver.get("https://mb.com.ph/sitemap")
 
-    html = driver.page_source
-    time.sleep(10)
-    print(html)
+    print(driver)
 
+    driver.quit()
     exit()
 
     # link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
