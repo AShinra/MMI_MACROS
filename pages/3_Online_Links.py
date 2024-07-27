@@ -28,7 +28,7 @@ def mb_scraper():
     # exit()
 
     # link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
-    element = driver.find_element(By.CSS_SELECTOR, 'col-sm-6.col-md-8.col-lg-8.col-12')
+    element = driver.find_element(By.CSS_SELECTOR, '#col-sm-6.col-md-8.col-lg-8.col-12')
     elements = element.find_elements(By.CLASS_NAME, 'custom-text-link')
 
     for i in elements:
