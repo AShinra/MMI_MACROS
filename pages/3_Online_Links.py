@@ -34,6 +34,8 @@ def mb_scraper():
 
     st.write(link_objects)
 
+    driver.quit()
+
     exit()
 
     all_category_links = {}
