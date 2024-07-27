@@ -22,7 +22,7 @@ def mb_scraper():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options) 
     driver.get("https://mb.com.ph/category/news")
 
-    # st.code(driver.page_source)
+    st.code(driver.page_source)
 
     # driver.quit()
     # exit()
