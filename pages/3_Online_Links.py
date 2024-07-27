@@ -13,7 +13,7 @@ def mb_scraper():
     gecko_path = Path(__file__).parent/f'Utility_Files/geckodriver.exe'
 
     # run firefox as headless
-    options_firefox = webdriver.ChromeOptions
+    options_firefox = webdriver.FirefoxOptions
     options_firefox.add_argument("--headless")
     driver = webdriver.Firefox(gecko_path, options=options_firefox)
 
