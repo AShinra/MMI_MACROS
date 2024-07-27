@@ -32,12 +32,12 @@ def mb_scraper():
 
     st.code(s)
 
-    try:
-        link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
-    except:
-        st.code('cannot find element')
-    else:
-        st.code(link_objects)
+    # try:
+    #     link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
+    # except:
+    #     st.code('cannot find element')
+    # else:
+    #     st.code(link_objects)
 
     # driver.quit()
     # exit()
