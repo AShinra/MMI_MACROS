@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.core.os_manager import ChromeType
 from pathlib import Path
 import streamlit as st
+import time
 
 
 
@@ -31,10 +32,11 @@ def mb_scraper():
     driver.get("https://mb.com.ph/sitemap")
 
     html = driver.page_source
+    time.sleep(10)
     print(html)
 
     exit()
-    
+
     # link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
     link_objects = driver.find_elements(By.CSS_SELECTOR, 'category.title-label')
 
