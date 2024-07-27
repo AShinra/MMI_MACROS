@@ -22,14 +22,21 @@ def mb_scraper():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options) 
     driver.get("https://mb.com.ph/category/news")
 
-    st.code(driver.page_source)
+    # st.code(driver.page_source)
+
+    # driver.quit()
+    # exit()
+
+    # link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
+    element = driver.find_element(By.CSS_SELECTOR, 'col-sm-6.col-md-8.col-lg-8.col-12')
+    elements = element.find_elements(By.CLASS_NAME, 'custom-text-link')
+
+    for i in elements:
+        art_link = i.get_attribute('href')
+        st.write(art_link)
 
     driver.quit()
     exit()
-
-    # link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
-    link_objects = driver.find_elements(By.CSS_SELECTOR, 'category.title-label')
-
     all_category_links = {}
     for i in link_objects:
         link = i.get_attribute('href')
