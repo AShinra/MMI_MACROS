@@ -12,6 +12,8 @@ import time
 
 @st.cache_resource
 def get_driver():
+    options = Options()
+    options.add_argument("--headless")
     return webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
 
 
@@ -20,8 +22,7 @@ def mb_scraper():
     # gecko_path = Path(__file__).parent/f'Utility_Files/geckodriver.exe'
     # chrome_path = Path(__file__).parent/f'Utility_Files/chromedriver.exe'
     # run firefox as headless
-    options = Options()
-    options.add_argument("--headless")
+    
     driver = get_driver() 
     driver.get("https://mb.com.ph/category/news")
 
