@@ -24,6 +24,10 @@ def mb_scraper():
 
     st.code(driver.page_source)
 
+    s = driver.find_element(By.ID, 'adbro-ads-anymind')
+
+    st.code(s)
+
     # driver.quit()
     # exit()
 
