@@ -74,7 +74,7 @@ def mb_scraper2():
 
     st.write(soup)
 
-    results = soup.find_all('div', class_="col-sm-6")
+    results = soup.find_all('div', class_="cf-error-footer")
     st.write(results)
 
     return
