@@ -28,9 +28,9 @@ def mb_scraper():
 
     st.code(driver.page_source)
 
-    s = driver.find_element(By.ID, 'adbro-ads-anymind')
+    # s = driver.find_element(By.ID, 'adbro-ads-anymind')
 
-    st.code(s)
+    # st.code(s)
 
     # try:
     #     link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
