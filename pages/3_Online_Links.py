@@ -72,7 +72,7 @@ def mb_scraper2():
 
     soup = BeautifulSoup(page.content, "html.parser")
 
-    results = soup.find_all('div', class_="col-sm-6 col-md-8 col-lg-8 col-12")
+    results = soup.find_all('div', class_="col-sm-6.col-md-8.col-lg-8.col-12")
     st.write(results)
 
     return
