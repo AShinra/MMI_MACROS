@@ -2,8 +2,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 from pathlib import Path
 import streamlit as st
+
 
 
 
@@ -18,7 +21,9 @@ def mb_scraper():
     # run firefox as headless
     options_browser = webdriver.ChromeOptions()
     options_browser.add_argument("--headless")
-    driver = webdriver.Chrome(options=options_browser)
+    # driver = webdriver.Chrome(options=options_browser)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
+                                  options=options_browser)
 
     # create webdriver object 
     # driver = webdriver.Firefox()
