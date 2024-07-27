@@ -19,15 +19,10 @@ def mb_scraper():
     # run firefox as headless
     options = Options()
     options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
-    st.write(driver)
-    # create webdriver object 
-    # driver = webdriver.Firefox()
-
-    # get google.co.in 
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options) 
     driver.get("https://www.hostinger.ph/tutorials/blog-examples")
 
-    print(driver)
+    st.code(driver.page_source)
 
     driver.quit()
     exit()
