@@ -85,4 +85,4 @@ def mb_scraper2():
 process_button = st.button('Process', key='Prcoess')
 
 if process_button:
-    mb_scraper2()
+    mb_scraper()
