@@ -23,7 +23,7 @@ def mb_scraper():
     options = Options()
     options.add_argument("--headless")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
-
+    st.write(driver)
     # create webdriver object 
     # driver = webdriver.Firefox()
 
