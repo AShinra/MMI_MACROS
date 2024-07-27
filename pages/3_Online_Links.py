@@ -60,6 +60,21 @@ def mb_scraper():
 
         
     driver.quit()
+    return
+
+def mb_scraper2():
+
+    import requests
+    from bs4 import BeautifulSoup
+
+    URL = "https://realpython.github.io/fake-jobs/"
+    page = requests.get(URL)
+
+    soup = BeautifulSoup(page.content, "html.parser")
+
+    st.write(soup)
+
+    return
 
 
 # main process
@@ -67,4 +82,4 @@ def mb_scraper():
 process_button = st.button('Process', key='Prcoess')
 
 if process_button:
-    mb_scraper()
+    mb_scraper2()
