@@ -10,6 +10,9 @@ import streamlit as st
 import time
 
 
+@st.cache_resource
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
 
 
 def mb_scraper():
@@ -19,7 +22,7 @@ def mb_scraper():
     # run firefox as headless
     options = Options()
     options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options) 
+    driver = get_driver() 
     driver.get("https://mb.com.ph/category/news")
 
     st.code(driver.page_source)
