@@ -29,7 +29,9 @@ def mb_scraper():
 
     # link_objects = driver.find_elements(By.CLASS_NAME, 'title-label')
     element = driver.find_element(By.CSS_SELECTOR, '#col-sm-6.col-md-8.col-lg-8.col-12')
+    st.write(element)
     elements = element.find_elements(By.CLASS_NAME, 'custom-text-link')
+    st.write(elements)
 
     for i in elements:
         art_link = i.get_attribute('href')
