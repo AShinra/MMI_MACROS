@@ -22,11 +22,7 @@ def mb_scraper():
     # run firefox as headless
     options = Options()
     options.add_argument("--headless")
-    # driver = webdriver.Chrome(options=options_browser)
-    driver = webdriver.Chrome(service=Service(
-                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-            ),
-                                  options=options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
 
     # create webdriver object 
     # driver = webdriver.Firefox()
