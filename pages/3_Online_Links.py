@@ -20,7 +20,7 @@ def mb_scraper():
     options = Options()
     options.add_argument("--headless")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options) 
-    driver.get("https://www.hostinger.ph/tutorials/blog-examples")
+    driver.get("https://mb.com.ph/sitemap/")
 
     st.code(driver.page_source)
 
