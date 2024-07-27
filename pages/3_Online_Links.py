@@ -22,7 +22,7 @@ def mb_scraper():
     options_browser = webdriver.ChromeOptions()
     options_browser.add_argument("--headless")
     # driver = webdriver.Chrome(options=options_browser)
-    driver = webdriver.Chrome(executable_path=Service(ChromeDriverManager().install()),
+    driver = webdriver.Chrome(service=ChromeDriverManager().install(),
                                   options=options_browser)
 
     # create webdriver object 
