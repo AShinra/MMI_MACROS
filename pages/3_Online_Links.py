@@ -24,7 +24,7 @@ def mb_scraper():
     # run firefox as headless
     
     driver = get_driver() 
-    driver.get("https://mb.com.ph/category/news")
+    driver.get("https://mb.com.ph/category/business")
 
     st.code(driver.page_source)
 
