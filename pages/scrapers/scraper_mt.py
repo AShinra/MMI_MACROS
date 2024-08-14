@@ -23,12 +23,11 @@ def mt():
                 _title = article.find(class_='article-title-h4').find('a').text
                 _url = article.find(class_='article-title-h4').find('a').get('href')
                 _date = article.find(class_='roboto-a').text
-                _date = re.sub(' - ', '', _date)
+                _date = re.sub('-\n', '', _date)
 
                 st.write(_date)
                 st.write(_title)
                 st.write(_url)
-
 
 
 
