@@ -54,7 +54,7 @@ if pro:
         links_collected = mt()
         link_count(links_collected)
     
-    elif st.session_state['pub_sel_radio'] == ':blue[Manila Times]':
+    elif st.session_state['pub_sel_radio'] == ':blue[Business Mirror]':
         bm()
         # link_count(links_collected)
                 
