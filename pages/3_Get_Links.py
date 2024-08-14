@@ -7,8 +7,9 @@ import re
 # scrapers
 # from scraper_mst import mst
 
+col1, col2 = st.columns(2)
 
-with st.sidebar:
+with col1:
 
     st.header('Links Scraper')
 
@@ -26,6 +27,9 @@ with st.sidebar:
 
     pro = st.button(label='Process')
 
+
+with col2:
+    st.success('test')
 
 # if pro:
 #     if pub_sel == 'Manila Standard':
