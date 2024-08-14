@@ -26,13 +26,18 @@ with col1:
             'Malaya Business Insight',
             'Daily Tribune'))
 
-    pro = st.button(label='Process')
+    pro = st.button(label='Process', )
 
 with st.container(border=True):
 
     if pro:
         if pub_sel == 'Manila Standard':
-            mst()
+            links_collected = mst()
 
         else:
             st.error('Development Phase')
+
+with col2.container(border=True):
+    
+    st.header('Links Collected')
+    st.subheader(links_collected)

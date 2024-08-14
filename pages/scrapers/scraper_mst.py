@@ -20,7 +20,7 @@ def mst():
             html_content = response.content
 
             soup = BeautifulSoup(html_content, 'html.parser')
-            
+
             articles = soup.select('.td-module-meta-info')
             for article in articles:
                 _date = article.find('time').text
@@ -39,5 +39,7 @@ def mst():
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
-    st.success(f'Total links collected for this session is {df.shape[0]}')
+    # st.success(f'Total links collected for this session is {df.shape[0]}')
     st.dataframe(df, hide_index=True)
+
+    return df.shape[0]
