@@ -11,7 +11,7 @@ col1, col2 = st.columns(2)
 
 with col1:
 
-    st.header('Links Scraper')
+    st.header('Link Scraper')
     with col1.container(border=True):
 
         pub_sel = st.radio(
@@ -38,6 +38,8 @@ with st.container(border=True):
             st.error('Development Phase')
 
 with col2.container(border=True):
+
+    st.header('')
     
     try:
         st.header('Links Collected')
