@@ -11,7 +11,6 @@ def mt():
     _urls = []
 
     for i in range(1, 31):
-
         url = f'https://www.manilatimes.net/search?query=&pgno={i}'
         response = requests.get(url)
 
