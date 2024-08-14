@@ -24,12 +24,12 @@ with col1:
             'Manila Times',
             ':blue[Manila Standard]',
             'Malaya Business Insight',
-            'Daily Tribune'))
+            'Daily Tribune'), key='pub_sel_radio')
 
     pro = st.button(label='Process', )
 
 if pro:
-    if pub_sel == ':blue[Manila Standard]':
+    if st.session_state['pub_sel_radio'] == ':blue[Manila Standard]':
         links_collected = mst()
 
         with col2:
@@ -37,16 +37,8 @@ if pro:
             st.header('')
 
             with col2.container(border=True, height=300):
-            
-                try:
-                    st.header('Links Collected')
-                except:
-                    pass
-
-                try:
-                    st.subheader(links_collected)
-                except:
-                    pass
+                st.subheader('Links Collected', )
+                st.subheader(links_collected)
                 
     else:
         with col2:
