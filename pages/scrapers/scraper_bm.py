@@ -26,8 +26,7 @@ def bm():
     
 
     for i in range(1, 2):
-        time.sleep(60)
-        url = f'https://businessmirror.com.ph'
+        url = f'https://businessmirror.com.phpage/{i}/?s='
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
@@ -38,8 +37,7 @@ def bm():
 
             st.write(html_content)
         
-        else:
-            st.write(response.status_code)
+        
 
             # articles = soup.select('.td-module-meta-info')
             # for article in articles:
