@@ -21,8 +21,8 @@ def mt():
             st.write(articles)
             
             for article in articles:
-                st.write(_title = article.find('a').text)
-                st.write(_url = article.find('a').get('href'))
+                st.write(_title = article.select('a').text)
+                st.write(_url = article.select('a').get('href'))
 
                 
 
