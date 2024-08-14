@@ -7,6 +7,7 @@ import re
 # scrapers
 from pages.scrapers.scraper_mst import mst
 from pages.scrapers.scraper_mt import mt
+from pages.scrapers.scraper_bm import bm
 
 
 def link_count(links_collected):
@@ -34,7 +35,7 @@ with col1:
             ('Manila Bulletin',
             'Inquirer.net',
             'Philstar',
-            'Business Mirror',
+            ':blue[Business Mirror]',
             'Business World',
             ':blue[Manila Times]',
             ':blue[Manila Standard]',
@@ -52,6 +53,10 @@ if pro:
     elif st.session_state['pub_sel_radio'] == ':blue[Manila Times]':
         links_collected = mt()
         link_count(links_collected)
+    
+    elif st.session_state['pub_sel_radio'] == ':blue[Manila Times]':
+        bm()
+        # link_count(links_collected)
                 
     else:
         with col2:

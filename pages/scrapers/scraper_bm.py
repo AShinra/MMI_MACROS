@@ -21,23 +21,25 @@ def bm():
 
             soup = BeautifulSoup(html_content, 'html.parser')
 
-            articles = soup.select('.td-module-meta-info')
-            for article in articles:
-                _date = article.find('time').text
-                _title = article.find('a').text
-                _url = article.find('a').get('href')
-                _url = re.sub('www.', '', _url)
-                
-                if _url in _urls:
-                    continue
-                else:
-                    _dates.append(_date)
-                    _titles.append(_title)
-                    _urls.append(_url)
+            st.write(html_content)
 
-    df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
+            # articles = soup.select('.td-module-meta-info')
+            # for article in articles:
+            #     _date = article.find('time').text
+            #     _title = article.find('a').text
+            #     _url = article.find('a').get('href')
+            #     _url = re.sub('www.', '', _url)
+                
+            #     if _url in _urls:
+            #         continue
+            #     else:
+            #         _dates.append(_date)
+            #         _titles.append(_title)
+            #         _urls.append(_url)
+
+    # df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
     # st.success(f'Total links collected for this session is {df.shape[0]}')
-    st.dataframe(df, hide_index=True)
+    # st.dataframe(df, hide_index=True)
 
-    return df.shape[0]
+    # return df.shape[0]
