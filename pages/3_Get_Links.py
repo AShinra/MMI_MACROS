@@ -36,7 +36,7 @@ with col1:
             'Philstar',
             'Business Mirror',
             'Business World',
-            'Manila Times',
+            ':blue[Manila Times]',
             ':blue[Manila Standard]',
             'Malaya Business Insight',
             'Daily Tribune'), key='pub_sel_radio')
