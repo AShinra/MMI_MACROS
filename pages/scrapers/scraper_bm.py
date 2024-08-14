@@ -14,7 +14,7 @@ def bm():
     
 
     for i in range(1, 2):
-        time.sleep(20)
+        time.sleep(30)
         url = f'https://businessmirror.com.ph/page/{i}/?s='
         response = requests.get(url)
 
