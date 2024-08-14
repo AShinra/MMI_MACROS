@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
+import time
 
 
 def bm():
@@ -13,6 +14,7 @@ def bm():
     
 
     for i in range(1, 2):
+        time.sleep(10)
         url = f'https://businessmirror.com.ph/page/{i}/?s='
         response = requests.get(url)
 
