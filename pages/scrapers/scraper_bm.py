@@ -35,7 +35,8 @@ def bm():
 
             soup = BeautifulSoup(html_content, 'html.parser')
 
-            st.write(html_content)
+            article_archive = soup.find(class_='archive-main')
+            st.write(article_archive)
         
         
 
