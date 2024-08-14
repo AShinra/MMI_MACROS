@@ -14,7 +14,8 @@ def mb_sections():
 
     soup = BeautifulSoup(html_content, 'html.parser')
 
-    section_group = soup.find('article', class_='mb-font-single-content').text
+    st.write(html_content)
+    section_group = soup.find('article', class_='mb-font-single-content')
     st.write(section_group)
     
     
