@@ -28,30 +28,28 @@ with col1:
 
     pro = st.button(label='Process', )
 
-with st.container(border=True, height=500):
+if pro:
+    if pub_sel == ':blue[Manila Standard]':
+        links_collected = mst()
 
-    if pro:
-        if pub_sel == ':blue[Manila Standard]':
-            links_collected = mst()
+        with col2:
+            
+            st.header('')
 
-            with col2:
+            with col2.container(border=True, height=300):
+            
+                try:
+                    st.header('Links Collected')
+                except:
+                    pass
+
+                try:
+                    st.subheader(links_collected)
+                except:
+                    pass
                 
-                st.header('')
-
-                with col2.container(border=True, height=300):
-                
-                    try:
-                        st.header('Links Collected')
-                    except:
-                        pass
-
-                    try:
-                        st.subheader(links_collected)
-                    except:
-                        pass
-                    
-        else:
-            with col2:
-                st.header('')
-                with col2.container(border=True, height=300):
-                    st.error('Development Phase')
+    else:
+        with col2:
+            st.header('')
+            with col2.container(border=True, height=300):
+                st.error('Development Phase')
