@@ -18,6 +18,7 @@ def mt():
 
             for article_list in article_group:
                 articles = article_list.select('.item-row.item-row-2.flex-row')
+            st.write(articles)
             
             for article in articles:
                 st.write(_title = article.find('a').text)
