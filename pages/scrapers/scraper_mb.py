@@ -15,6 +15,7 @@ def mb_sections():
         soup = BeautifulSoup(html_content, 'html.parser')
 
         st.write(html_content)
+        st.write('test0')
     
          
 
