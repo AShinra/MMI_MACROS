@@ -37,16 +37,18 @@ with st.container(border=True):
         else:
             st.error('Development Phase')
 
-with col2.container(border=True):
-
-    st.header('')
+with col2:
     
-    try:
-        st.header('Links Collected')
-    except:
-        pass
+    st.header('')
 
-    try:
-        st.subheader(links_collected)
-    except:
-        pass
+    with col2.container(border=True):
+    
+        try:
+            st.header('Links Collected')
+        except:
+            pass
+
+        try:
+            st.subheader(links_collected)
+        except:
+            pass
