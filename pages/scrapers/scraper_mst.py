@@ -12,8 +12,8 @@ def mst():
     _urls = []
     
 
-    for x in range(1, 31):
-        url = f'https://www.manilastandard.net/page/{x}?s='
+    for i in range(1, 31):
+        url = f'https://www.manilastandard.net/page/{i}?s='
         response = requests.get(url)
 
         if response.status_code == 200:
@@ -34,8 +34,6 @@ def mst():
                     _dates.append(_date)
                     _titles.append(_title)
                     _urls.append(_url)
-        
-        x += 1
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
