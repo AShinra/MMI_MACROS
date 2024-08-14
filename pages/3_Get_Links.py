@@ -6,7 +6,7 @@ import re
 
 # scrapers
 from pages.scrapers.scraper_mst import mst
-from pages.scrapers.scraper_mb import mb
+from pages.scrapers.scraper_mt import mt
 
 
 st.set_page_config(layout="wide")
@@ -42,8 +42,8 @@ if pro:
             with col2.container(border=True, height=300):
                 st.subheader('Links Collected', )
                 st.subheader(links_collected)
-    elif st.session_state['pub_sel_radio'] == 'Manila Bulletin':
-        mb()
+    elif st.session_state['pub_sel_radio'] == 'Manila Times':
+        mt()
                 
     else:
         with col2:
