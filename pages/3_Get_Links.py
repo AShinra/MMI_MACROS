@@ -5,7 +5,7 @@ import pandas as pd
 import re
 
 # scrapers
-# from scraper_mst import mst
+from pages.scrapers.scraper_mst import mst
 
 col1, col2 = st.columns(2)
 
@@ -29,11 +29,10 @@ with col1:
 
 
 with col2:
-    st.success('test')
 
-# if pro:
-#     if pub_sel == 'Manila Standard':
-#         mst()
+    if pro:
+        if pub_sel == 'Manila Standard':
+            mst()
 
-#     else:
-#         st.error('Development Phase')
+        else:
+            st.error('Development Phase')
