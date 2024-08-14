@@ -36,7 +36,7 @@ with st.container(border=True):
 
             with col2:
                 
-                st.header()
+                st.header('')
 
                 with col2.container(border=True):
                 
@@ -49,9 +49,6 @@ with st.container(border=True):
                         st.subheader(links_collected)
                     except:
                         pass
-
+                    
         else:
-            with col2:
-                st.header()
-                with col2.container(border=True):
-                    st.error('Development Phase')
+            st.error('Development Phase')
