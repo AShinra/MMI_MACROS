@@ -34,21 +34,21 @@ with st.container(border=True):
         if pub_sel == 'Manila Standard':
             links_collected = mst()
 
+            with col2:
+                
+                st.header('')
+
+                with col2.container(border=True):
+                
+                    try:
+                        st.header('Links Collected')
+                    except:
+                        pass
+
+                    try:
+                        st.subheader(links_collected)
+                    except:
+                        pass
+                    
         else:
             st.error('Development Phase')
-
-with col2:
-    
-    st.header('')
-
-    with col2.container(border=True):
-    
-        try:
-            st.header('Links Collected')
-        except:
-            pass
-
-        try:
-            st.subheader(links_collected)
-        except:
-            pass
