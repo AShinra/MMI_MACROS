@@ -6,6 +6,9 @@ import re
 
 # scrapers
 from pages.scrapers.scraper_mst import mst
+from pages.scrapers.scraper_mb import mb
+
+
 st.set_page_config(layout="wide")
 col1, col2 = st.columns(2)
 
@@ -39,9 +42,13 @@ if pro:
             with col2.container(border=True, height=300):
                 st.subheader('Links Collected', )
                 st.subheader(links_collected)
+    elif st.session_state['pub_sel_radio'] == 'Manila Bulletin':
+        mb()
                 
     else:
         with col2:
             st.header('')
             with col2.container(border=True, height=300):
                 st.error('Development Phase')
+
+
