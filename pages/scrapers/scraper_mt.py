@@ -30,10 +30,12 @@ def mt():
                 _date = article.find(class_='roboto-a').text
                 _date = re.sub('-\n', '', _date)
 
-                _dates.append(_date)
-                _titles.append(_title)
-                _urls.append(_url)
-
+                if _url in _urls:
+                    continue
+                else:
+                    _dates.append(_date)
+                    _titles.append(_title)
+                    _urls.append(_url)
         
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
