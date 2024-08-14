@@ -55,8 +55,8 @@ if pro:
         link_count(links_collected)
     
     elif st.session_state['pub_sel_radio'] == ':blue[Business Mirror]':
-        bm()
-        # link_count(links_collected)
+        links_collected = bm()
+        link_count(links_collected)
                 
     else:
         with col2:

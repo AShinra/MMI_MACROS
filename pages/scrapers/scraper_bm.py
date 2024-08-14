@@ -25,7 +25,7 @@ def bm():
     _urls = []
     
 
-    for i in range(1, 2):
+    for i in range(1, 30):
         url = f'https://businessmirror.com.ph/page/{i}/?s='
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
@@ -37,28 +37,20 @@ def bm():
 
             article_archive = soup.find(class_='archive-main')
             post_grids = article_archive.find_all(class_='post-grid')
-
-            st.write(post_grids)
-        
-        
-
-            # articles = soup.select('.td-module-meta-info')
-            # for article in articles:
-            #     _date = article.find('time').text
-            #     _title = article.find('a').text
-            #     _url = article.find('a').get('href')
-            #     _url = re.sub('www.', '', _url)
+            for post_grid in post_grids:
+                _title = post_grid.find(class_='entry-title').text
+                _url = post_grid.find(class_='entry-title').find('a').get('href')
+                _date = post_grid.find(class_='meta-date').text
                 
-            #     if _url in _urls:
-            #         continue
-            #     else:
-            #         _dates.append(_date)
-            #         _titles.append(_title)
-            #         _urls.append(_url)
+                if _url in _urls:
+                    continue
+                else:
+                    _dates.append(_date)
+                    _titles.append(_title)
+                    _urls.append(_url)
 
-    # df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
+    df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
-    # st.success(f'Total links collected for this session is {df.shape[0]}')
-    # st.dataframe(df, hide_index=True)
+    st.dataframe(df, hide_index=True)
 
-    # return df.shape[0]
+    return df.shape[0]
