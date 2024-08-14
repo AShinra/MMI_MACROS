@@ -22,7 +22,7 @@ with col1:
             'Business Mirror',
             'Business World',
             'Manila Times',
-            'Manila Standard',
+            ':blue[Manila Standard]',
             'Malaya Business Insight',
             'Daily Tribune'))
 
