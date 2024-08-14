@@ -22,6 +22,9 @@ def bm():
             soup = BeautifulSoup(html_content, 'html.parser')
 
             st.write(html_content)
+        
+        else:
+            st.write(response.content)
 
             # articles = soup.select('.td-module-meta-info')
             # for article in articles:
