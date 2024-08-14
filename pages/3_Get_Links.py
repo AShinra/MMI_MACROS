@@ -28,9 +28,8 @@ with col1:
 
         pro = st.button(label='Process')
 
-
-with col2:
-
+with st.container(border=True):
+    
     if pro:
         if pub_sel == 'Manila Standard':
             mst()
