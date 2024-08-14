@@ -28,7 +28,7 @@ with col1:
 
     pro = st.button(label='Process', )
 
-with st.container(border=True):
+with st.container(border=True, height=500):
 
     if pro:
         if pub_sel == 'Manila Standard':
@@ -38,7 +38,7 @@ with st.container(border=True):
                 
                 st.header('')
 
-                with col2.container(border=True):
+                with col2.container(border=True, height=300):
                 
                     try:
                         st.header('Links Collected')
