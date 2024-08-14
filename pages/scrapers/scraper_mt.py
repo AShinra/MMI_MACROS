@@ -14,11 +14,7 @@ def mt():
 
             soup = BeautifulSoup(html_content, 'html.parser')
 
-            article_group = soup.select('.item-row-2.flex-row.flex-between')
-
-            soup2 = BeautifulSoup(article_group, 'html.parser')
-
-            articles = soup2.select('.item-row.item-row-2.flex-row')
+            articles = soup.select('.item-row.item-row-2.flex-row')
 
             st.write(articles)
 
