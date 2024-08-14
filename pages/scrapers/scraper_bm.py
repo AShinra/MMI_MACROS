@@ -36,7 +36,9 @@ def bm():
             soup = BeautifulSoup(html_content, 'html.parser')
 
             article_archive = soup.find(class_='archive-main')
-            st.write(article_archive)
+            post_grids = article_archive.find_all(class_='post-grid')
+
+            st.write(post_grids)
         
         
 
