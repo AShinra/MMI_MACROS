@@ -14,8 +14,9 @@ def mb_sections():
 
     soup = BeautifulSoup(html_content, 'html.parser')
 
-    st.write(html_content)
-    st.write('test0')
+    section_group = soup.select('.mb-font-single-content')
+    st.write(section_group)
+    
     
          
 
