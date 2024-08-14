@@ -14,7 +14,14 @@ def mt():
 
             soup = BeautifulSoup(html_content, 'html.parser')
 
-            articles = soup.select('.item-row.item-row-2.flex-row')
+            articles = soup.select('.item-row-2.flex-row.flex-between')
+
+            st.write(type(articles))
+
+            # for article in articles:
+            #     article = articles.
+                
+            #     article_GROUP.select('.item-row.item-row-2.flex-row')
 
             st.write(articles)
 
