@@ -39,5 +39,12 @@ with st.container(border=True):
 
 with col2.container(border=True):
     
-    st.header('Links Collected')
-    st.subheader(links_collected)
+    try:
+        st.header('Links Collected')
+    except:
+        pass
+
+    try:
+        st.subheader(links_collected)
+    except:
+        pass
