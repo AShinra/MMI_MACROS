@@ -15,7 +15,7 @@ def bm():
 
     for i in range(1, 2):
         time.sleep(60)
-        url = f'https://businessmirror.com.ph/page/{i}/?s='
+        url = f'https://businessmirror.com.ph'
         response = requests.get(url)
 
         if response.status_code == 200:
