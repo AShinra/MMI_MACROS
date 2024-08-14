@@ -7,7 +7,7 @@ import re
 # scrapers
 from pages.scrapers.scraper_mst import mst
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2, 6)
 
 with col1:
 
