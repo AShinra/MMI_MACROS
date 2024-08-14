@@ -20,7 +20,8 @@ def mt():
                 articles = article_list.select('.item-row.item-row-2.flex-row')
             
             for article in articles:
-                st.write(article)
+                st.write(article.find_all('a').get('href'))
                 
+
 
 
