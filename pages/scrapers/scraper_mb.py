@@ -6,7 +6,7 @@ import re
 
 
 def mb_sections():
-    url = 'https://mb.com.ph/sitemap'
+    url = 'https://mb.com.ph'
     response = requests.get(url)
 
 
