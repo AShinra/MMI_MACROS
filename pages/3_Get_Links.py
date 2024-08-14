@@ -53,5 +53,5 @@ with st.container(border=True):
         else:
             with col2:
                 st.header('')
-                with col2.container(border=True):
+                with col2.container(border=True, height=300):
                     st.error('Development Phase')
