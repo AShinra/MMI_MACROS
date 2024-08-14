@@ -31,7 +31,7 @@ with col1:
 with st.container(border=True, height=500):
 
     if pro:
-        if pub_sel == 'Manila Standard':
+        if pub_sel == ':blue[Manila Standard]':
             links_collected = mst()
 
             with col2:
