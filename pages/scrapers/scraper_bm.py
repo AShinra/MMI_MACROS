@@ -26,7 +26,7 @@ def bm():
     
 
     for i in range(1, 2):
-        url = f'https://businessmirror.com.phpage/{i}/?s='
+        url = f'https://businessmirror.com.ph/page/{i}/?s='
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
