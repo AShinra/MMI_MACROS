@@ -26,7 +26,7 @@ def bm():
             st.write(html_content)
         
         else:
-            st.write(response.content)
+            st.write(response.status_code)
 
             # articles = soup.select('.td-module-meta-info')
             # for article in articles:
