@@ -12,7 +12,7 @@ def bm():
     _urls = []
     
 
-    for x in range(1, 2):
+    for i in range(1, 2):
         url = f'https://businessmirror.com.ph/page/{i}/?s='
         response = requests.get(url)
 
