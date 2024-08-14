@@ -16,6 +16,8 @@ def mb_sections():
 
         st.write(html_content)
         st.write('test0')
+    else:
+        st.write('error')
     
          
 
