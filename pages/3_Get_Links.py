@@ -36,7 +36,7 @@ with st.container(border=True):
 
             with col2:
                 
-                st.header('')
+                st.header()
 
                 with col2.container(border=True):
                 
@@ -51,4 +51,7 @@ with st.container(border=True):
                         pass
 
         else:
-            col2.error('Development Phase')
+            with col2:
+                st.header()
+                with col2.container(border=True):
+                    st.error('Development Phase')
