@@ -9,15 +9,13 @@ def mb_sections():
     url = 'https://mb.com.ph/sitemap'
     response = requests.get(url)
 
-    if response.status_code == 200:
-        html_content = response.content
 
-        soup = BeautifulSoup(html_content, 'html.parser')
+    html_content = response.content
 
-        st.write(html_content)
-        st.write('test0')
-    else:
-        st.write('error')
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    st.write(html_content)
+    st.write('test0')
     
          
 
