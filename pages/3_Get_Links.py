@@ -12,7 +12,7 @@ col1, col2 = st.columns(2)
 with col1:
 
     st.header('Link Scraper')
-    with col1.container(border=True, height=10):
+    with col1.container(border=True, height=150):
 
         pub_sel = st.radio(
             'Select Online Publication to scrape',
