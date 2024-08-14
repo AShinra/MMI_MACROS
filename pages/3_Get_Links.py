@@ -49,6 +49,6 @@ with st.container(border=True):
                         st.subheader(links_collected)
                     except:
                         pass
-                    
+
         else:
-            st.error('Development Phase')
+            col2.error('Development Phase')
