@@ -53,4 +53,4 @@ def mb():
     # # st.success(f'Total links collected for this session is {df.shape[0]}')
     # st.dataframe(df, hide_index=True)
 
-    return df.shape[0]
+    # return df.shape[0]
