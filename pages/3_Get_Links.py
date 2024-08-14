@@ -7,11 +7,11 @@ import re
 # scrapers
 from pages.scrapers.scraper_mst import mst
 
-col1, col2 = st.columns([2, 6])
+col1, col2 = st.columns(2)
 
 with col1:
 
-    with col1.container():
+    with col1.container(border=True):
         st.header('Links Scraper')
 
         pub_sel = st.radio(
