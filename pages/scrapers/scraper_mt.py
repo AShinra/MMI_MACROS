@@ -24,7 +24,7 @@ def mt():
                 _url = article.find(class_='article-title-h4').find('a').get('href')
                 _date = article.find(class_='roboto-a').text
 
-                st.write(type(_date))
+                st.write(_date[-1])
                 st.write(_title)
                 st.write(_url)
 
