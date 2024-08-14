@@ -22,6 +22,7 @@ def mt():
             for article in articles:
                 st.write(article.find(class_='article-title-h4').find('a').text)
                 st.write(article.find(class_='article-title-h4').find('a').get('href'))
+                st.write(article.find(class_='roboto-a').text)
 
 
 
