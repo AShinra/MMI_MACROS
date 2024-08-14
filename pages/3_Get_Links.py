@@ -11,7 +11,7 @@ col1, col2 = st.columns([2, 6])
 
 with col1:
 
-    with st.container:
+    with col1.container:
         st.header('Links Scraper')
 
         pub_sel = st.radio(
