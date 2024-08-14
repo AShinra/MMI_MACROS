@@ -20,9 +20,13 @@ def mt():
                 articles = article_list.select('.item-row.item-row-2.flex-row')
             
             for article in articles:
-                st.write(article.find(class_='article-title-h4').find('a').text)
-                st.write(article.find(class_='article-title-h4').find('a').get('href'))
-                st.write(article.find(class_='roboto-a').text)
+                _title = article.find(class_='article-title-h4').find('a').text
+                _url = article.find(class_='article-title-h4').find('a').get('href')
+                _date = article.find(class_='roboto-a').text[-1]
+
+                st.write(_date)
+                st.write(_title)
+                st.write(_url)
 
 
 
