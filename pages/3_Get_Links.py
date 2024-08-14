@@ -43,7 +43,15 @@ if pro:
                 st.subheader('Links Collected', )
                 st.subheader(links_collected)
     elif st.session_state['pub_sel_radio'] == 'Manila Times':
-        mt()
+        links_collected = mt()
+
+        with col2:
+            
+            st.header('')
+
+            with col2.container(border=True, height=300):
+                st.subheader('Links Collected', )
+                st.subheader(links_collected)
                 
     else:
         with col2:
