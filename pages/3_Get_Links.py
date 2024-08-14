@@ -41,7 +41,7 @@ with col1:
             'Malaya Business Insight',
             'Daily Tribune'), key='pub_sel_radio')
 
-    pro = st.button(label='Process', )
+    pro = st.button(label='Process', use_container_width=True)
 
 if pro:
     if st.session_state['pub_sel_radio'] == ':blue[Manila Standard]':
