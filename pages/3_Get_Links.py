@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import streamlit_shadcn_ui as ui
+from Tools import bg_image
 
 # scrapers
 from pages.scrapers.scraper_mst import mst
@@ -15,11 +16,8 @@ from pages.scrapers.scraper_mal import mal
 from pages.scrapers.scraper_bw import bw
 from pages.scrapers.scraper_mb import mb
 
-def error_msg(my_range):
 
-    if my_range in ['', None, []]:
-        return True
-
+bg_image()
 
 st.set_page_config(layout="wide")
 
