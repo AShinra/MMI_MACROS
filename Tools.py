@@ -51,7 +51,7 @@ def bg_image():
     [data-testid="baseButton-headerNoPadding"] {
         display: none;
     }
-    div[data-testid="stToolbar"] {
+    div[data-testid="stToolbarActions"] {
         display: none;
     }
     </style>
