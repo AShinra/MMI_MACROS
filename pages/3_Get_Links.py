@@ -39,7 +39,7 @@ with col1:
         pro = st.button(label='Process', use_container_width=True)
 
 if pro:
-    if my_range==[]:
+    if my_range in ['', None, []]:
         st.error('Please indicate date range')
     else:
         if st.session_state['pub_sel_radio'] == ':blue[Manila Standard]':
