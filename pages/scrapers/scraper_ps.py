@@ -55,16 +55,17 @@ def ps(my_range):
                 _datestr = item.find('pubdate').text
                 _datestr = _datestr.split('+')[0]
                 _datestr = _datestr.split(',')[1]
-                _date = datetime.strptime(_datestr, '%d %b %Y %I:%M:%S').date()
+                st.write(_datestr)
+                # _date = datetime.strptime(_datestr, '%d %b %Y %I:%M:%S').date()
 
                 _title = item.find('title').text
                 _url = item.find('guid').text
 
-                if _date >= st_date and _date <= en_date:
-                    if _url not in _urls:
-                        _dates.append(_date)
-                        _titles.append(_title)
-                        _urls.append(_url)
+                # if _date >= st_date and _date <= en_date:
+                #     if _url not in _urls:
+                #         _dates.append(_date)
+                #         _titles.append(_title)
+                #         _urls.append(_url)
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
