@@ -55,8 +55,12 @@ def ps(my_range):
                 _datestr = item.find('pubdate').text
                 _datestr = _datestr.split('+')[0]
                 _datestr = _datestr.split(',')[1]
+                _dateday = _datestr.split(' ')[0]
+                _datemonth = _datestr.split(' ')[1]
+                _dateyear = _datestr.split(' ')[2]
+                _datestr = f'{_dateday} {_datemonth} {_dateyear}'
                 st.write(_datestr)
-                _date = datetime.strptime(_datestr, '%d %b %Y %X').date()
+                _date = datetime.strptime(_datestr, '%d %b %Y').date()
 
                 _title = item.find('title').text
                 _url = item.find('guid').text
