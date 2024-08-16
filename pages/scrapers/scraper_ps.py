@@ -56,9 +56,7 @@ def ps(my_range):
                 _datestr = _datestr.split('+')[0]
                 _datestr = _datestr.split(',')[1].strip()
                 st.write(_datestr)
-                _dateday = _datestr.split(' ')
-                st.write(_dateday)
-                _date = datetime.strptime(_datestr, '%d %b %Y').date()
+                _date = datetime.strptime(_datestr, '%d %b %Y %H:%M:%S').date()
 
                 _title = item.find('title').text
                 _url = item.find('guid').text
