@@ -58,7 +58,7 @@ def ps(my_range):
                 st.write(_datestr)
                 _dateday = _datestr.split(' ')[0]
                 _datemonth = _datestr.split(' ')[1]
-                _dateyear = _datestr.split(' ')[2]
+                _dateyear = _datestr.split(' ')[3]
                 _datestr = f'{_dateday} {_datemonth} {_dateyear}'
                 st.write(_datestr)
                 _date = datetime.strptime(_datestr, '%d %b %Y').date()
