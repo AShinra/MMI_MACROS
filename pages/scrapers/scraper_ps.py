@@ -55,6 +55,7 @@ def ps(my_range):
                 _datestr = item.find('pubdate').text
                 _datestr = _datestr.split('+')[0]
                 _datestr = _datestr.split(',')[1]
+                st.write(_datestr)
                 _dateday = _datestr.split(' ')[0]
                 _datemonth = _datestr.split(' ')[1]
                 _dateyear = _datestr.split(' ')[2]
