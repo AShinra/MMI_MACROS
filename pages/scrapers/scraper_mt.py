@@ -32,7 +32,7 @@ def mt(my_range):
                 _date = article.find(class_='roboto-a').text
                 _date = re.sub('-\n', '', _date)
 
-                st.write(type(_date))
+                st.write(_date)
 
                 if _url in _urls:
                     continue
