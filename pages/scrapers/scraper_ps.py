@@ -56,11 +56,8 @@ def ps(my_range):
                 _datestr = _datestr.split('+')[0]
                 _datestr = _datestr.split(',')[1]
                 st.write(_datestr)
-                _dateday = _datestr.split(' ')[0]
-                _datemonth = _datestr.split(' ')[1]
-                _dateyear = _datestr.split(' ')[3]
-                _datestr = f'{_dateday} {_datemonth} {_dateyear}'
-                st.write(_datestr)
+                _dateday = _datestr.split(' ')
+                st.write(_dateday)
                 _date = datetime.strptime(_datestr, '%d %b %Y').date()
 
                 _title = item.find('title').text
