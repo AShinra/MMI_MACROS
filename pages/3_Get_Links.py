@@ -11,6 +11,7 @@ from pages.scrapers.scraper_mt import mt
 from pages.scrapers.scraper_bm import bm
 from pages.scrapers.scraper_ps import ps
 from pages.scrapers.scraper_inq import inq
+from pages.scrapers.scraper_mal import mal
 
 def error_msg(my_range):
 
@@ -26,7 +27,7 @@ col1, col2 = st.columns(2)
 
 with col1:
 
-    with col1.container(border=True, height=420):
+    with col1.container(border=True, height=450):
         st.header('Link Scraper')
 
         pub_sel = st.radio(
@@ -38,7 +39,7 @@ with col1:
             'Business World',
             ':blue[Manila Times]',
             ':blue[Manila Standard]',
-            'Malaya Business Insight',
+            ':blue[Malaya Business Insight]',
             'Daily Tribune'), key='pub_sel_radio')
 
         pro = st.button(label='Process', use_container_width=True)
@@ -52,7 +53,7 @@ if pro:
 
             with col2:
 
-                with col2.container(border=True, height=420):
+                with col2.container(border=True, height=450):
                     st.header('Links Collected', )
                     st.subheader(links_collected)
                         
@@ -61,7 +62,7 @@ if pro:
 
             with col2:
 
-                with col2.container(border=True, height=420):
+                with col2.container(border=True, height=450):
                     st.header('Links Collected', )
                     st.subheader(links_collected)
         
@@ -70,7 +71,7 @@ if pro:
 
             with col2:
 
-                with col2.container(border=True, height=420):
+                with col2.container(border=True, height=450):
                     st.header('Links Collected', )
                     st.subheader(links_collected)
         
@@ -79,7 +80,7 @@ if pro:
 
             with col2:
 
-                with col2.container(border=True, height=420):
+                with col2.container(border=True, height=450):
                     st.header('Links Collected', )
                     st.subheader(links_collected)
         
@@ -88,13 +89,22 @@ if pro:
 
             with col2:
 
-                with col2.container(border=True, height=420):
+                with col2.container(border=True, height=450):
+                    st.header('Links Collected', )
+                    st.subheader(links_collected)
+        
+        elif st.session_state['pub_sel_radio'] == ':blue[Malaya Business Insight]':
+            links_collected = mal(my_range)
+
+            with col2:
+
+                with col2.container(border=True, height=450):
                     st.header('Links Collected', )
                     st.subheader(links_collected)
                     
         else:
             with col2:
-                with col2.container(border=True, height=420):
+                with col2.container(border=True, height=450):
                     st.error('Development Phase')
 
 
