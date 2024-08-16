@@ -4,7 +4,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 
-def mt():
+def mt(my_range):
+
+
 
     _dates = []
     _titles = []
@@ -29,6 +31,8 @@ def mt():
                 _url = article.find(class_='article-title-h4').find('a').get('href')
                 _date = article.find(class_='roboto-a').text
                 _date = re.sub('-\n', '', _date)
+
+                st.write(type(_date))
 
                 if _url in _urls:
                     continue

@@ -49,7 +49,7 @@ if pro:
                 st.subheader(links_collected)
                     
     elif st.session_state['pub_sel_radio'] == ':blue[Manila Times]':
-        links_collected = mt()
+        links_collected = mt(my_range)
 
         with col2:
 
