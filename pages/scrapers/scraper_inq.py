@@ -48,13 +48,10 @@ def inq(my_range):
     _titles = []
     _urls = []
 
-    st.write(my_range)
-
     # convert string to dateobject
     st_date = datetime.strptime(my_range[0], '%Y-%m-%d').date()
     en_date = datetime.strptime(my_range[1], '%Y-%m-%d').date()
     
-
     for k, v in urls.items():
         response = requests.get(v, headers={'User-Agent':random.choice(userAgents)})
 
