@@ -29,7 +29,7 @@ def bm(my_range):
     _titles = []
     _urls = []
     
-    for i in range(1, 30):
+    for i in range(1, 11):
         url = f'https://businessmirror.com.ph/page/{i}/?s='
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
@@ -44,14 +44,14 @@ def bm(my_range):
             for post_grid in post_grids:
                 _title = post_grid.find(class_='entry-title').text
                 _url = post_grid.find(class_='entry-title').find('a').get('href')
-                _date = post_grid.find(class_='meta-date').text
-                
-                if _url in _urls:
-                    continue
-                else:
-                    _dates.append(_date)
-                    _titles.append(_title)
-                    _urls.append(_url)
+                _datestr = post_grid.find(class_='meta-date').text
+                _date = datetime.strptime(_datestr, '%B %d, %Y').date()
+
+                if _date >= st_date and _date <= en_date:
+                    if _url not in _urls:
+                        _dates.append(_datestr)
+                        _titles.append(_title)
+                        _urls.append(_url)
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
