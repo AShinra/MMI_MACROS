@@ -55,7 +55,6 @@ def ps(my_range):
                 _datestr = item.find('pubdate').text
                 _datestr = _datestr.split('+')[0]
                 _datestr = _datestr.split(',')[1].strip()
-                st.write(_datestr)
                 _date = datetime.strptime(_datestr, '%d %b %Y %H:%M:%S').date()
 
                 _title = item.find('title').text
