@@ -12,6 +12,7 @@ from pages.scrapers.scraper_bm import bm
 from pages.scrapers.scraper_ps import ps
 from pages.scrapers.scraper_inq import inq
 from pages.scrapers.scraper_mal import mal
+from pages.scrapers.scraper_bw import bw
 
 def error_msg(my_range):
 
@@ -36,7 +37,7 @@ with col1:
             ':blue[Inquirer.net]',
             ':blue[Philstar]',
             ':blue[Business Mirror]',
-            'Business World',
+            ':blue[Business World]',
             ':blue[Manila Times]',
             ':blue[Manila Standard]',
             ':blue[Malaya Business Insight]',
@@ -95,6 +96,15 @@ if pro:
         
         elif st.session_state['pub_sel_radio'] == ':blue[Malaya Business Insight]':
             links_collected = mal(my_range)
+
+            with col2:
+
+                with col2.container(border=True, height=450):
+                    st.header('Links Collected', )
+                    st.subheader(links_collected)
+        
+        elif st.session_state['pub_sel_radio'] == ':blue[Business World]':
+            links_collected = bw(my_range)
 
             with col2:
 
