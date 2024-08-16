@@ -28,17 +28,17 @@ def mst(my_range):
 
             articles = soup.select('.td-module-meta-info')
             for article in articles:
-                _date = article.find('time').text
+                _datestr = article.find('time').text
+                _date = datetime.strptime(_datestr, '%B %d, %Y, %I:%M %p').date()
                 _title = article.find('a').text
                 _url = article.find('a').get('href')
                 _url = re.sub('www.', '', _url)
                 
-                if _url in _urls:
-                    continue
-                else:
-                    _dates.append(_date)
-                    _titles.append(_title)
-                    _urls.append(_url)
+                if _date >= st_date and _date <= en_date:
+                    if _url not in _urls:
+                        _dates.append(_datestr)
+                        _titles.append(_title)
+                        _urls.append(_url)
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
