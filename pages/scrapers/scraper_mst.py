@@ -3,9 +3,14 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
+from datetime import datetime
 
 
-def mst():
+def mst(my_range):
+
+    # convert string to dateobject
+    st_date = datetime.strptime(my_range[0], '%Y-%m-%d').date()
+    en_date = datetime.strptime(my_range[1], '%Y-%m-%d').date()
 
     _dates = []
     _titles = []

@@ -40,7 +40,7 @@ with col1:
 
 if pro:
     if st.session_state['pub_sel_radio'] == ':blue[Manila Standard]':
-        links_collected = mst()
+        links_collected = mst(my_range)
 
         with col2:
 
