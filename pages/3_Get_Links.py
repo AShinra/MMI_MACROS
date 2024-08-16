@@ -16,10 +16,8 @@ from pages.scrapers.scraper_mal import mal
 from pages.scrapers.scraper_bw import bw
 from pages.scrapers.scraper_mb import mb
 
-
-bg_image()
-
 st.set_page_config(layout="wide")
+bg_image()
 
 my_range = ui.date_picker(label='Select Date Range', mode='range', key='my_range', default_value=None)
 
