@@ -29,7 +29,7 @@ def bw(my_range):
     _titles = []
     _urls = []
     
-    for i in range(1, 51):
+    for i in range(1, 26):
         url = f'https://www.bworldonline.com/page/{i}/?s'
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
