@@ -16,7 +16,7 @@ def error_msg(my_range):
 
     if my_range in ['', None, []]:
         st.error('Please indicate date range')
-        return True
+        return 'ERROR'
 
 
 st.set_page_config(layout="wide")
@@ -46,8 +46,7 @@ with col1:
 
 if pro:
     if st.session_state['pub_sel_radio'] == ':blue[Manila Standard]':
-
-        if error_msg==False:
+        if error_msg!='ERROR':
             links_collected = mst(my_range)
 
             with col2:
