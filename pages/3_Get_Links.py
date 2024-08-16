@@ -58,7 +58,7 @@ if pro:
                 st.subheader(links_collected)
     
     elif st.session_state['pub_sel_radio'] == ':blue[Business Mirror]':
-        links_collected = bm()
+        links_collected = bm(my_range)
 
         with col2:
 
