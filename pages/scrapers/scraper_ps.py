@@ -52,7 +52,7 @@ def ps(my_range):
             soup = BeautifulSoup(html_content, 'html.parser')
             items = soup.find_all('item')
             for item in items:
-                _datestr = item.find('pubdate').text
+                _datestr = item.find('pubdate').text.strip()
                 _datestr = _datestr.split('+')[0]
                 _datestr = _datestr.split(',')[1]
                 st.write(_datestr)
