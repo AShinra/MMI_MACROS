@@ -75,7 +75,7 @@ if pro:
                     st.subheader(links_collected)
         
         elif st.session_state['pub_sel_radio'] == ':blue[Philstar]':
-            links_collected = ps()
+            links_collected = ps(my_range)
 
             with col2:
 

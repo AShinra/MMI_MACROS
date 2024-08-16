@@ -5,9 +5,10 @@ import pandas as pd
 import re
 import time
 import random
+from datetime import datetime
 
 
-def ps():
+def ps(my_range):
 
     # list of user-agents
     userAgents = [
@@ -19,6 +20,10 @@ def ps():
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0',
         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36	'
     ]
+
+    # convert string to dateobject
+    st_date = datetime.strptime(my_range[0], '%Y-%m-%d').date()
+    en_date = datetime.strptime(my_range[1], '%Y-%m-%d').date()
 
     _dates = []
     _titles = []
@@ -47,23 +52,19 @@ def ps():
             soup = BeautifulSoup(html_content, 'html.parser')
             items = soup.find_all('item')
             for item in items:
-                _date = item.find('pubdate').text
-                _date = _date.split('+')[0]
-                _date = _date.split(',')[1]
+                _datestr = item.find('pubdate').text
+                _datestr = _datestr.split('+')[0]
+                _datestr = _datestr.split(',')[1]
+                _date = datetime.strptime(_datestr, '%d %b %Y %I:%M:%s').date()
 
                 _title = item.find('title').text
                 _url = item.find('guid').text
 
-                # st.write(_date)
-                # st.write(_title)
-                # st.write(_url)
-
-                if _url in _urls:
-                    continue
-                else:
-                    _dates.append(_date)
-                    _titles.append(_title)
-                    _urls.append(_url)
+                if _date >= st_date and _date <= en_date:
+                    if _url not in _urls:
+                        _dates.append(_date)
+                        _titles.append(_title)
+                        _urls.append(_url)
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
