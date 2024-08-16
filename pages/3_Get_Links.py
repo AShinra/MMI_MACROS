@@ -15,8 +15,7 @@ from pages.scrapers.scraper_inq import inq
 def error_msg(my_range):
 
     if my_range in ['', None, []]:
-        st.error('Please indicate date range')
-        return 'ERROR'
+        return True
 
 
 st.set_page_config(layout="wide")
@@ -45,8 +44,10 @@ with col1:
         pro = st.button(label='Process', use_container_width=True)
 
 if pro:
-    if st.session_state['pub_sel_radio'] == ':blue[Manila Standard]':
-        if error_msg!='ERROR':
+    if my_range in ['', None, []]:
+        st.error('Please indicate date range')
+    else:
+        if st.session_state['pub_sel_radio'] == ':blue[Manila Standard]':
             links_collected = mst(my_range)
 
             with col2:
@@ -54,46 +55,46 @@ if pro:
                 with col2.container(border=True, height=420):
                     st.header('Links Collected', )
                     st.subheader(links_collected)
+                        
+        elif st.session_state['pub_sel_radio'] == ':blue[Manila Times]':
+            links_collected = mt(my_range)
+
+            with col2:
+
+                with col2.container(border=True, height=420):
+                    st.header('Links Collected', )
+                    st.subheader(links_collected)
+        
+        elif st.session_state['pub_sel_radio'] == ':blue[Business Mirror]':
+            links_collected = bm(my_range)
+
+            with col2:
+
+                with col2.container(border=True, height=420):
+                    st.header('Links Collected', )
+                    st.subheader(links_collected)
+        
+        elif st.session_state['pub_sel_radio'] == ':blue[Philstar]':
+            links_collected = ps()
+
+            with col2:
+
+                with col2.container(border=True, height=420):
+                    st.header('Links Collected', )
+                    st.subheader(links_collected)
+        
+        elif st.session_state['pub_sel_radio'] == ':blue[Inquirer.net]':
+            links_collected = inq(my_range)
+
+            with col2:
+
+                with col2.container(border=True, height=420):
+                    st.header('Links Collected', )
+                    st.subheader(links_collected)
                     
-    elif st.session_state['pub_sel_radio'] == ':blue[Manila Times]':
-        links_collected = mt(my_range)
-
-        with col2:
-
-            with col2.container(border=True, height=420):
-                st.header('Links Collected', )
-                st.subheader(links_collected)
-    
-    elif st.session_state['pub_sel_radio'] == ':blue[Business Mirror]':
-        links_collected = bm(my_range)
-
-        with col2:
-
-            with col2.container(border=True, height=420):
-                st.header('Links Collected', )
-                st.subheader(links_collected)
-    
-    elif st.session_state['pub_sel_radio'] == ':blue[Philstar]':
-        links_collected = ps()
-
-        with col2:
-
-            with col2.container(border=True, height=420):
-                st.header('Links Collected', )
-                st.subheader(links_collected)
-    
-    elif st.session_state['pub_sel_radio'] == ':blue[Inquirer.net]':
-        links_collected = inq(my_range)
-
-        with col2:
-
-            with col2.container(border=True, height=420):
-                st.header('Links Collected', )
-                st.subheader(links_collected)
-                
-    else:
-        with col2:
-            with col2.container(border=True, height=420):
-                st.error('Development Phase')
+        else:
+            with col2:
+                with col2.container(border=True, height=420):
+                    st.error('Development Phase')
 
 
