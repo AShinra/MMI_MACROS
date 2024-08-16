@@ -65,4 +65,3 @@ def bw(my_range):
         
         else:
             st.write(response.status_code)
-            exit()
