@@ -59,9 +59,10 @@ def bw(my_range):
                         _titles.append(_title)
                         _urls.append(_url)
 
-            df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
-            st.dataframe(df, hide_index=True)
-            return df.shape[0]
         
         else:
             st.write(response.status_code)
+
+    df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
+    st.dataframe(df, hide_index=True)
+    return df.shape[0]
