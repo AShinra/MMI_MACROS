@@ -109,7 +109,7 @@ if pro:
                     st.header('Links Collected', )
                     st.subheader(links_collected)
         
-        elif st.session_state['pub_sel_radio'] == 'Manila Bulletin':
+        elif st.session_state['pub_sel_radio'] == ' Manila Bulletin':
             links_collected = mb(my_range)
 
             with col2:
