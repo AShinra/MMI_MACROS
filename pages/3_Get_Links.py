@@ -32,7 +32,7 @@ with col1:
             'Select Online Publication to scrape',
             ('Manila Bulletin',
             ':blue[Inquirer.net]',
-            ':blue[Philstar]',
+            '[Philstar]',
             ':blue[Business Mirror]',
             ':blue[Business World]',
             ':blue[Manila Times]',
@@ -109,7 +109,7 @@ if pro:
                     st.header('Links Collected', )
                     st.subheader(links_collected)
         
-        elif st.session_state['pub_sel_radio'] == ' Manila Bulletin':
+        elif st.session_state['pub_sel_radio'] == 'Manila Bulletin':
             links_collected = mb(my_range)
 
             with col2:

@@ -38,26 +38,13 @@ def mb(my_range):
             html_content = response.content
 
             soup = BeautifulSoup(html_content, 'html.parser')
-
-            st.write(html_content)
-
-            article_group = soup.find(class_='article-list')
-            st.write(article_group)
+            article_group = soup.find(class_='v-main__wrap')
+            st.write(article_group.text)
+        
+        else:
+            st.write(response.status_code)
             
 
-            # article_archive = soup.find(class_='archive-main')
-            # post_grids = article_archive.find_all(class_='post-grid')
-            # for post_grid in post_grids:
-            #     _title = post_grid.find(class_='entry-title').text
-            #     _url = post_grid.find(class_='entry-title').find('a').get('href')
-            #     _datestr = post_grid.find(class_='meta-date').text
-            #     _date = datetime.strptime(_datestr, '%B %d, %Y').date()
-
-            #     if _date >= st_date and _date <= en_date:
-            #         if _url not in _urls:
-            #             _dates.append(_datestr)
-            #             _titles.append(_title)
-            #             _urls.append(_url)
 
     # df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
