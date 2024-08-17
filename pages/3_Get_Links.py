@@ -32,7 +32,7 @@ with col1:
             'Select Online Publication to scrape',
             ('Manila Bulletin',
             ':blue[Inquirer.net]',
-            '[Philstar]',
+            'Philstar',
             ':blue[Business Mirror]',
             ':blue[Business World]',
             ':blue[Manila Times]',
