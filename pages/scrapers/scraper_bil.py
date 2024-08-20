@@ -50,7 +50,6 @@ def bil(my_range):
     
     for i in range(1, 30):
         url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
-        st.write(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
         if response.status_code == 200:
@@ -69,7 +68,8 @@ def bil(my_range):
                     _dates.append(_datestr)
                     _titles.append(_title)
                     _urls.append(_url)
-
+        elif response.status_code == 404:
+            break
         else:
             st.write(response.status_code)
             
