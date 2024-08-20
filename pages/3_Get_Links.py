@@ -15,6 +15,7 @@ from pages.scrapers.scraper_inq import inq
 from pages.scrapers.scraper_mal import mal
 from pages.scrapers.scraper_bw import bw
 from pages.scrapers.scraper_mb import mb
+from pages.scrapers.scraper_bil import bil
 
 st.set_page_config(layout="wide")
 bg_image()
@@ -38,7 +39,8 @@ with col1:
             ':blue[Manila Times]',
             ':blue[Manila Standard]',
             ':blue[Malaya Business Insight]',
-            'Daily Tribune'), key='pub_sel_radio')
+            'Daily Tribune',
+            ':blue[Bilyonaryo]'), key='pub_sel_radio')
 
         pro = st.button(label='Process', use_container_width=True)
 
@@ -111,6 +113,15 @@ if pro:
         
         elif st.session_state['pub_sel_radio'] == ' Manila Bulletin':
             links_collected = mb(my_range)
+
+            with col2:
+
+                with col2.container(border=True, height=450):
+                    st.header('Links Collected', )
+                    st.subheader(links_collected)
+        
+        elif st.session_state['pub_sel_radio'] == ':blue[Bilyonaryo]':
+            links_collected = bil(my_range)
 
             with col2:
 
