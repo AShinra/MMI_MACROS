@@ -40,11 +40,16 @@ def bil(my_range):
     st_date = datetime.strptime(my_range[0], '%Y-%m-%d').date()
     en_date = datetime.strptime(my_range[1], '%Y-%m-%d').date()
 
+    _year = my_range[1].split('-')[0]
+    _month = my_range[1].split('-')[1]
+    _day = my_range[1].split('-')[2]
+
     _dates = []
     _titles = []
     _urls = []
     
-    for url in urls:
+    for i in range(1, 30):
+        url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
         if response.status_code == 200:
@@ -55,16 +60,14 @@ def bil(my_range):
             article_group = soup.find(class_='elementor-posts-container')
             articles = article_group.find_all('article')
             for article in articles:
-                _title = article.find('h3').text
+                _title = article.find('h3').text.strip()
                 _url = article.find('a').get('href')
                 _datestr = article.find(class_='elementor-post-date').text.strip()
-                _date = datetime.strptime(_datestr, '%B %d, %Y').date()
-
-                if _date >= st_date and _date <= en_date:
-                    if _url not in _urls:
-                        _dates.append(_datestr)
-                        _titles.append(_title)
-                        _urls.append(_url)
+                
+                if _url not in _urls:
+                    _dates.append(_datestr)
+                    _titles.append(_title)
+                    _urls.append(_url)
 
         else:
             st.write(response.status_code)

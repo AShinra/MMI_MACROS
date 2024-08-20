@@ -12,11 +12,32 @@ from datetime import datetime
 
 def bm():
     
-    # options = ChromeOptions()
-    # options.add_argument("--headless=new")
-    
-    
+    urls = [
+        'https://bilyonaryo.com/2024/08/20/'
+    ]
 
+    # urls = [
+    #     'https://bilyonaryo.com/category/business/',
+    #     'https://bilyonaryo.com/category/brand-news/',
+    #     'https://bilyonaryo.com/category/social/',
+    #     'https://bilyonaryo.com/category/video/',
+    #     'https://bilyonaryo.com/category/money/',
+    #     'https://bilyonaryo.com/category/property/',
+    #     'https://bilyonaryo.com/category/technology/',
+    #     'https://bilyonaryo.com/category/travel/',
+    #     'https://bilyonaryo.com/category/health/',
+    #     'https://bilyonaryo.com/category/lifestyle/',
+    #     'https://bilyonaryo.com/category/food-nature/',
+    #     'https://bilyonaryo.com/category/fine-works/',
+    #     'https://bilyonaryo.com/category/golf/',
+    #     'https://bilyonaryo.com/category/power/',
+    #     'https://bilyonaryo.com/category/infrastructure/',
+    #     'https://bilyonaryo.com/category/philanthropy/',
+    #     'https://bilyonaryo.com/tag/burst-your-babble/',
+    #     'https://bilyonaryo.com/category/nature/',
+    #     'https://bilyonaryo.com/category/mobility/',
+    #     'https://bilyonaryo.com/category/lifestyle/the-vines-that-bind/'
+    # ]
     
     # list of user-agents
     userAgents = [
@@ -37,8 +58,8 @@ def bm():
     _titles = []
     _urls = []
     
-    for i in range(1, 2):
-        url = f'https://bilyonaryo.com/category/golf/'
+    for i in range(1, 31):
+        url = f'https://bilyonaryo.com/2024/08/20/page/{i}/'
 
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
@@ -49,7 +70,7 @@ def bm():
             soup = BeautifulSoup(html_content, 'html.parser')
 
             article_group = soup.find(class_='elementor-posts-container')
-            articles = article_group.find_all('article')
+            articles = article_group.find_all('article', class_='elementor-post')
             for article in articles:
                 _title = article.find('h3').text
                 _url = article.find('a').get('href')
@@ -61,8 +82,8 @@ def bm():
                 st.write(_date)
                 st.write(_title)
                 st.write(_url)
-
-        
+        elif response.status_code == 404:
+            continue
         else:
             st.write(response.status_code)
             
