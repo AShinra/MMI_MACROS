@@ -12,8 +12,8 @@ from datetime import datetime
 
 def bm():
     
-    options = ChromeOptions()
-    options.add_argument("--headless=new")
+    # options = ChromeOptions()
+    # options.add_argument("--headless=new")
     
     
 
