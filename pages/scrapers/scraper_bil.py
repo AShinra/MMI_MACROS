@@ -50,6 +50,7 @@ def bil(my_range):
     
     for i in range(1, 30):
         url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
+        st.write(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
         if response.status_code == 200:
