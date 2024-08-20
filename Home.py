@@ -1,6 +1,6 @@
 import streamlit as st
 from Tools import bg_image
-from Templates import templates
+
 
 
 if __name__ == '__main__':
@@ -11,5 +11,4 @@ if __name__ == '__main__':
     )
 
     bg_image()
-    templates()
     
