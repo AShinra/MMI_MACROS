@@ -6,9 +6,6 @@ import re
 import time
 import random
 from datetime import datetime
-from selenium import webdriver
-from selenium.webdriver import ChromeOptions
-
 
 def bil(my_range):
 
