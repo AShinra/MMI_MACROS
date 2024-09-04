@@ -8,41 +8,35 @@ import random
 from datetime import datetime, timedelta
 
 
-def bm():
-    
-    urls = [
-        'https://www.philstar.com/the-philippine-star/headlines',
-        'https://www.philstar.com/the-philippine-star/opinion',
-        'https://www.philstar.com/the-philippine-star/business',
-        'https://www.philstar.com/the-philippine-star/nation',
-        'https://www.philstar.com/the-philippine-star/news-commentary',
-        'https://www.philstar.com/the-philippine-star/sports',
-        'https://www.philstar.com/the-philippine-star/entertainment',
-        'https://www.philstar.com/campus',
-        'https://www.philstar.com/movies',
-        'https://www.philstar.com/music',
-        'https://www.philstar.com/lifestyle/arts-and-culture',
-        'https://www.philstar.com/lifestyle/business-life',
-        'https://www.philstar.com/lifestyle/health-and-family',        
-    ] 
-    
-    # list of user-agents
-    userAgents = [
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0',
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0',
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36	'
-    ]
+userAgents = [
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0',
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36	'
+]
 
-    # convert string to dateobject
-    # st_date = datetime.strptime(my_range[0], '%Y-%m-%d').date()
-    # en_date = datetime.strptime(my_range[1], '%Y-%m-%d').date()
+def convert_to_date(datestr):
 
-    # get sections
-    urls = []
+    datestr = datestr.strip()
+    _time = int(datestr.split(' ')[0])
+    _desc = datestr.split(' ')[1]
+
+    if _desc in ['hour', 'hours']:
+        _date = datetime.now() - timedelta(hours=_time)
+    elif _desc in ['minute', 'minutes']:
+        _date = datetime.now() - timedelta(minutes=_time)
+    elif _desc in ['day', 'days']:
+        _date = datetime.now() - timedelta(days=_time)
+
+    return _date.date()
+
+
+def get_sections():
+
+    pub_sections = {}
     url = 'https://www.philstar.com/other-sections'
     response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
     html_content = response.content
@@ -52,49 +46,187 @@ def bm():
     for segment in segments:
         _urls = segment.find_all('a')
         for _url in _urls:
-            urls.append(_url.get('href'))
+            _section_name = _url.text
+            pub_sections[_section_name] = _url.get('href')
+
+    return pub_sections
+
+
+def bm():
     
+    # convert string to dateobject
+    # st_date = datetime.strptime(my_range[0], '%Y-%m-%d').date()
+    # en_date = datetime.strptime(my_range[1], '%Y-%m-%d').date()
+
+    # get sections
+    pub_sections = get_sections()
+        
     _dates = []
     _titles = []
     _urls = []
+    _section = []
     
-    for url in urls:
+    for section_name, url in pub_sections.items():
         # response = requests.get(url)
-        st.write(url)
+        st.write(f':red[Scraping - {section_name}]')
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
         if response.status_code == 200:
             html_content = response.content
-
             soup = BeautifulSoup(html_content, 'html.parser')
 
             # check carousel container
-            carousel = soup.find(class_='carousel__items')
-            st.write(carousel)
-            carousel_items = carousel.find_all('div', attrs={
-                'class':'carousel__item',
-                'id':'parent_top-article-list'})
-            for carousel_item in carousel_items:
-                _title = carousel_item.find(class_='carousel__item__title').text
-                st.write(_title)
+            if soup.find('div', {'class':'carousel__items'}) != None:
+                carousel = soup.find('div',{'class':'carousel__items'})
+                carousel_items = carousel.find_all('div', {'class':'carousel__item'})
 
-                _url = carousel_item.find(class_='carousel__item__title')
-                _url = _url.find('a').get('href')
-                _datestr = carousel_item.find(class_='carousel__item__time').text
-                _time = int(_datestr.split(' ')[0])
-                _desc = _datestr.split(' ')[1]
+                for carousel_item in carousel_items:
 
-                if _desc in ['minutes', 'minutes']:
-                    _date = datetime.now() - timedelta(minutes=_time)
-                elif _desc in ['hours', 'hour']:
-                    _date = datetime.now() - timedelta(hours=_time)
+                    _title = ''
+                    _date = ''
+                    _url = ''
 
-                # if _date >= st_date and _date <= en_date:
-                if _url not in _urls:
-                    _dates.append(_date)
-                    _titles.append(_title)
-                    _urls.append(_url)
+                    # get title
+                    _title = carousel_item.find('div', {'class':'carousel__item__title'})
+                    _title = _title.find('h2')
+                    _title = _title.find('a').text
+                    # get date string
+                    _datestr = carousel_item.find('div', {'class':'carousel__item__time'}).text
+                    # convert dates tring to date
+                    try:
+                        _date = convert_to_date(_datestr)
+                    except:
+                        _date = datetime.strptime(_datestr, '%B %d, %Y').date()
+                    # get url
+                    _url = carousel_item.find('div', {'class':'carousel__item__title'})
+                    _url = _url.find('h2')
+                    _url = _url.find('a').get('href')
+
+                    st.write(f'{_date} {_title}')
+                    st.write(_url)
+
+                    if _url not in _urls:
+                        _dates.append(_date)
+                        _titles.append(_title)
+                        _urls.append(_url)
+                        _section.append(section_name)
+
+            # check micro top container
+            elif soup.find('div', {'id':'micro_top'}) != None:
+                carousel = soup.find('div', {'id':'micro_top'})
+                articles = carousel.find_all('div', {'class':'microsite_article'})
+
+                for article in articles:
+
+                    _title = ''
+                    _date = ''
+                    _url = ''
+
+                    # get title
+                    _title = article.find('div', {'class':'microsite_article_title'})
+                    _title = _title.find('h2')
+                    _title = _title.find('a').text
+                    # get url
+                    _url = article.find('div', {'class':'microsite_article_title'})
+                    _url = _url.find('h2')
+                    _url = _url.find('a').get('href')
+                    # get date
+                    _datestr = _url.split('/')
+                    _month = _datestr[-4]
+                    _day = _datestr[-3]
+                    _year = _datestr[-5]
+                    _datestr = f'{_month}-{_day}-{_year}'
+                    _date = datetime.strptime(_datestr, '%m-%d-%Y')
+                    _date = _date.date()
+
+                    st.write(f'{_date} {_title}')
+                    st.write(_url)
+
+                    if _url not in _urls:
+                        _dates.append(_date)
+                        _titles.append(_title)
+                        _urls.append(_url)
+                        _section.append(section_name)
             
+            # check latest news
+            if soup.select('.news_column.latest') != None:
+                latest_column = soup.select('.news_column.latest')[1]
+                articles = latest_column.select('.tiles.late')
+
+                for article in articles:
+
+                    _title = ''
+                    _date = ''
+                    _url = ''
+
+                    if article.find('div', {'class':'news_title'}) != None:
+                        # get title
+                        _title = article.find('div', {'class':'news_title'})
+                        # _title = _title.find('h2')
+                        _title = _title.find('a').text
+
+                        # get url
+                        _url = article.find('div', {'class':'news_title'})
+                        # _url = _url.find('h2')
+                        _url = _url.find('a').get('href')
+
+                        # get date
+                        _datestr = article.find('div', {'class':'dateOfFeature'}).text
+                        _datestr = _datestr.split('|')[-1].strip()
+                        _date = convert_to_date(_datestr)
+
+                    elif article.find('div', {'class':'titleForFeature'}) != None:
+                        # get title
+                        _title = article.find('div', {'class':'titleForFeature'})
+                        # _title = _title.find('h2')
+                        _title = _title.find('a').text
+
+                        # get url
+                        _url = article.find('div', {'class':'titleForFeature'})
+                        # _url = _url.find('h2')
+                        _url = _url.find('a').get('href')
+
+                        # get date
+                        _datestr = article.find('div', {'class':'dateOfFeature'}).text
+                        _datestr = _datestr.split('|')[-1].strip()
+                        _date = convert_to_date(_datestr)
+
+                    st.write(f'{_date} {_title}')
+                    st.write(_url)
+            
+            # check micro top
+            if soup.select('div', {'id':'micro_bottom'}) != None:
+                # latest_column = soup.select('.news_column.latest')[1]
+                # articles = latest_column.select('.tiles.late')
+                st.write('Yey')
+                    
+
+
+    df = pd.DataFrame({'Section':_section, 'Date':_dates, 'Title':_titles, 'URL':_urls})
+    st.dataframe(df, hide_index=True)
+                
+            
+
+            #     _url = carousel_item.find(class_='carousel__item__title')
+            #     _url = _url.find('a').get('href')
+            #     _datestr = carousel_item.find(class_='carousel__item__time').text
+            #     _time = int(_datestr.split(' ')[0])
+            #     _desc = _datestr.split(' ')[1]
+
+            #     if _desc in ['minutes', 'minutes']:
+            #         _date = datetime.now() - timedelta(minutes=_time)
+            #     elif _desc in ['hours', 'hour']:
+            #         _date = datetime.now() - timedelta(hours=_time)
+
+            #     # if _date >= st_date and _date <= en_date:
+            #     if _url not in _urls:
+            #         _dates.append(_date)
+            #         _titles.append(_title)
+            #         _urls.append(_url)
+
+            #         st.write(_date)
+            #         st.write(_title)
+            #         st.write(_url)
             # check latest articles container
             # st.write('scraping latest items')
             # news_columns = soup.select('.news_column.latest')
@@ -153,8 +285,8 @@ def bm():
             #         _urls.append(_url)
 
 
-    df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
-    st.dataframe(df, hide_index=True)
+    # df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
+    # st.dataframe(df, hide_index=True)
 
 
         #     article_group = soup.find(class_='elementor-posts-container')

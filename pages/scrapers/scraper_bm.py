@@ -49,9 +49,10 @@ def bm(my_range):
 
                 if _date >= st_date and _date <= en_date:
                     if _url not in _urls:
-                        _dates.append(_datestr)
-                        _titles.append(_title)
-                        _urls.append(_url)
+                        if '/author/' not in _urls:
+                            _dates.append(_datestr)
+                            _titles.append(_title)
+                            _urls.append(_url)
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
