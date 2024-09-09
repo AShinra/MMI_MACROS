@@ -6,6 +6,7 @@ import re
 import time
 import random
 from datetime import datetime
+import re
 
 
 def bw(my_range):
@@ -44,21 +45,22 @@ def bw(my_range):
             for article in articles:
                 _title = article.find(class_='entry-title').text
                 _url = article.find('a').get('href')
-                
-                # extract date from url
-                _datedata = _url.split('/')
-                st.write(_datedata)
-                _datemonth = _datedata[-5]
-                _dateday = _datedata[-4]
-                _dateyear = _datedata[-6]
-                _datestr = f'{_datemonth}-{_dateday}-{_dateyear}'
-                _date = datetime.strptime(_datestr, '%m-%d-%Y').date()
 
-                if _date >= st_date and _date <= en_date:
-                    if _url not in _urls:
-                        _dates.append(_datestr)
-                        _titles.append(_title)
-                        _urls.append(_url)
+                if re.search('/\d{4}/\d+/\d+/\d+', _url):
+                    # extract date from url
+                    _datedata = _url.split('/')
+                    # st.write(_datedata)
+                    _datemonth = _datedata[-5]
+                    _dateday = _datedata[-4]
+                    _dateyear = _datedata[-6]
+                    _datestr = f'{_datemonth}-{_dateday}-{_dateyear}'
+                    _date = datetime.strptime(_datestr, '%m-%d-%Y').date()
+
+                    if _date >= st_date and _date <= en_date:
+                        if _url not in _urls:
+                            _dates.append(_datestr)
+                            _titles.append(_title)
+                            _urls.append(_url)
 
         
         else:
