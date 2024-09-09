@@ -46,8 +46,8 @@ def bw(my_range):
                 _url = article.find('a').get('href')
                 
                 # extract date from url
-                st.write(_datedata)
                 _datedata = _url.split('/')
+                st.write(_datedata)
                 _datemonth = _datedata[-5]
                 _dateday = _datedata[-4]
                 _dateyear = _datedata[-6]
