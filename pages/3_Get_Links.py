@@ -16,7 +16,6 @@ from pages.scrapers.scraper_mal import mal
 from pages.scrapers.scraper_bw import bw
 from pages.scrapers.scraper_mb import mb
 from pages.scrapers.scraper_bil import bil
-from pages.scrapers.scraper_bm import bm2
 
 st.set_page_config(layout="wide")
 bg_image()
