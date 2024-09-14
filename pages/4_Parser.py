@@ -26,7 +26,7 @@ _section = ''
 _title = ''
 _author = ''
 _date = ''
-_img = ''
+_img = []
 _content = ''
 
 button_process = st.button('Parse Link')
@@ -47,14 +47,27 @@ if button_process:
         _author = container.find('span', class_='author').text
         _date = container.find('li', class_='meta-date').text
 
-        _img = container.find('section', class_='post-media').find('a').get('href')
+        # get image from header
+        _img.append(container.find('section', class_='post-media').find('a').get('href'))
 
         element = container.find('section', class_='entry-content')
-        elements = element.findChildren('p')
-        for ele in elements:
-            if 'Author Profile' not in ele.text:
-                if _author not in ele.text:
-                    _content += ele.text
+
+        # get images from content
+        image_elements = element.find_all('figure')
+        for image_element in image_elements:
+            _img.append(image_element.find('img').get('src'))
+
+        for x in element.find_all('div'):
+            x.decompose()
+        
+        for x in element.find_all(style="font-family: 'Open Sans', arial, sans-serif; font-size: 12px"):
+            x.decompose()
+        
+        for ele in element.find_all('p'):
+            _content += ' '
+            _content += ele.text
+        
+            
 
 st.subheader('SECTION')
 st.code(_section)
@@ -72,8 +85,16 @@ with col2:
     st.subheader('DATE')
     st.code(_date)
 
-st.subheader('IMAGE LINK')
-st.code(_img)
+if len(_img) > 1:
+    st.subheader('IMAGE LINKS')
+else:
+    st.subheader('IMAGE LINK')
+
+for i in _img:
+    st.code(i)
 
 st.subheader('CONTENT')
 st.code(_content)
+
+c = st.container()
+c.write(_content)
