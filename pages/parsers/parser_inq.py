@@ -88,6 +88,13 @@ def inq_parser(url):
                     ele.decompose()
 
         _content = element.text
+
+        for ele in element.findAll('picture'):
+            for x in ele.findAll('source'):
+                try:
+                    _img.append(x.get('data-lazy-srcset').split('.avif')[0])
+                except:
+                    pass
         
                 
     with st.container(border=True):
