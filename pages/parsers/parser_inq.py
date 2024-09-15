@@ -40,14 +40,10 @@ def inq_parser(url):
         
         # get section
         element = header.find('div', id='bc-share')
-        for ele in element.findAll('div'):
-            if 'Array' in ele.text:
-                ele.decompose()
-        
         try:
-            _section = element.text.split(',')[0].strip()
+            _section = element.find('div', id='art_bc_2').text
         except:
-            _section = element.text
+            _section = element.find('div', id='art_bc').text
 
         # get title
         _title = header.find('h1', class_='entry-title').text
