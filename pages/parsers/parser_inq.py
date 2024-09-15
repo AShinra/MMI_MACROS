@@ -41,7 +41,7 @@ def inq_parser(url):
         # get section
         element = header.find('div', id='bc-share')
         try:
-            _section = element.find('div', id='art_bc_2').text
+            _section = element.find('div', id='art_bc_2').find('a').text
         except:
             _section = element.find('div', id='art_bc').text
 
