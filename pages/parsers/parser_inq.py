@@ -111,6 +111,8 @@ def inq_parser(url):
             x = ele.get('src')
             if 'data:image' not in x:
                 _img.append(x)
+    
+    _img = list(dict.fromkeys(_img))
                 
     with st.container(border=True):
 
