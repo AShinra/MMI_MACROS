@@ -43,7 +43,7 @@ def inq_parser(url):
         try:
             _section = element.find('div', id='art_bc_2').find('a').text
         except:
-            _section = element.find('div', id='art_bc').text
+            _section = element.find('div', id='art_bc').find('a').text
 
         # get title
         _title = header.find('h1', class_='entry-title').text
