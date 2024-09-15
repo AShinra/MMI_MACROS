@@ -96,6 +96,10 @@ def inq_parser(url):
                 except:
                     pass
         
+        for ele in element.findAll('img'):
+            x = ele.get('src')
+            if 'data:image' not in x:
+                _img.append(x)
                 
     with st.container(border=True):
 
