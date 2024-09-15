@@ -39,7 +39,13 @@ def inq_parser(url):
         header = soup.find('div', id='art-head-group')
         
         # get section
-        _section = header.find('div', id='art_bc').find('a').text
+        element = header.find('div', id='bc-share')
+        for ele in element.findAll('div'):
+            if 'Array' in ele.text:
+                ele.decompose()
+        
+        _section = element.text
+
 
         # get title
         _title = header.find('h1', class_='entry-title').text
