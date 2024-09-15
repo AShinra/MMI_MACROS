@@ -46,7 +46,10 @@ def inq_parser(url):
 
         # get author
         _author_date = header.find('div', id='byline_share')
-        _author = _author_date.find('div', id='art_author').find('span').find('a').text
+        try:
+            _author = _author_date.find('div', id='art_author').find('span').find('a').text
+        except:
+            _author = 'No Author'
         
         # get date
         _date = _author_date.find('div', id='art_plat').find('a').next_sibling
