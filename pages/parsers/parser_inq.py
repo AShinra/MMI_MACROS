@@ -41,7 +41,7 @@ def inq_parser(url):
         # get section
         element = header.find('div', id='bc-share')
         for ele in element.findAll('div'):
-            if 'Array' in ele.text:
+            if 'Array' in ele.text or ele.txt == None:
                 ele.decompose()
         
         try:
