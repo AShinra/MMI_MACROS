@@ -146,4 +146,4 @@ def inq_parser(url):
 
         st.subheader('CONTENT')
         with st.container(border=True, height=500):
-            st.write(_content)
+            st.code(_content)
