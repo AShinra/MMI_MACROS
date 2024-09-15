@@ -44,8 +44,10 @@ def inq_parser(url):
             if 'Array' in ele.text:
                 ele.decompose()
         
-        _section = element.text.split(',')[0].strip()
-
+        try:
+            _section = element.text.split(',')[0].strip()
+        except:
+            _section = element.text
 
         # get title
         _title = header.find('h1', class_='entry-title').text
