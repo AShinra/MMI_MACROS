@@ -44,7 +44,7 @@ def inq_parser(url):
             if 'Array' in ele.text:
                 ele.decompose()
         
-        _section = element.text
+        _section = element.text.split(',')[0].strip()
 
 
         # get title
