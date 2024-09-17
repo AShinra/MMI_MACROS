@@ -38,7 +38,10 @@ with col1:
             'Manila Standard',
             'Malaya Business Insight',
             'Bilyonaryo'), key='pub_sel_radio')
-
+        st.write('')
+        st.write('')
+        st.write('')
+        st.write('')
         pro = st.button(label='Process', use_container_width=True)
 
 if pro:

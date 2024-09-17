@@ -67,6 +67,9 @@ def bm(my_range):
                                                 _dates.append(_date)
 
                                                 _titles.append(_title)
+
+            else:
+                break
                                             
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
