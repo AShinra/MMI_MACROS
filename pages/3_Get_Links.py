@@ -10,39 +10,31 @@ from Tools import bg_image
 from pages.scrapers.scraper_mst import mst
 from pages.scrapers.scraper_mt import mt
 from pages.scrapers.scraper_bm import bm
-# from pages.scrapers.scraper_ps import ps
 from pages.scrapers.scraper_inq import inq
 from pages.scrapers.scraper_mal import mal
 from pages.scrapers.scraper_bw import bw
-# from pages.scrapers.scraper_mb import mb
 from pages.scrapers.scraper_bil import bil
 
 st.set_page_config(layout="wide")
 bg_image()
 
-my_range = ui.date_picker(label='Select Date Range', mode='range', key='my_range', default_value=None)
+st.markdown("<h1 style='text-align: center;'>URL Fetcher</h1>", unsafe_allow_html=True)
 
 col1, col2 = st.columns([1,3])
-
 with col1:
 
-    with col1.container(border=True, height=475):
-        st.header('Link Scraper')
-
-        pub_sel = st.radio(
-            'Select Online Publication to scrape',
-            ('Inquirer.net',
-            'Business Mirror',
-            'Business World',
-            'Manila Times',
-            'Manila Standard',
-            'Malaya Business Insight',
-            'Bilyonaryo'), key='pub_sel_radio')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        pro = st.button(label='Process', use_container_width=True)
+    my_range = ui.date_picker(label='Select Date Range', mode='range', key='my_range', default_value=None)
+    
+    option = st.selectbox('Select Publication',
+                            ('Inquirer.net',
+                            'Business Mirror',
+                            'Business World',
+                            'Manila Times',
+                            'Manila Standard',
+                            'Malaya Business Insight',
+                            'Bilyonaryo'),key='pub_sel_radio')
+        
+    pro = st.button(label='Process', use_container_width=True)
 
 if pro:
     if my_range in ['', None, []]:
