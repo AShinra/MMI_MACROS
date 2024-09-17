@@ -71,8 +71,6 @@ def bm(my_range):
             else:
                 break
                                             
-    df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
+    df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})  
 
-    st.dataframe(df, hide_index=True)
-
-    return df.shape[0]
+    return df

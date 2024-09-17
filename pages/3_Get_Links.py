@@ -22,11 +22,11 @@ bg_image()
 
 my_range = ui.date_picker(label='Select Date Range', mode='range', key='my_range', default_value=None)
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([1,3])
 
 with col1:
 
-    with col1.container(border=True, height=450):
+    with col1.container(border=True, height=475):
         st.header('Link Scraper')
 
         pub_sel = st.radio(
@@ -52,86 +52,53 @@ if pro:
             links_collected = mst(my_range)
 
             with col2:
-
-                with col2.container(border=True, height=450):
-                    st.header('Links Collected', )
-                    st.subheader(links_collected)
+                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.dataframe(links_collected, hide_index=True)
                         
         elif st.session_state['pub_sel_radio'] == 'Manila Times':
             links_collected = mt(my_range)
 
             with col2:
-
-                with col2.container(border=True, height=450):
-                    st.header('Links Collected', )
-                    st.subheader(links_collected)
+                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.dataframe(links_collected, hide_index=True)
         
         elif st.session_state['pub_sel_radio'] == 'Business Mirror':
             links_collected = bm(my_range)
 
             with col2:
-
-                with col2.container(border=True, height=450):
-                    st.header('Links Collected', )
-                    st.subheader(links_collected)
-        
-        # elif st.session_state['pub_sel_radio'] == 'Philstar':
-        #     links_collected = ps(my_range)
-
-        #     with col2:
-
-        #         with col2.container(border=True, height=450):
-        #             st.header('Links Collected', )
-        #             st.subheader(links_collected)
+                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.dataframe(links_collected, hide_index=True)
         
         elif st.session_state['pub_sel_radio'] == 'Inquirer.net':
             links_collected = inq(my_range)
 
             with col2:
-
-                with col2.container(border=True, height=450):
-                    st.header('Links Collected', )
-                    st.subheader(links_collected)
+                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.dataframe(links_collected, hide_index=True)
         
         elif st.session_state['pub_sel_radio'] == 'Malaya Business Insight':
             links_collected = mal(my_range)
 
             with col2:
-
-                with col2.container(border=True, height=450):
-                    st.header('Links Collected', )
-                    st.subheader(links_collected)
+                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.dataframe(links_collected, hide_index=True)
         
         elif st.session_state['pub_sel_radio'] == 'Business World':
             links_collected = bw(my_range)
 
             with col2:
-
-                with col2.container(border=True, height=450):
-                    st.header('Links Collected', )
-                    st.subheader(links_collected)
-        
-        # elif st.session_state['pub_sel_radio'] == 'Manila Bulletin':
-        #     links_collected = mb(my_range)
-
-        #     with col2:
-
-        #         with col2.container(border=True, height=450):
-        #             st.header('Links Collected', )
-        #             st.subheader(links_collected)
-        
+                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.dataframe(links_collected, hide_index=True)
+         
         elif st.session_state['pub_sel_radio'] == 'Bilyonaryo':
             links_collected = bil(my_range)
 
             with col2:
-
-                with col2.container(border=True, height=450):
-                    st.header('Links Collected', )
-                    st.subheader(links_collected)
+                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.dataframe(links_collected, hide_index=True)
                     
         else:
             with col2:
-                with col2.container(border=True, height=450):
-                    st.error('Development Phase')
+                st.error('Development Phase')
 
 

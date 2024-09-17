@@ -68,9 +68,4 @@ def ps(my_range):
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
 
-    st.dataframe(df, hide_index=True)
-
-    return df.shape[0]
-
-
-# 16 Aug 2024 10:23:00
+    return df
