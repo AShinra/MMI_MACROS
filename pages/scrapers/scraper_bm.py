@@ -38,7 +38,7 @@ def bm(my_range):
         _M = _date.month
         _D = _date.day
 
-        for i in range(1, 6):
+        for i in range(1, 10):
             url = f'https://businessmirror.com.ph/{_Y}/{_M}/{_D}/page/{i}'
             response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
