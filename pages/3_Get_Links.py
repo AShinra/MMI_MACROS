@@ -79,7 +79,7 @@ if pro:
             links_collected = bw(my_range)
 
             with col2:
-                # st.header(f'Links Collected - {links_collected.shape[0]}')
+                st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
          
         elif st.session_state['pub_sel_radio'] == 'Bilyonaryo':
