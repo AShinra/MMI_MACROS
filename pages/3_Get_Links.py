@@ -44,49 +44,49 @@ if pro:
             links_collected = mst(my_range)
 
             with col2:
-                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
                         
         elif st.session_state['pub_sel_radio'] == 'Manila Times':
             links_collected = mt(my_range)
 
             with col2:
-                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
         
         elif st.session_state['pub_sel_radio'] == 'Business Mirror':
             links_collected = bm(my_range)
 
             with col2:
-                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
         
         elif st.session_state['pub_sel_radio'] == 'Inquirer.net':
             links_collected = inq(my_range)
 
             with col2:
-                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
         
         elif st.session_state['pub_sel_radio'] == 'Malaya Business Insight':
             links_collected = mal(my_range)
 
             with col2:
-                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
         
         elif st.session_state['pub_sel_radio'] == 'Business World':
             links_collected = bw(my_range)
 
             with col2:
-                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
          
         elif st.session_state['pub_sel_radio'] == 'Bilyonaryo':
             links_collected = bil(my_range)
 
             with col2:
-                st.header(f'Links Collected - {links_collected.shape[0]}', )
+                st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
                     
         else:
