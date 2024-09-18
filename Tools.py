@@ -54,6 +54,9 @@ def bg_image():
     div[data-testid="stToolbarActions"] {
         display: none;
     }
+     button[data-testid="stBaseButton-headerNoPadding"] {
+        display: none;
+    }
     </style>
     """
     st.markdown(input_style, unsafe_allow_html=True)
