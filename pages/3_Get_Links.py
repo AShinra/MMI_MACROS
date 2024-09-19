@@ -14,7 +14,6 @@ from pages.scrapers.scraper_inq import inq
 from pages.scrapers.scraper_mal import mal
 from pages.scrapers.scraper_bw import bw
 from pages.scrapers.scraper_bil import bil
-from pages.scrapers.fetcher_mb import mb
 
 st.set_page_config(layout="wide")
 bg_image()
@@ -33,8 +32,7 @@ with col1:
                             'Manila Times',
                             'Manila Standard',
                             'Malaya Business Insight',
-                            'Bilyonaryo',
-                            'Manila Bulletin'),key='pub_sel_radio')
+                            'Bilyonaryo'),key='pub_sel_radio')
         
     pro = st.button(label='Process', use_container_width=True)
 
@@ -91,13 +89,7 @@ if pro:
                 st.header(f'Links Collected - {links_collected.shape[0]}')
                 st.dataframe(links_collected, hide_index=True)
         
-        elif st.session_state['pub_sel_radio'] == 'Manila Bulletin':
-            links_collected = mb()
-
-            with col2:
-                st.header(f'Links Collected - {links_collected.shape[0]}')
-                st.dataframe(links_collected, hide_index=True)
-                    
+                        
         else:
             with col2:
                 st.error('Development Phase')
