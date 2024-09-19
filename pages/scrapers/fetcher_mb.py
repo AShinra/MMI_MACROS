@@ -23,4 +23,3 @@ def mb():
 
     return pd.DataFrame({'Scraped Date':_scraped_dates, 'Article Date':_article_dates, 'URL':_urls})
 
-mb()
