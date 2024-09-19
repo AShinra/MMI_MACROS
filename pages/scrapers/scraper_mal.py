@@ -28,7 +28,7 @@ def mal(my_range):
     _urls = []
     
     for i in range(1, 51):
-        url = f'https://malaya.com.ph/page/{i}/?s'
+        url = f'https://archive.malaya.com.ph/page/{i}/?s'
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
