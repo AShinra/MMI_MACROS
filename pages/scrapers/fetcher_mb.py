@@ -17,6 +17,7 @@ def mb():
     sheet = client.open('manila_bulletin_archive').sheet1
 
     _scraped_dates = sheet.col_values(1)[:10]
+    print(_scraped_dates)
     _article_dates = sheet.col_values(2)[:10]
     _urls = sheet.col_values(3)[:10]
 
