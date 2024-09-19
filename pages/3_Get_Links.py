@@ -23,9 +23,9 @@ st.markdown("<h1 style='text-align: center;'>URL Fetcher</h1>", unsafe_allow_htm
 col1, col2 = st.columns([1,3])
 with col1:
 
-    my_range = ui.date_picker(label='Select Date Range', mode='range', key='my_range', default_value=None)
+    my_range = ui.date_picker('DATE RANGE', mode='range', key='my_range', default_value=None)
     
-    option = st.selectbox('Select Publication',
+    option = st.selectbox('**_:blue[SELECT PUBLICATION]_**',
                             ('Inquirer.net',
                             'Business Mirror',
                             'Business World',
@@ -34,7 +34,7 @@ with col1:
                             'Malaya Business Insight',
                             'Bilyonaryo'),key='pub_sel_radio')
         
-    pro = st.button(label='Process', use_container_width=True)
+    pro = st.button(label='**_:blue[PROCESS]_**', use_container_width=True)
 
 if pro:
     if my_range in ['', None, []]:
