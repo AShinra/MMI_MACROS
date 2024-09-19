@@ -22,3 +22,5 @@ def mb():
     _urls = sheet.col_values(3)[:10]
 
     return pd.DataFrame({'Scraped Date':_scraped_dates, 'Article Date':_article_dates, 'URL':_urls})
+
+mb()
