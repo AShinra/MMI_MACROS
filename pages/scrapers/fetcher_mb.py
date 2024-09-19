@@ -16,9 +16,9 @@ def mb():
 
     sheet = client.open('manila_bulletin_archive').sheet1
 
-    _scraped_dates = sheet.col_values(1)
-    _article_dates = sheet.col_values(2)
-    _urls = sheet.col_values(3)
+    _scraped_dates = sheet.col_values(1)[:10]
+    _article_dates = sheet.col_values(2)[:10]
+    _urls = sheet.col_values(3)[:10]
 
     df = pd.DataFrame({'Scraped Date':_scraped_dates, 'Article Date':_article_dates, 'URL':_urls})
 
