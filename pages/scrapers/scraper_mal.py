@@ -28,7 +28,7 @@ def mal(my_range):
     _urls = []
     
     for i in range(1, 51):
-        url = f'https://archive.malaya.com.ph/page/{i}/?s'
+        url = f'https://malaya.com.ph/page/{i}/?s=&et_pb_searchform_submit=et_search_proccess&et_pb_include_posts=yes&et_pb_include_pages=yes'
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
 
@@ -36,14 +36,19 @@ def mal(my_range):
             html_content = response.content
 
             soup = BeautifulSoup(html_content, 'html.parser')
-            
-            articles = soup.find_all(class_='tdb_module_loop')
-            for article in articles:
-                _title = article.find(class_='entry-title').text
-                _url = article.find('a').get('href')
-                _datestr = article.find('time').text
-                _date = datetime.strptime(_datestr, '%B %d, %Y').date()
 
+            container = soup.find('div', id="content-area")
+            inner_container = container.find('div', id='left-area')
+            articles = inner_container.find_all('article')
+
+            for article in articles:
+                
+                element = article.find_all('a')[1]
+                _url = element.get('href')
+                _title = element.text
+                _datestr = article.find_all('span')[-1].text
+                _date = datetime.strptime(_datestr, '%b %d, %Y').date()
+        
                 if _title not in ['', None]:
                     if _date >= st_date and _date <= en_date:
                         if _url not in _urls:
@@ -56,3 +61,4 @@ def mal(my_range):
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
     return df
+
