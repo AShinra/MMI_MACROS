@@ -27,6 +27,7 @@ def mal(my_range):
     _titles = []
     _urls = []
     
+    status = ''
     for i in range(1, 100000):
         url = f'https://malaya.com.ph/page/{i}/?s=&et_pb_searchform_submit=et_search_proccess&et_pb_include_posts=yes&et_pb_include_pages=yes'
         # response = requests.get(url)
