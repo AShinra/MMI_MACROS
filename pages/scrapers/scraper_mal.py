@@ -47,16 +47,17 @@ def mal(my_range):
                 _datestr = article.find_all('span')[-1].text
                 _date = datetime.strptime(_datestr, '%b %d, %Y').date()
                 _title = element.text
+                _url = element.get('href')
         
                 if _title not in ['', None]:
-                    if _date < st_date:
-                        break
-                    if _date > en_date:
-                        st.write('skipping date')
-                        continue
-                    if _date >= st_date and _date <= en_date:
-                        _url = element.get('href')
-                        if _url not in _urls:
+                    if _url not in _urls:
+                        if _date < st_date:
+                            st.write('break')
+                            break
+                        if _date > en_date:
+                            st.write('skipping date')
+                            continue
+                        if _date >= st_date and _date <= en_date:
                             st.write(_date)
                             _dates.append(_datestr)
                             _titles.append(_title)
