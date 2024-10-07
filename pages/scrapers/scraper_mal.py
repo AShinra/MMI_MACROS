@@ -56,10 +56,8 @@ def mal(my_range):
                             status = 'break'
                             break
                         elif _date > en_date:
-                            st.write('skipping date')
                             continue
                         elif _date >= st_date and _date <= en_date:
-                            st.write(_date)
                             _dates.append(_datestr)
                             _titles.append(_title)
                             _urls.append(_url)
