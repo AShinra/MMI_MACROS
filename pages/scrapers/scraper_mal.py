@@ -52,18 +52,21 @@ def mal(my_range):
                 if _title not in ['', None]:
                     if _url not in _urls:
                         if _date < st_date:
-                            st.write('break')
+                            status = 'break'
                             break
-                        if _date > en_date:
+                        elif _date > en_date:
                             st.write('skipping date')
                             continue
-                        if _date >= st_date and _date <= en_date:
+                        elif _date >= st_date and _date <= en_date:
                             st.write(_date)
                             _dates.append(_datestr)
                             _titles.append(_title)
                             _urls.append(_url)
         else:
             st.write(response.status_code)
+        
+        if status == 'break':
+            break
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
