@@ -56,6 +56,7 @@ def mal(my_range):
                     elif _date >= st_date and _date <= en_date:
                         _url = element.get('href')
                         if _url not in _urls:
+                            st.write(_date)
                             _dates.append(_datestr)
                             _titles.append(_title)
                             _urls.append(_url)
