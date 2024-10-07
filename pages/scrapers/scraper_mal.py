@@ -51,10 +51,10 @@ def mal(my_range):
                 if _title not in ['', None]:
                     if _date < st_date:
                         break
-                    elif _date > en_date:
+                    if _date > en_date:
                         st.write('skipping date')
                         continue
-                    elif _date >= st_date and _date <= en_date:
+                    if _date >= st_date and _date <= en_date:
                         _url = element.get('href')
                         if _url not in _urls:
                             st.write(_date)
