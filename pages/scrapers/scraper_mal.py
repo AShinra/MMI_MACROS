@@ -27,7 +27,7 @@ def mal(my_range):
     _titles = []
     _urls = []
     
-    for i in range(1, 51):
+    for i in range(1, 100000):
         url = f'https://malaya.com.ph/page/{i}/?s=&et_pb_searchform_submit=et_search_proccess&et_pb_include_posts=yes&et_pb_include_pages=yes'
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
@@ -50,7 +50,11 @@ def mal(my_range):
                 _date = datetime.strptime(_datestr, '%b %d, %Y').date()
         
                 if _title not in ['', None]:
-                    if _date >= st_date and _date <= en_date:
+                    if _date > st_date:
+                        continue
+                    elif _date < en_date:
+                        break
+                    elif _date >= st_date and _date <= en_date:
                         if _url not in _urls:
                             _dates.append(_datestr)
                             _titles.append(_title)
