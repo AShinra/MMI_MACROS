@@ -46,6 +46,7 @@ def mal(my_range):
                 element = article.find_all('a')[1]
                 _datestr = article.find_all('span')[-1].text
                 _date = datetime.strptime(_datestr, '%b %d, %Y').date()
+                _title = element.text
         
                 if _title not in ['', None]:
                     if _date > st_date:
@@ -54,7 +55,6 @@ def mal(my_range):
                         break
                     elif _date >= st_date and _date <= en_date:
                         _url = element.get('href')
-                        _title = element.text
                         if _url not in _urls:
                             _dates.append(_datestr)
                             _titles.append(_title)
