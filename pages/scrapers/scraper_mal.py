@@ -50,9 +50,9 @@ def mal(my_range):
         
                 if _title not in ['', None]:
                     if _date < st_date:
-                        continue
-                    elif _date > en_date:
                         break
+                    elif _date > en_date:
+                        continue
                     elif _date >= st_date and _date <= en_date:
                         _url = element.get('href')
                         if _url not in _urls:
