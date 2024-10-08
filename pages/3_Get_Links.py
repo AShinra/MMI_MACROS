@@ -95,3 +95,5 @@ if pro:
                 st.error('Development Phase')
 
 
+    st.dataframe(links_collected)
+
