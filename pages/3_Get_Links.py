@@ -110,5 +110,8 @@ if pro:
     _file = 'pages/fetcher_temp/temp.xlsx'
 
     result_file = open(_file, 'rb')
-    st.download_button(label='📥 Download Current Result', data=result_file ,file_name= f'Fetched_URL.xlsx')
+    col1, col2, col3 = st.columns(3)
+
+    with col2:
+        st.download_button(label='📥 Download Current Result', data=result_file ,file_name= f'Fetched_URL.xlsx',use_container_width=True)
 
