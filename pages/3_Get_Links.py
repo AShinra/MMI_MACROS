@@ -5,6 +5,7 @@ import pandas as pd
 import re
 import streamlit_shadcn_ui as ui
 from Tools import bg_image
+import openpyxl
 
 # scrapers
 from pages.scrapers.scraper_mst import mst
@@ -95,5 +96,19 @@ if pro:
                 st.error('Development Phase')
 
 
-    links_collected.to_excel('temp.xlsx')
+    links_collected.to_excel('pages/fetcher_temp/temp.xlsx', index=None)
+
+    wb = openpyxl.load_workbook('pages/fetcher_temp/temp.xlsx')
+    ws = wb.active
+
+    for row in ws.iter_rows(min_col=3, max_col=3, min_row=2):
+        for cl in row:
+            cl.hyperlink = cl.value
+
+    wb.save('pages/fetcher_temp/temp.xlsx')
+    wb.close()
+    _file = 'pages/fetcher_temp/temp.xlsx'
+
+    result_file = open(_file, 'rb')
+    st.download_button(label='📥 Download Current Result', data=result_file ,file_name= f'Fetched_URL.xlsx')
 
