@@ -95,5 +95,5 @@ if pro:
                 st.error('Development Phase')
 
 
-    st.dataframe(links_collected)
+    links_collected.to_excel('temp.xlsx')
 
