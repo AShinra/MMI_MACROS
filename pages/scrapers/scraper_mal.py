@@ -38,17 +38,26 @@ def mal(my_range):
 
             soup = BeautifulSoup(html_content, 'html.parser')
 
-            container = soup.find('div', id="content-area")
-            inner_container = container.find('div', id='left-area')
-            articles = inner_container.find_all('article')
+            container = soup.find('div', id="tdi_88")
+            # inner_container = container.find('div', id='left-area')
+            # articles = inner_container.find_all('article')
 
+
+            articles = container.find_all('div', class_='td-module-meta-info')
             for article in articles:
-                
-                element = article.find_all('a')[1]
-                _datestr = article.find_all('span')[-1].text
-                _date = datetime.strptime(_datestr, '%b %d, %Y').date()
+
+                element = article.find('a')
                 _title = element.text
                 _url = element.get('href')
+                element2 = article.find('div', class_='td-editor-date')
+                _datestr = element2.find('time').text
+                _date = datetime.strptime(_datestr, '%B %d, %Y').date()
+                
+                # element = article.find_all('a')[1]
+                # _datestr = article.find_all('span')[-1].text
+                # _date = datetime.strptime(_datestr, '%b %d, %Y').date()
+                # _title = element.text
+                # _url = element.get('href')
         
                 if _title not in ['', None]:
                     if _url not in _urls:
@@ -61,6 +70,7 @@ def mal(my_range):
                             _dates.append(_datestr)
                             _titles.append(_title)
                             _urls.append(_url)
+
         else:
             st.write(response.status_code)
         
