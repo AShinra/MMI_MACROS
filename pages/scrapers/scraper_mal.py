@@ -29,6 +29,10 @@ def mal(my_range):
     
     status = ''
     for i in range(1, 100000):
+        
+        if status == 'break':
+            break
+        
         url = f'https://malaya.com.ph/page/{i}/?s=&et_pb_searchform_submit=et_search_proccess&et_pb_include_posts=yes&et_pb_include_pages=yes'
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
@@ -46,35 +50,28 @@ def mal(my_range):
             articles = container.find_all('div', class_='td-module-meta-info')
             for article in articles:
 
-                element = article.find('a')
-                _title = element.text
-                _url = element.get('href')
                 element2 = article.find('div', class_='td-editor-date')
                 _datestr = element2.find('time').text
                 _date = datetime.strptime(_datestr, '%B %d, %Y').date()
-                
-                # element = article.find_all('a')[1]
-                # _datestr = article.find_all('span')[-1].text
-                # _date = datetime.strptime(_datestr, '%b %d, %Y').date()
-                # _title = element.text
-                # _url = element.get('href')
-        
-                if _title not in ['', None]:
-                    if _url not in _urls:
-                        if _date < st_date:
-                            status = 'break'
-                            break
-                        elif _date > en_date:
-                            continue
-                        elif _date >= st_date and _date <= en_date:
-                            _dates.append(_datestr)
-                            _titles.append(_title)
-                            _urls.append(_url)
 
+                if _date > en_date:
+                    continue
+                
+                elif _date >= st_date and _date <= en_date:
+                    element = article.find('a')
+                    _title = element.text
+                    _url = element.get('href')
+
+                    _dates.append(_datestr)
+                    _titles.append(_title)
+                    _urls.append(_url)
+            
+                elif _date < st_date:
+                    status = 'break'
+                    break
+        
         else:
             st.write(response.status_code)
-        
-        if status == 'break':
             break
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})

@@ -29,6 +29,10 @@ def ttm(my_range):
     
     status = ''
     for i in range(1, 100000):
+        
+        if status == 'break':
+            break
+
         url = f'https://techtravelmonitor.com/2024/page/{i}/'
         # response = requests.get(url)
         response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
@@ -45,10 +49,7 @@ def ttm(my_range):
                 _datestr = article.find('time').text
                 _date = datetime.strptime(_datestr, '%Y-%m-%d').date()
 
-                if _date < st_date:
-                    break
-                    status = 'break'
-                elif _date > en_date:
+                if _date > en_date:
                     continue
                 elif _date >= st_date and _date <= en_date:
                     element = article.find('h2', class_='entry-title')
@@ -59,13 +60,14 @@ def ttm(my_range):
                     _titles.append(_title)
                     _urls.append(_url)
                     
+                elif _date < st_date:
+                    status = 'break'
+                    break            
+
         else:
-            # st.write(response.status_code)
-            break
+            st.write(response.status_code)
 
-        if status == 'break':
-            break
-
+        
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
     return df
