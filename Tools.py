@@ -1,5 +1,40 @@
 import streamlit as st
 import json
+from datetime import datetime, timedelta
+
+def user_agents():
+
+    # list of user-agents
+    userAgents = [
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0',
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36	'
+    ]
+
+    return userAgents
+
+
+def convert_to_date(_datestr):
+
+    _datestrnum = int(_datestr.split(' ')[0])
+    _datestrdes = _datestr.split(' ')[1]
+
+    if _datestrdes.lower() in ['days', 'day']:
+        _date = datetime.now() - timedelta(days=_datestrnum)
+    elif _datestrdes.lower() in ['hours', 'hour', 'hrs', 'hr']:
+        _date = datetime.now() - timedelta(hours=_datestrnum)
+    elif _datestrdes.lower() in ['minutes', 'minute', 'mins', 'min']:
+        _date = datetime.now() - timedelta(minutes=_datestrnum)
+    elif _datestrdes.lower() in ['seconds', 'second', 'secs', 'sec']:
+        _date = datetime.now() - timedelta(seconds=_datestrnum)    
+    else:
+        _date = 0
+
+    return _date.date()
 
 
 def title_clean(title, pub):
