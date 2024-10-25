@@ -36,6 +36,7 @@ def mt(my_range):
                     _date = article.find(class_='roboto-a').text
                     _date = re.sub('-\n', '', _date)
                     _date = re.sub('\n', '', _date)
+                    _date = _date.strip()
                     _date = datetime.strptime(_date, '%B %d, %Y').date()
 
                     if _date >= st_date and _date <= en_date:
