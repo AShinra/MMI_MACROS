@@ -16,6 +16,7 @@ from pages.scrapers.scraper_mal import mal
 from pages.scrapers.scraper_bw import bw
 from pages.scrapers.scraper_bil import bil
 from pages.scrapers.scraper_ttm import ttm
+from pages.scrapers.scraper_art import art
 
 st.set_page_config(layout="wide")
 bg_image()
@@ -35,7 +36,8 @@ with col1:
                             'Manila Standard',
                             'Malaya Business Insight',
                             'Bilyonaryo',
-                            'TechTravelMonitor'),key='pub_sel_radio')
+                            'TechTravelMonitor',
+                            'ArtPlus'),key='pub_sel_radio')
         
     pro = st.button(label='**_:blue[PROCESS]_**', use_container_width=True)
 
@@ -94,6 +96,13 @@ if pro:
         
         elif st.session_state['pub_sel_radio'] == 'TechTravelMonitor':
             links_collected = ttm(my_range)
+
+            with col2:
+                st.header(f'Links Collected - {links_collected.shape[0]}')
+                st.dataframe(links_collected, hide_index=True)
+        
+        elif st.session_state['pub_sel_radio'] == 'ArtPlus':
+            links_collected = art(my_range)
 
             with col2:
                 st.header(f'Links Collected - {links_collected.shape[0]}')
