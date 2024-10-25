@@ -33,8 +33,7 @@ publication_options = (
     'Malaya Business Insight',
     'Bilyonaryo',
     'TechTravelMonitor',
-    'ArtPlus',
-    'Philippine News Agency'
+    'ArtPlus'
     )
 
 publication_options = tuple(sorted(publication_options))
