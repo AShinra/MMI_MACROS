@@ -23,21 +23,27 @@ bg_image()
 
 st.markdown("<h1 style='text-align: center;'>URL Fetcher</h1>", unsafe_allow_html=True)
 
+
+publication_options = (
+    'Inquirer.net',
+    'Business Mirror',
+    'Business World',
+    'Manila Times',
+    'Manila Standard',
+    'Malaya Business Insight',
+    'Bilyonaryo',
+    'TechTravelMonitor',
+    'ArtPlus'
+    )
+
+publication_options = tuple(sorted(publication_options))
+
 col1, col2 = st.columns([1,3])
 with col1:
 
     my_range = ui.date_picker('DATE RANGE', mode='range', key='my_range', default_value=None)
     
-    option = st.selectbox('**_:blue[SELECT PUBLICATION]_**',
-                            ('Inquirer.net',
-                            'Business Mirror',
-                            'Business World',
-                            'Manila Times',
-                            'Manila Standard',
-                            'Malaya Business Insight',
-                            'Bilyonaryo',
-                            'TechTravelMonitor',
-                            'ArtPlus'),key='pub_sel_radio')
+    option = st.selectbox('**_:blue[SELECT PUBLICATION]_**', publication_options, key='pub_sel_radio')
         
     pro = st.button(label='**_:blue[PROCESS]_**', use_container_width=True)
 
