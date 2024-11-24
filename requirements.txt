@@ -7,3 +7,4 @@ beautifulsoup4
 streamlit_shadcn_ui
 gspread
 oauth2client
+numpy==1.26.4
