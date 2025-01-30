@@ -37,12 +37,7 @@ def bil(my_range):
         for i in range(1, 30):
             url = f'https://bilyonaryo.com/{_Y}/{_M}/{_D}/page/{i}/'
             # url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
-            response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
-            
-            while response.status_code == 202:
-                url = f'https://bilyonaryo.com/{_Y}/{_M}/{_D}/page/{i}/'
-                response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
-                st.warning('testing')
+            response = requests.get(url, time.sleep(10), headers={'User-Agent':random.choice(userAgents)})
 
             if response.status_code == 200:
                 html_content = response.content
