@@ -35,7 +35,7 @@ def bil(my_range):
     # _day = my_range[1].split('-')[2]
     
         for i in range(1, 30):
-            response = 202
+            response = 0
             while response == 202:
                 url = f'https://bilyonaryo.com/{_Y}/{_M}/{_D}/page/{i}/'
                 # url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
