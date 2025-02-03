@@ -32,7 +32,7 @@ def sheet_formating(df, sendout_date):
 
     sendout_font = Font(bold=True, name='Arial', size=20)
     
-    BSP_FILE = Path(__file__).parent/f'BSP_Temp/bsp_template.xlsx'
+    BSP_FILE = Path(__file__).parent/f'templates/BSP_Temp/bsp_template.xlsx'
 
     # st.dataframe(df)
 
@@ -100,7 +100,7 @@ def sheet_formating(df, sendout_date):
     ws.cell(row=5, column=1).value = 'Kindly click on the following links to view your respective news. For best result in viewing the links your default browser should be set to Google Chrome, Mozilla Firefox, Internet Explorer version 10 or higher.'
 
     # insert bsp logo
-    image_path = Path(__file__).parent/f'BSP_Temp/bsp_logo.jpg'
+    image_path = Path(__file__).parent/f'templates/BSP_Temp/bsp_logo.jpg'
     bsp_logo = Image(image_path)
     ws.add_image(bsp_logo, 'A3')
 
@@ -228,7 +228,7 @@ def json_publications():
 
 
 
-def similar_title(a, b):
+def similar_title(nlp, a, b):
     a1 = nlp(a)
     b1 = nlp(b)
     return a1.similarity(b1)
@@ -238,7 +238,7 @@ def similar_title(a, b):
 
 def dataframe_create(uploaded_file):
 
-    REPORT_FILE = Path(__file__).parent/f'BSP_Temp/trial.xlsx'
+    REPORT_FILE = Path(__file__).parent/f'templates/BSP_Temp/trial.xlsx'
     wb = openpyxl.Workbook(REPORT_FILE)
     wb.save(REPORT_FILE)
     wb.close()
@@ -289,160 +289,161 @@ def dataframe_create(uploaded_file):
     return df, REPORT_FILE, sendout_date
 
 
+def bsp_main():
 
-bg_image()
+    bg_image()
 
-with st.container(border=True):
-    
-    st.header('Bangko Sentral ng Pilipinas')
-
-st.file_uploader('Input Raw File', key='bsp_raw')
-
-if st.session_state['bsp_raw'] != None:
-    button_process = st.button('Process File')
-
-    if button_process:
-
-        nlp = spacy.load('en_core_web_sm')
-        # nlp = load_model('en_core_web_sm')
-        # nlp = en_core_web_sm.load()
-
-        df, REPORT_FILE, sendout_date = dataframe_create(st.session_state['bsp_raw'])
+    with st.container(border=True):
         
-        df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
+        st.header('Bangko Sentral ng Pilipinas')
 
-        df['PRINT LINK'] = 'N/A'
-        df['ONLINE LINK'] = 'N/A'
-        df['DELETE'] = ''
+    st.file_uploader('Input Raw File', key='bsp_raw')
 
-        df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
+    if st.session_state['bsp_raw'] != None:
+        button_process = st.button('Process File')
 
-        for i in df_cat1.index:
-            _title = df_cat1.at[i, 'TITLE']
+        if button_process:
+
+            nlp = spacy.load('en_core_web_sm')
+            # nlp = load_model('en_core_web_sm')
+            # nlp = en_core_web_sm.load()
+
+            df, REPORT_FILE, sendout_date = dataframe_create(st.session_state['bsp_raw'])
             
-            if _title[:10].lower() == 'headlines:':
-                df_cat1.at[i, 'TITLE'] = _title[11:]
+            df.columns = ['DATE', 'SOURCE', 'TITLE', 'AUTHOR', 'TYPE', 'CATEGORY', 'LINK']
+
+            df['PRINT LINK'] = 'N/A'
+            df['ONLINE LINK'] = 'N/A'
+            df['DELETE'] = ''
+
+            df_cat1 = df.groupby('CATEGORY').get_group('TODAYS HEADLINENEWS')
+
+            for i in df_cat1.index:
                 _title = df_cat1.at[i, 'TITLE']
-            
-            if '|' in _title:
-                end_text = _title.split('|')[-1]
-                df_cat1.at[i, 'TITLE'] = _title.replace(end_text, '')
-
-        df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
-
-        for i in df_cat2.index:
-            _title = df_cat2.at[i, 'TITLE']
-            
-            if _title[:10].lower() == 'headlines:':
-                df_cat2.at[i, 'TITLE'] = _title[11:]
-                _title = df_cat2.at[i, 'TITLE']
-            
-            if '|' in _title:
-                end_text = _title.split('|')[-1]
-                df_cat2.at[i, 'TITLE'] = _title.replace(end_text, '')
-
-        df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
-
-        for i in df_cat3.index:
-            _title = df_cat3.at[i, 'TITLE']
-            
-            if _title[:10].lower() == 'headlines:':
-                df_cat3.at[i, 'TITLE'] = _title[11:]
-                _title = df_cat3.at[i, 'TITLE']
-            
-            if '|' in _title:
-                end_text = _title.split('|')[-1]
-                df_cat3.at[i, 'TITLE'] = _title.replace(end_text, '')
-
-        dfs = []
-        dfs.append(df_cat1)
-        dfs.append(df_cat2)
-        dfs.append(df_cat3)
-        
-        # load print/online counterparts
-        bsp = json_publications()
-
-        broadsheet_list = []
-        for k, v in bsp.items():
-            broadsheet_list.append(k)
-
-        new_dfs = []
-        for _df in dfs:
-            for j in _df.index:
-                main_title = _df.at[j, 'TITLE']
-                main_source = _df.at[j, 'SOURCE']
-                main_link = _df.at[j, 'LINK']
-                main_type = _df.at[j, 'TYPE']
                 
-                if main_type in ['Online News', 'Blogs']:
-                    _df.at[j, 'ONLINE LINK'] = main_link
-                    continue
-                elif main_type in ['Magazine']:
-                    _df.at[j, 'PRINT LINK'] = main_link
-                    _df.at[j, 'DELETE'] = 'DONE'
-                    continue
-                elif main_source not in broadsheet_list:
-                    _df.at[j, 'PRINT LINK'] = main_link
-                    _df.at[j, 'DELETE'] = 'DONE'
-                    continue
-                else:
-                    _df.at[j, 'PRINT LINK'] = main_link
+                if _title[:10].lower() == 'headlines:':
+                    df_cat1.at[i, 'TITLE'] = _title[11:]
+                    _title = df_cat1.at[i, 'TITLE']
+                
+                if '|' in _title:
+                    end_text = _title.split('|')[-1]
+                    df_cat1.at[i, 'TITLE'] = _title.replace(end_text, '')
 
-                    for k in _df.index:
-                        sub_title = _df.at[k, 'TITLE']
-                        sub_source = _df.at[k, 'SOURCE']
-                        sub_link = _df.at[k, 'LINK']
-                        sub_type = _df.at[k, 'TYPE']
-                        sub_delete = _df.at[k, 'DELETE']
+            df_cat2 = df.groupby('CATEGORY').get_group('TODAYS BUSINESS HEADLINENEWS')
 
-                        if sub_type != 'Online News':
-                            continue
-                        else:
-                            if sub_source not in bsp[main_source]:
+            for i in df_cat2.index:
+                _title = df_cat2.at[i, 'TITLE']
+                
+                if _title[:10].lower() == 'headlines:':
+                    df_cat2.at[i, 'TITLE'] = _title[11:]
+                    _title = df_cat2.at[i, 'TITLE']
+                
+                if '|' in _title:
+                    end_text = _title.split('|')[-1]
+                    df_cat2.at[i, 'TITLE'] = _title.replace(end_text, '')
+
+            df_cat3 = df.groupby('CATEGORY').get_group('BSP NEWS')
+
+            for i in df_cat3.index:
+                _title = df_cat3.at[i, 'TITLE']
+                
+                if _title[:10].lower() == 'headlines:':
+                    df_cat3.at[i, 'TITLE'] = _title[11:]
+                    _title = df_cat3.at[i, 'TITLE']
+                
+                if '|' in _title:
+                    end_text = _title.split('|')[-1]
+                    df_cat3.at[i, 'TITLE'] = _title.replace(end_text, '')
+
+            dfs = []
+            dfs.append(df_cat1)
+            dfs.append(df_cat2)
+            dfs.append(df_cat3)
+            
+            # load print/online counterparts
+            bsp = json_publications()
+
+            broadsheet_list = []
+            for k, v in bsp.items():
+                broadsheet_list.append(k)
+
+            new_dfs = []
+            for _df in dfs:
+                for j in _df.index:
+                    main_title = _df.at[j, 'TITLE']
+                    main_source = _df.at[j, 'SOURCE']
+                    main_link = _df.at[j, 'LINK']
+                    main_type = _df.at[j, 'TYPE']
+                    
+                    if main_type in ['Online News', 'Blogs']:
+                        _df.at[j, 'ONLINE LINK'] = main_link
+                        continue
+                    elif main_type in ['Magazine']:
+                        _df.at[j, 'PRINT LINK'] = main_link
+                        _df.at[j, 'DELETE'] = 'DONE'
+                        continue
+                    elif main_source not in broadsheet_list:
+                        _df.at[j, 'PRINT LINK'] = main_link
+                        _df.at[j, 'DELETE'] = 'DONE'
+                        continue
+                    else:
+                        _df.at[j, 'PRINT LINK'] = main_link
+
+                        for k in _df.index:
+                            sub_title = _df.at[k, 'TITLE']
+                            sub_source = _df.at[k, 'SOURCE']
+                            sub_link = _df.at[k, 'LINK']
+                            sub_type = _df.at[k, 'TYPE']
+                            sub_delete = _df.at[k, 'DELETE']
+
+                            if sub_type != 'Online News':
                                 continue
                             else:
-                                if sub_delete == 'FOR DELETION':
+                                if sub_source not in bsp[main_source]:
                                     continue
                                 else:
-                                    try:
-                                        sub_title = title_clean(sub_title, sub_source)
-                                    except:
-                                        pass
-
-                                    similarity_ratio = similar_title(main_title.lower(), sub_title.lower())
-                                    if similarity_ratio < 0.8:
+                                    if sub_delete == 'FOR DELETION':
                                         continue
                                     else:
-                                        _df.at[j, 'ONLINE LINK'] = sub_link
-                                        _df.at[k, 'DELETE'] = 'FOR DELETION'
-                                        break
+                                        try:
+                                            sub_title = title_clean(sub_title, sub_source)
+                                        except:
+                                            pass
 
-                    _df.at[j, 'DELETE'] = 'DONE'                    
+                                        similarity_ratio = similar_title(nlp, main_title.lower(), sub_title.lower())
+                                        if similarity_ratio < 0.8:
+                                            continue
+                                        else:
+                                            _df.at[j, 'ONLINE LINK'] = sub_link
+                                            _df.at[k, 'DELETE'] = 'FOR DELETION'
+                                            break
 
-            # drop rows for deletion
-            _df = _df[_df.DELETE != 'FOR DELETION']
+                        _df.at[j, 'DELETE'] = 'DONE'                    
 
-            # drop other columns
-            _df = _df.drop(["AUTHOR", "LINK", "DELETE"], axis='columns')
+                # drop rows for deletion
+                _df = _df[_df.DELETE != 'FOR DELETION']
 
-            # st.dataframe(_df)
-            new_dfs.append(_df)
+                # drop other columns
+                _df = _df.drop(["AUTHOR", "LINK", "DELETE"], axis='columns')
+
+                # st.dataframe(_df)
+                new_dfs.append(_df)
 
 
-        for df in new_dfs:
-            df['TYPE'] = pd.Categorical(df['TYPE'], ['Broadsheet', 'Tabloid', 'Provincial', 'Magazine', 'Online News', 'Blogs'])
-            df.sort_values('TYPE')
+            for df in new_dfs:
+                df['TYPE'] = pd.Categorical(df['TYPE'], ['Broadsheet', 'Tabloid', 'Provincial', 'Magazine', 'Online News', 'Blogs'])
+                df.sort_values('TYPE')
 
-        # convert to excel
-        df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
-        df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']]
+            # convert to excel
+            df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
+            df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']]
 
-        df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
-        
-        BSP_FILE = sheet_formating(df_merged, sendout_date)
+            df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
+            
+            BSP_FILE = sheet_formating(df_merged, sendout_date)
 
-        result_file = open(BSP_FILE, 'rb')
-        st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
-        st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp_template.xlsx')
+            result_file = open(BSP_FILE, 'rb')
+            st.success(f':red[NOTE:] Downloaded file will go to the :red[Downloads Folder]')
+            st.download_button(label='📥 Download Excel File', data= result_file, file_name= f'bsp_template.xlsx')
 
          
