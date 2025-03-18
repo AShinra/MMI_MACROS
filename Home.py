@@ -22,7 +22,7 @@ if __name__ == '__main__':
         selected = option_menu(
             menu_title='',
             options=['Home', 'Templates', 'Fetcher', 'Parser', 'Test'],
-            icons=['house', 'file-ruled', 'link', 'text-paragraph', ''],
+            icons=['house', 'file-ruled', 'link', 'text-paragraph', 'file-ruled'],
             orientation='vertical',
             default_index=0
         )
