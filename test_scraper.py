@@ -3,15 +3,22 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+import os
 
 def get_page_source(url):
+    # Set up Chrome options
     options = Options()
     options.add_argument("--headless")  # Run in headless mode
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
 
-    # Use webdriver-manager to auto-download ChromeDriver
+    # Set path to Chrome binary if running in cloud environment
+    chrome_path = "/usr/bin/chromium-browser"
+    if os.path.exists(chrome_path):
+        options.binary_location = chrome_path
+
+    # Install and start ChromeDriver
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
