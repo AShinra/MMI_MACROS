@@ -4,6 +4,7 @@ from Tools import bg_image
 from templates import template_landing
 from scrapers import scraper_landing
 from parser import parsers_landing
+from test_scraper import main_scraper
 
 
 
@@ -20,8 +21,8 @@ if __name__ == '__main__':
     with st.sidebar:
         selected = option_menu(
             menu_title='',
-            options=['Home', 'Templates', 'Fetcher', 'Parser'],
-            icons=['house', 'file-ruled', 'link', 'text-paragraph'],
+            options=['Home', 'Templates', 'Fetcher', 'Parser', 'Test'],
+            icons=['house', 'file-ruled', 'link', 'text-paragraph', ''],
             orientation='vertical',
             default_index=0
         )
@@ -34,6 +35,9 @@ if __name__ == '__main__':
     
     elif selected == 'Parser':
         parsers_landing()
+    
+    elif selected == 'Test':
+        main_scraper()
 
 
     
