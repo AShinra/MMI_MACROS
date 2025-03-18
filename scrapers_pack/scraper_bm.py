@@ -7,12 +7,12 @@ import time
 import random
 from datetime import datetime
 from Tools import user_agents
-import cloudscraper
+# import cloudscraper
 
 
 def bm(my_range):
 
-    scraper = cloudscraper.create_scraper()
+    # scraper = cloudscraper.create_scraper()
 
     # list of user-agents
     userAgents = user_agents()
@@ -36,15 +36,15 @@ def bm(my_range):
 
         for i in range(1, 10):
             url = f'https://businessmirror.com.ph/{_Y}/{_M}/{_D}/page/{i}'
-            # response = requests.get(url, headers={
-            #     'User-Agent':random.choice(userAgents),
-            #     'Referer': 'https://www.google.com/',  # Mimic a search engine referral
-            #     'Accept-Language': 'en-US,en;q=0.9'})
-            
-            response = scraper.get(url, headers={
+            response = requests.get(url, headers={
                 'User-Agent':random.choice(userAgents),
                 'Referer': 'https://www.google.com/',  # Mimic a search engine referral
                 'Accept-Language': 'en-US,en;q=0.9'})
+            
+            # response = scraper.get(url, headers={
+            #     'User-Agent':random.choice(userAgents),
+            #     'Referer': 'https://www.google.com/',  # Mimic a search engine referral
+            #     'Accept-Language': 'en-US,en;q=0.9'})
 
             
             
