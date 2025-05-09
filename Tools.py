@@ -30,7 +30,9 @@ def convert_to_date(_datestr):
     elif _datestrdes.lower() in ['minutes', 'minute', 'mins', 'min']:
         _date = datetime.now() - timedelta(minutes=_datestrnum)
     elif _datestrdes.lower() in ['seconds', 'second', 'secs', 'sec']:
-        _date = datetime.now() - timedelta(seconds=_datestrnum)    
+        _date = datetime.now() - timedelta(seconds=_datestrnum)
+    elif _datestrdes.lower() in ['week', 'weeks']:
+        _date = datetime.now() - timedelta(weeks=_datestrnum)    
     else:
         _date = 0
 
