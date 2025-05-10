@@ -46,14 +46,15 @@ def scraper_landing():
         my_range = ui.date_picker('DATE RANGE', mode='range', key='my_range', default_value=None)
         
         col11, col12 = st.columns([3,1])
+        with col11:
+            option = st.selectbox('**_:blue[SELECT PUBLICATION]_**', publication_options, key='pub_sel_radio')
+        
         with col12:
             _timer = st.selectbox(
                 '**_:blue[DELAY]_**',
-                (0, 10, 20, 30, 40, 50, 60, 90, 120)
+                (0, 10, 20, 30, 40, 50, 60, 90, 120),
+                help='Set delay for slow websites'
             )
-        with col11:
-            option = st.selectbox('**_:blue[SELECT PUBLICATION]_**', publication_options, key='pub_sel_radio')
-
         
         pro = st.button(label='**_:blue[PROCESS]_**', use_container_width=True)
 
