@@ -43,7 +43,7 @@ def scraper_landing():
     col1, col2 = st.columns([1,3])
     with col1:
 
-        my_range = ui.date_picker('DATE RANGE', mode='range', key='my_range', default_value=None, help='Select Date Range')
+        my_range = ui.date_picker('DATE RANGE', mode='range', key='my_range', default_value=None)
         
         col11, col12 = st.columns([3,2])
         with col11:
