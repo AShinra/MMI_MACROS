@@ -47,7 +47,7 @@ def scraper_landing():
         
         option = st.selectbox('**_:blue[SELECT PUBLICATION]_**', publication_options, key='pub_sel_radio')
 
-        col11, col12 = st.colums(2)
+        col11, col12 = st.columns(2)
         with col11:
             _timer = st.selectbox(
                 'Set Delay for slow sites',
