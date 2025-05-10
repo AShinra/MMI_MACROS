@@ -33,49 +33,50 @@ def art(my_range):
         _M = _date.month
         _D = _date.day
 
-    for i in range(1,100000):
+    with st.spinner('Processing Website'):
+        for i in range(1,100000):
 
-        if status == 'break':
-            break
-        
-        response = requests.get(url)
-        response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
-
-        if response.status_code ==200:
-            html_content = response.content
-            soup = BeautifulSoup(html_content, 'html.parser')
-
-            # get the next page url
-            url = soup.find('div', class_='older').find('a').get('href')
-            url = f'https://artplus.squarespace.com{url}'
-
-            container = soup.find('div', class_='blog-basic-grid')
-
-            articles = container.find_all('div', class_='blog-basic-grid--text')
-            for article in articles:
-                _datestr = article.find('time').text
-                _date = datetime.strptime(_datestr, '%m/%d/%y').date()
-                # st.write(_date)
-
-                if _date > en_date:
-                    continue
-                
-                elif _date >= st_date and _date <= en_date:
-                    element = article.find('h1', class_='blog-title')
-                    _title = element.find('a').text
-                    _url = element.find('a').get('href')
-                    _url = f'https://artplus.squarespace.com{_url}'
-
-                    _dates.append(_date)
-                    _titles.append(_title)
-                    _urls.append(_url)
+            if status == 'break':
+                break
             
-                elif _date < st_date:
-                    status = 'break'
-                    break
-               
-        else:
-            st.write(response.status_code)
+            response = requests.get(url)
+            response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
+
+            if response.status_code ==200:
+                html_content = response.content
+                soup = BeautifulSoup(html_content, 'html.parser')
+
+                # get the next page url
+                url = soup.find('div', class_='older').find('a').get('href')
+                url = f'https://artplus.squarespace.com{url}'
+
+                container = soup.find('div', class_='blog-basic-grid')
+
+                articles = container.find_all('div', class_='blog-basic-grid--text')
+                for article in articles:
+                    _datestr = article.find('time').text
+                    _date = datetime.strptime(_datestr, '%m/%d/%y').date()
+                    # st.write(_date)
+
+                    if _date > en_date:
+                        continue
+                    
+                    elif _date >= st_date and _date <= en_date:
+                        element = article.find('h1', class_='blog-title')
+                        _title = element.find('a').text
+                        _url = element.find('a').get('href')
+                        _url = f'https://artplus.squarespace.com{_url}'
+
+                        _dates.append(_date)
+                        _titles.append(_title)
+                        _urls.append(_url)
+                
+                    elif _date < st_date:
+                        status = 'break'
+                        break
+                
+            else:
+                st.write(response.status_code)
 
         
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
