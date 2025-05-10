@@ -61,6 +61,7 @@ def bil(my_range):
                     break
                 elif response.status_code == 202:
                     st.error('Website is loading very slow, consider manually checking the site')
+                    break
                 else:
                     st.write(response.status_code)
             
