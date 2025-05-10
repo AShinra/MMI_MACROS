@@ -98,7 +98,7 @@ def scraper_landing():
                     st.dataframe(links_collected, hide_index=True)
             
             elif st.session_state['pub_sel_radio'] == 'Bilyonaryo':
-                links_collected = bil(my_range)
+                links_collected = bil(my_range, _timer)
 
                 with col2:
                     st.header(f'Links Collected - {links_collected.shape[0]}')

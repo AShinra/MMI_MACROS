@@ -8,7 +8,7 @@ import random
 from datetime import datetime
 from Tools import convert_to_date, user_agents
 
-def bil(my_range):
+def bil(my_range, _timer):
 
     # list of user-agents
     userAgents = user_agents()
@@ -39,7 +39,7 @@ def bil(my_range):
                 url = f'https://bilyonaryo.com/{_Y}/{_M}/{_D}/page/{i}/'
                 # url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
                 response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
-                time.sleep(60)
+                time.sleep(_timer)
 
                 if response.status_code == 200:
                     html_content = response.content
