@@ -47,7 +47,11 @@ def scraper_landing():
         
         col11, col12 = st.columns([3,2])
         with col11:
-            option = st.selectbox('**_:blue[SELECT PUBLICATION]_**', publication_options, key='pub_sel_radio')
+            option = st.selectbox(
+                '**_:blue[SELECT PUBLICATION]_**',
+                publication_options,
+                key='pub_sel_radio',
+                help='Select Website to Process')
         
         with col12:
             _timer = st.selectbox(
