@@ -46,28 +46,29 @@ def inq(my_range):
     en_date = datetime.strptime(my_range[1], '%Y-%m-%d').date()
     
     for k, v in urls.items():
-        response = requests.get(v, headers={'User-Agent':random.choice(userAgents)})
+        with st.spinner('Processing Website'):
+            response = requests.get(v, headers={'User-Agent':random.choice(userAgents)})
 
-        if response.status_code == 200:
-            html_content = response.content
+            if response.status_code == 200:
+                html_content = response.content
 
-            soup = BeautifulSoup(html_content, 'html.parser')
+                soup = BeautifulSoup(html_content, 'html.parser')
 
-            article_group = soup.find(id='index-wrap')
-            articles = article_group.find_all('li')
-            for article in articles:
-                _date = k.date()
-                if _date >= st_date and _date <= en_date:
-                    date_str = _date.strftime('%B %d, %Y')
-                    _title = article.find('a').text
-                    _url = article.find('a').get('href')
+                article_group = soup.find(id='index-wrap')
+                articles = article_group.find_all('li')
+                for article in articles:
+                    _date = k.date()
+                    if _date >= st_date and _date <= en_date:
+                        date_str = _date.strftime('%B %d, %Y')
+                        _title = article.find('a').text
+                        _url = article.find('a').get('href')
 
-                    if _url in _urls:
-                        continue
-                    else:
-                        _dates.append(date_str)
-                        _titles.append(_title)
-                        _urls.append(_url)
+                        if _url in _urls:
+                            continue
+                        else:
+                            _dates.append(date_str)
+                            _titles.append(_title)
+                            _urls.append(_url)
             
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
