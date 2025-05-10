@@ -48,7 +48,7 @@ def scraper_landing():
         col11, col12 = st.columns([3,1])
         with col12:
             _timer = st.selectbox(
-                '**_:blue[Delay]_**',
+                '**_:blue[DELAY]_**',
                 (0, 10, 20, 30, 40, 50, 60, 90, 120)
             )
         with col11:
