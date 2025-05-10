@@ -51,8 +51,7 @@ def scraper_landing():
         with col11:
             _timer = st.selectbox(
                 'Set Delay for slow sites',
-                (0, 10, 20, 30, 40, 50, 60, 90, 120),
-                label_visibility='hidden'
+                (0, 10, 20, 30, 40, 50, 60, 90, 120)
             )
         with col12:
             pro = st.button(label='**_:blue[PROCESS]_**', use_container_width=True)
