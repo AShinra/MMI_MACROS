@@ -39,7 +39,6 @@ def bil(my_range):
                 url = f'https://bilyonaryo.com/{_Y}/{_M}/{_D}/page/{i}/'
                 # url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
                 response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
-                time.sleep(30)
 
                 if response.status_code == 200:
                     html_content = response.content
@@ -60,6 +59,8 @@ def bil(my_range):
                         _urls.append(_url)
                 elif response.status_code == 404:
                     break
+                elif response.status_code == 202:
+                    st.error('Website is loading very slow, consider manually checking the site')
                 else:
                     st.write(response.status_code)
             
