@@ -46,7 +46,9 @@ def scraper_landing():
         my_range = ui.date_picker('DATE RANGE', mode='range', key='my_range', default_value=None)
         
         option = st.selectbox('**_:blue[SELECT PUBLICATION]_**', publication_options, key='pub_sel_radio')
-            
+
+        _timer = st.slider('Delay', min_value=0, max_value=300, step=5)
+
         pro = st.button(label='**_:blue[PROCESS]_**', use_container_width=True)
 
     if pro:
