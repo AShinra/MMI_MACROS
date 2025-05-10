@@ -35,32 +35,33 @@ def bil(my_range):
     # _day = my_range[1].split('-')[2]
     
         for i in range(1, 30):
-            url = f'https://bilyonaryo.com/{_Y}/{_M}/{_D}/page/{i}/'
-            # url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
-            response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
-            time.sleep(30)
+            with st.spinner('Processing Website', show_time=True):
+                url = f'https://bilyonaryo.com/{_Y}/{_M}/{_D}/page/{i}/'
+                # url = f'https://bilyonaryo.com/{_year}/{_month}/{_day}/page/{i}/'
+                response = requests.get(url, headers={'User-Agent':random.choice(userAgents)})
+                time.sleep(30)
 
-            if response.status_code == 200:
-                html_content = response.content
+                if response.status_code == 200:
+                    html_content = response.content
 
-                soup = BeautifulSoup(html_content, 'html.parser')
+                    soup = BeautifulSoup(html_content, 'html.parser')
 
-                article_group = soup.find(class_='elementor-posts-container')
-                articles = article_group.find_all('article')
-                for article in articles:
-                    _title = article.find('h3').text.strip()
-                    _url = article.find('a').get('href')
-                    _datestr = article.find(class_='elementor-post-date').text.strip()
-                    _date = convert_to_date(_datestr)
-                    
-                    # if _url not in _urls:
-                    _dates.append(_date)
-                    _titles.append(_title)
-                    _urls.append(_url)
-            elif response.status_code == 404:
-                break
-            else:
-                st.write(response.status_code)
+                    article_group = soup.find(class_='elementor-posts-container')
+                    articles = article_group.find_all('article')
+                    for article in articles:
+                        _title = article.find('h3').text.strip()
+                        _url = article.find('a').get('href')
+                        _datestr = article.find(class_='elementor-post-date').text.strip()
+                        _date = convert_to_date(_datestr)
+                        
+                        # if _url not in _urls:
+                        _dates.append(_date)
+                        _titles.append(_title)
+                        _urls.append(_url)
+                elif response.status_code == 404:
+                    break
+                else:
+                    st.write(response.status_code)
             
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     df = df.drop_duplicates(subset=['URL'])
