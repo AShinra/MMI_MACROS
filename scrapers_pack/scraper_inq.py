@@ -45,8 +45,8 @@ def inq(my_range):
     st_date = datetime.strptime(my_range[0], '%Y-%m-%d').date()
     en_date = datetime.strptime(my_range[1], '%Y-%m-%d').date()
     
-    for k, v in urls.items():
-        with st.spinner('Processing Website'):
+    with st.spinner('Processing Website'):
+        for k, v in urls.items():
             response = requests.get(v, headers={'User-Agent':random.choice(userAgents)})
 
             if response.status_code == 200:
