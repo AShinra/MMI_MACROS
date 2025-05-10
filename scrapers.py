@@ -45,7 +45,7 @@ def scraper_landing():
 
         my_range = ui.date_picker('DATE RANGE', mode='range', key='my_range', default_value=None)
         
-        col11, col12 = st.columns([3,1])
+        col11, col12 = st.columns([3,2])
         with col11:
             option = st.selectbox('**_:blue[SELECT PUBLICATION]_**', publication_options, key='pub_sel_radio')
         
