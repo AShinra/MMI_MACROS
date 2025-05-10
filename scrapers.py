@@ -47,7 +47,10 @@ def scraper_landing():
         
         option = st.selectbox('**_:blue[SELECT PUBLICATION]_**', publication_options, key='pub_sel_radio')
 
-        _timer = st.slider('Delay', min_value=0, max_value=300, step=5)
+        _timer = st.selectbox(
+            'Set Delay for slow sites',
+            (0, 10, 20, 30, 40, 50, 60, 90, 120)
+        )
 
         pro = st.button(label='**_:blue[PROCESS]_**', use_container_width=True)
 
