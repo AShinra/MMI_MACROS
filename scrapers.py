@@ -45,10 +45,10 @@ def scraper_landing():
 
         my_range = ui.date_picker('DATE RANGE', mode='range', key='my_range', default_value=None)
         
-        col11, col12 = st.columns(2)
+        col11, col12 = st.columns([3,1])
         with col12:
             _timer = st.selectbox(
-                'Set Delay for slow sites',
+                '**_:blue[Delay]_**',
                 (0, 10, 20, 30, 40, 50, 60, 90, 120)
             )
         with col11:
