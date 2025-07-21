@@ -33,7 +33,7 @@ def local_fetcher_archive():
 
     with col2:
         st.header(pub_selection)
-        date_selected = st.date_input('Select Date').isoformat()
+        date_selected = st.date_input('Select Date', format="MMM-DD-YYYY").isoformat()
 
         client = get_gsheet_client()
 
