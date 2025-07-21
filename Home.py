@@ -21,8 +21,8 @@ if __name__ == '__main__':
     with st.sidebar:
         selected = option_menu(
             menu_title='',
-            options=['Home', 'Templates', 'Fetcher'],
-            icons=['house', 'file-ruled', 'link'],
+            options=['Home', 'Templates', 'Fetcher', 'Archive'],
+            icons=['house', 'file-ruled', 'link', 'archive'],
             orientation='vertical',
             default_index=0
         )
