@@ -32,12 +32,15 @@ def local_fetcher_archive():
         sheet_name = "PNA"
 
     with col2:
-        st.header(pub_selection)
 
         cola, colb = st.columns([0.25, 0.75])
         
         with cola:
             date_selected = st.date_input('Select Date', format="YYYY-MM-DD").isoformat()
+        
+        with colb:
+            st.header(pub_selection)
+
 
         client = get_gsheet_client()
 
