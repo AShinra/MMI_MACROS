@@ -26,6 +26,7 @@ def local_fetcher_archive():
         df = pd.DataFrame(value_list)
         df.columns = df.iloc[0]
         df = df[1:]
+        st.dataframe(df)
 
     except Exception as e:
         st.error(f"Error accessing Google Sheet: {e}")
