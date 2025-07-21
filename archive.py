@@ -5,7 +5,7 @@ import pandas as pd
 
 def local_fetcher_archive():
 
-    col1, col2 = st.columns(2, border=True)
+    col1, col2 = st.columns([0.25, 0.75], border=True)
 
     with col1:
         pub_selection = st.radio(
@@ -29,7 +29,7 @@ def local_fetcher_archive():
             df = pd.DataFrame(value_list)
             df.columns = df.iloc[0]
             df = df[1:]
-            st.dataframe(df)
+            st.dataframe(df, use_container_width=True)
 
         except Exception as e:
             st.error(f"Error accessing Google Sheet: {e}")
