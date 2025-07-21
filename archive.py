@@ -1,5 +1,6 @@
 import streamlit as st
 from creds import get_gsheet_client
+import pandas as pd
 
 
 def local_fetcher_archive():
@@ -22,7 +23,9 @@ def local_fetcher_archive():
         sheet = client.open_by_key(sheet_id)
         value_list = sheet.worksheet(sheet_name).get_all_values()
         # values_list = sheet.sheet1.row_values(1)
-        st.dataframe(value_list)
+        df = pd.DataFrame(value_list)
+        df.columns = df.iloc[0]
+        df = df[1:]
 
     except Exception as e:
         st.error(f"Error accessing Google Sheet: {e}")
