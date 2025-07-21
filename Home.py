@@ -21,11 +21,20 @@ if __name__ == '__main__':
     with st.sidebar:
         selected = option_menu(
             menu_title='',
-            options=['Home', 'Templates', 'Fetcher', 'Parser', 'Test'],
-            icons=['house', 'file-ruled', 'link', 'text-paragraph', 'file-ruled'],
+            options=['Home', 'Templates', 'Fetcher'],
+            icons=['house', 'file-ruled', 'link'],
             orientation='vertical',
             default_index=0
         )
+    
+    # with st.sidebar:
+    #     selected = option_menu(
+    #         menu_title='',
+    #         options=['Home', 'Templates', 'Fetcher', 'Parser', 'Test'],
+    #         icons=['house', 'file-ruled', 'link', 'text-paragraph', 'file-ruled'],
+    #         orientation='vertical',
+    #         default_index=0
+    #     )
     
     if selected == 'Templates':
         template_landing()
@@ -33,11 +42,8 @@ if __name__ == '__main__':
     elif selected == 'Fetcher':
         scraper_landing()
     
-    elif selected == 'Parser':
-        parsers_landing()
+    # elif selected == 'Parser':
+    #     parsers_landing()
     
-    elif selected == 'Test':
-        main_scraper()
-
-
-    
+    # elif selected == 'Test':
+    #     main_scraper()
