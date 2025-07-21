@@ -5,6 +5,7 @@ from templates import template_landing
 from scrapers import scraper_landing
 from parser import parsers_landing
 from test_scraper import main_scraper
+from archive import local_fetcher_archive
 
 
 
@@ -39,8 +40,11 @@ if __name__ == '__main__':
     if selected == 'Templates':
         template_landing()
     
-    elif selected == 'Fetcher':
+    if selected == 'Fetcher':
         scraper_landing()
+    
+    if selected == 'Archive':
+        local_fetcher_archive()
     
     # elif selected == 'Parser':
     #     parsers_landing()
