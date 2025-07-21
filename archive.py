@@ -46,6 +46,7 @@ def local_fetcher_archive():
             df = pd.DataFrame(value_list)
             df.columns = df.iloc[0]
             df = df[1:]
+            df['ARTICLE_DATE'] = pd.to_datetime(df['ARTICLE_DATE'])
             df = df[df['ARTICLE_DATE'] == date_selected]
             st.dataframe(df, use_container_width=True, hide_index=True)
 
