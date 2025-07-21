@@ -17,16 +17,7 @@ def local_fetcher_archive():
                      'GMA',
                      'PNA']
         )
-        # pub_selection = st.radio(
-        #     'Publication',
-        #     options=['Manila Bulletin',
-        #              'Philippine Star',
-        #              'Daily Tribune',
-        #              'ABS CBN',
-        #              'GMA',
-        #              'PNA'])
-        
-    
+            
     if pub_selection == 'Manila Bulletin':
         sheet_name = "Manila Bulletin"
     elif pub_selection == 'Philippine Star':
