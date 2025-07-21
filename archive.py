@@ -3,9 +3,7 @@ from creds import get_gsheet_client
 import pandas as pd
 
 
-def local_fetcher_archive():
-
-    st.title('Local Fetcher Archive')
+def local_fetcher_archive():   
 
     col1, col2 = st.columns([0.25, 0.75])
 
