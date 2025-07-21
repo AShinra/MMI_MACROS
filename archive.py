@@ -20,13 +20,11 @@ def local_fetcher_archive():
         # sheet = client.open("Your Google Sheet Name").sheet1  # Update with your sheet name
         sheet_id = "1yU-_jdBAF4qYfdM9-dON0neMc77NF4VeDdeNpKlx79A"
         sheet = client.open_by_key(sheet_id)
-        value_list = sheet.worksheet(sheet_name).row_values(1)
+        value_list = sheet.worksheet(sheet_name).row_values
         # values_list = sheet.sheet1.row_values(1)
-        st.write(value_list)
+        st.dataframe(value_list)
 
     except Exception as e:
         st.error(f"Error accessing Google Sheet: {e}")
-
-
 
     return
