@@ -16,6 +16,7 @@ def local_fetcher_archive():
                      'ABS CBN',
                      'GMA',
                      'PNA'])
+        
     
     if pub_selection == 'Manila Bulletin':
         sheet_name = "Manila Bulletin"
@@ -32,6 +33,7 @@ def local_fetcher_archive():
 
     with col2:
         st.header(pub_selection)
+        date_selected = st.date_input
 
         client = get_gsheet_client()
 
@@ -44,6 +46,7 @@ def local_fetcher_archive():
             df = pd.DataFrame(value_list)
             df.columns = df.iloc[0]
             df = df[1:]
+            df = df[df['ARTICLE_DATE'] == date_selected]
             st.dataframe(df, use_container_width=True, hide_index=True)
 
         except Exception as e:
