@@ -5,6 +5,8 @@ import pandas as pd
 
 def local_fetcher_archive():
 
+    st.title('Local Fetcher Archive')
+
     col1, col2 = st.columns([0.25, 0.75])
 
     with col1:
