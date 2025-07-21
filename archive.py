@@ -10,12 +10,25 @@ def local_fetcher_archive():
     with col1:
         pub_selection = st.radio(
             'Publication',
-            options=['Manila Bulletin', 'Philippine Star'])
+            options=['Manila Bulletin',
+                     'Philippine Star',
+                     'Daily Tribune',
+                     'ABS CBN',
+                     'GMA',
+                     'PNA'])
     
     if pub_selection == 'Manila Bulletin':
         sheet_name = "Manila Bulletin"
     elif pub_selection == 'Philippine Star':
         sheet_name = "Philippine Star"
+    elif pub_selection == 'Daily Tribune':
+        sheet_name = "Daily Tribune"
+    elif pub_selection == 'ABS CBN':
+        sheet_name = "ABS CBN"
+    elif pub_selection == 'GMA':
+        sheet_name = "GMA"
+    elif pub_selection == 'PNA':
+        sheet_name = "PNA"
 
     with col2:
         st.header(pub_selection)
