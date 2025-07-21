@@ -4,6 +4,10 @@ from creds import get_gsheet_client
 
 def local_fetcher_archive():
 
+    pub_selection = st.radio(
+        'Publication',
+        options=['Manila Bulletin', 'Philippine Star'])
+
     client = get_gsheet_client()
 
     try:
