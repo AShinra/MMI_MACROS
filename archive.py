@@ -5,17 +5,26 @@ import pandas as pd
 
 def local_fetcher_archive():
 
-    col1, col2 = st.columns([0.25, 0.75], border=True)
+    col1, col2 = st.columns([0.25, 0.75])
 
     with col1:
-        pub_selection = st.radio(
-            'Publication',
+        pub_selection = st.selectbox(
+            'Select Publication',
             options=['Manila Bulletin',
                      'Philippine Star',
                      'Daily Tribune',
                      'ABS CBN',
                      'GMA',
-                     'PNA'])
+                     'PNA']
+        )
+        # pub_selection = st.radio(
+        #     'Publication',
+        #     options=['Manila Bulletin',
+        #              'Philippine Star',
+        #              'Daily Tribune',
+        #              'ABS CBN',
+        #              'GMA',
+        #              'PNA'])
         
     
     if pub_selection == 'Manila Bulletin':
