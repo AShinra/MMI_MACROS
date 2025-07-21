@@ -18,6 +18,8 @@ def local_fetcher_archive():
         sheet_name = "Philippine Star"
 
     with col2:
+        st.header(pub_selection)
+
         client = get_gsheet_client()
 
         try:
