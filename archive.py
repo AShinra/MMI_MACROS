@@ -40,25 +40,26 @@ def local_fetcher_archive():
             btn_submit = st.button('Check Date', use_container_width=True)
         
         if btn_submit:
-            client = get_gsheet_client()
+            with st.spinner('Checking Archives.....'):
+                client = get_gsheet_client()
 
-            try:
-                # sheet = client.open("Your Google Sheet Name").sheet1  # Update with your sheet name
-                sheet_id = "1yU-_jdBAF4qYfdM9-dON0neMc77NF4VeDdeNpKlx79A"
-                sheet = client.open_by_key(sheet_id)
-                value_list = sheet.worksheet(sheet_name).get_all_values()
-                # values_list = sheet.sheet1.row_values(1)
-                df = pd.DataFrame(value_list)
-                df.columns = df.iloc[0]
-                df = df[1:]
-                df['ARTICLE_DATE'] = pd.to_datetime(df['ARTICLE_DATE'])
-                df = df[df['ARTICLE_DATE'] == date_selected]
+                try:
+                    # sheet = client.open("Your Google Sheet Name").sheet1  # Update with your sheet name
+                    sheet_id = "1yU-_jdBAF4qYfdM9-dON0neMc77NF4VeDdeNpKlx79A"
+                    sheet = client.open_by_key(sheet_id)
+                    value_list = sheet.worksheet(sheet_name).get_all_values()
+                    # values_list = sheet.sheet1.row_values(1)
+                    df = pd.DataFrame(value_list)
+                    df.columns = df.iloc[0]
+                    df = df[1:]
+                    df['ARTICLE_DATE'] = pd.to_datetime(df['ARTICLE_DATE'])
+                    df = df[df['ARTICLE_DATE'] == date_selected]
 
-                
-                st.header(f'{pub_selection} Article Count - {df.shape[0]}')
-                st.dataframe(df, use_container_width=True, hide_index=True)
+                    
+                    st.header(f'{pub_selection} Article Count - {df.shape[0]}')
+                    st.dataframe(df, use_container_width=True, hide_index=True)
 
-            except Exception as e:
-                st.error(f"Error accessing Google Sheet: {e}")
+                except Exception as e:
+                    st.error(f"Error accessing Google Sheet: {e}")
 
     return
