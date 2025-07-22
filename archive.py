@@ -37,7 +37,7 @@ def local_fetcher_archive():
         
         with cola:
             date_selected = st.date_input('Select Date', format="YYYY-MM-DD").isoformat()
-            btn_submit = st.button('Check Date')
+            btn_submit = st.button('Check Date', use_container_width=True)
         
         client = get_gsheet_client()
 
@@ -53,9 +53,8 @@ def local_fetcher_archive():
             df['ARTICLE_DATE'] = pd.to_datetime(df['ARTICLE_DATE'])
             df = df[df['ARTICLE_DATE'] == date_selected]
 
-            with colb:
-                st.header(f'{pub_selection} - {df.shape[0]}')
-
+            
+            st.header(f'{pub_selection} Article Count - {df.shape[0]}')
             st.dataframe(df, use_container_width=True, hide_index=True)
 
         except Exception as e:
