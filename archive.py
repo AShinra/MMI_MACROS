@@ -37,6 +37,7 @@ def local_fetcher_archive():
         
         with cola:
             date_selected = st.date_input('Select Date', format="YYYY-MM-DD").isoformat()
+            btn_submit = st.button('Check Date')
         
         client = get_gsheet_client()
 
