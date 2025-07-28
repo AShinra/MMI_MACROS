@@ -10,7 +10,7 @@ from Tools import user_agents
 # import cloudscraper
 
 
-def bm(my_range):
+def bm(my_range, timer):
 
     # scraper = cloudscraper.create_scraper()
 
@@ -41,6 +41,7 @@ def bm(my_range):
                     'User-Agent':random.choice(userAgents),
                     'Referer': 'https://www.google.com/',  # Mimic a search engine referral
                     'Accept-Language': 'en-US,en;q=0.9'})
+                time.sleep(_timer)
                 
                 # response = scraper.get(url, headers={
                 #     'User-Agent':random.choice(userAgents),
