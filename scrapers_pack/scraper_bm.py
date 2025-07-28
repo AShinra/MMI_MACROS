@@ -41,7 +41,7 @@ def bm(my_range, timer):
                     'User-Agent':random.choice(userAgents),
                     'Referer': 'https://www.google.com/',  # Mimic a search engine referral
                     'Accept-Language': 'en-US,en;q=0.9'})
-                time.sleep(_timer)
+                time.sleep(timer)
                 
                 # response = scraper.get(url, headers={
                 #     'User-Agent':random.choice(userAgents),
