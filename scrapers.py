@@ -67,13 +67,11 @@ def scraper_landing():
             st.error('Please indicate date range')
         else:
             if st.session_state['pub_sel_radio'] == 'Manila Standard':
-                'aa'
-                # st.write('fixing')
-                # links_collected = mst(my_range)
+                links_collected = mst(my_range)
 
-                # with col2:
-                #     st.header(f'Links Collected - {links_collected.shape[0]}')
-                #     st.dataframe(links_collected, hide_index=True)
+                with col2:
+                    st.header(f'Links Collected - {links_collected.shape[0]}')
+                    st.dataframe(links_collected, hide_index=True)
                             
             elif st.session_state['pub_sel_radio'] == 'Manila Times':
                 links_collected = mt(my_range)
@@ -136,24 +134,23 @@ def scraper_landing():
                 with col2:
                     st.error('Development Phase')
 
-        try:
-            links_collected.to_excel('scrapers_pack/fetcher_temp/temp.xlsx', index=None)
 
-            wb = openpyxl.load_workbook('scrapers_pack/fetcher_temp/temp.xlsx')
-            ws = wb.active
+        links_collected.to_excel('scrapers_pack/fetcher_temp/temp.xlsx', index=None)
 
-            for row in ws.iter_rows(min_col=3, max_col=3, min_row=2):
-                for cl in row:
-                    cl.hyperlink = cl.value
+        wb = openpyxl.load_workbook('scrapers_pack/fetcher_temp/temp.xlsx')
+        ws = wb.active
 
-            wb.save('scrapers_pack/fetcher_temp/temp.xlsx')
-            wb.close()
-            _file = 'scrapers_pack/fetcher_temp/temp.xlsx'
+        for row in ws.iter_rows(min_col=3, max_col=3, min_row=2):
+            for cl in row:
+                cl.hyperlink = cl.value
 
-            result_file = open(_file, 'rb')
-            col1, col2, col3 = st.columns(3)
+        wb.save('scrapers_pack/fetcher_temp/temp.xlsx')
+        wb.close()
+        _file = 'scrapers_pack/fetcher_temp/temp.xlsx'
 
-            with col2:
-                st.download_button(label='📥 Download Current Result', data=result_file ,file_name= f'Fetched_URL.xlsx',use_container_width=True)
-        except:
-            pass    
+        result_file = open(_file, 'rb')
+        col1, col2, col3 = st.columns(3)
+
+        with col2:
+            st.download_button(label='📥 Download Current Result', data=result_file ,file_name= f'Fetched_URL.xlsx',use_container_width=True)
+
