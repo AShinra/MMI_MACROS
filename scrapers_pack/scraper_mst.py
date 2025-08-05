@@ -24,8 +24,9 @@ def mst(my_range):
         soup = BeautifulSoup(html_content, 'html.parser')
 
         section_containers = soup.find_all(class_='menu')
-
-        st.write(len(section_containers))
+        for section_container in section_containers:
+            _urls = section_container.find_all('a')
+            st.write(_urls)
     
 
 '''
