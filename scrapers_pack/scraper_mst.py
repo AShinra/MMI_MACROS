@@ -32,8 +32,10 @@ def mst(my_range):
             if 'category' in x:
                 if 'https' not in x:
                     section_links.append(f'https://manilastandard.net{x}')
-                else:
-                    section_links.append(x)
+                # else:
+                #     section_links.append(x)
+
+        st.write(section_links)
 
         for section_link in section_links:
             with st.spinner(f'Processing {section_link}'):
