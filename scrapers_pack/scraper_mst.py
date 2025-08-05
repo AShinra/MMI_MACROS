@@ -26,10 +26,16 @@ def mst(my_range):
         footer_container = soup.find(class_='td-footer-wrap')
         st.write(footer_container)
 
-        section_containers = footer_container.find_all(class_='menu')
-        for section_container in section_containers:
-            menu_item = section_container.find_all(class_='menu-item')
-            st.write(len(menu_item))
+        _urls = footer_container.find_all('a')
+        for _url in _urls:
+            st.write(_url.get('href'))
+
+        # section_containers = footer_container.find_all(class_='wpb_wrapper')
+        # st.write(section_containers)
+
+        # for section_container in section_containers:
+        #     menu_item = section_container.find_all(class_='menu-item')
+        #     st.write(len(menu_item))
     
 
 '''
