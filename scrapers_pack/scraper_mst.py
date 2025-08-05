@@ -34,8 +34,8 @@ def mst(my_range):
                     section_links.append(f'https://manilastandard.net{x}')                        
 
         for section_link in section_links:
-            with st.spinner(f'Processing {section_link}'):
-                for i in range(1, 11):
+            with st.spinner('Processing Section Pages'):
+                for i in range(1, 31):
                     response = requests.get(f'{section_link}/page/{i}')
 
                     if response.status_code == 200:
