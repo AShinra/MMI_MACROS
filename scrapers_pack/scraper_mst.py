@@ -51,8 +51,8 @@ def mst(my_range):
                         for article in articles:
                             _datestr = article.find('time').text
                             _date = datetime.strptime(_datestr, '%B %d, %Y, %I:%M %p').date()
-                            _title = article.find('a').text
-                            _url = article.find('a').get('href')
+                            _title = article.find(class_='entry-title').text
+                            _url = _title.find('a').get('href')
                             _url = re.sub('www.', '', _url)
                             
                             if _date >= st_date and _date <= en_date:
