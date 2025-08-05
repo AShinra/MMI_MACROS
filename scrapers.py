@@ -135,23 +135,24 @@ def scraper_landing():
                 with col2:
                     st.error('Development Phase')
 
+        try:
+            links_collected.to_excel('scrapers_pack/fetcher_temp/temp.xlsx', index=None)
 
-        links_collected.to_excel('scrapers_pack/fetcher_temp/temp.xlsx', index=None)
+            wb = openpyxl.load_workbook('scrapers_pack/fetcher_temp/temp.xlsx')
+            ws = wb.active
 
-        wb = openpyxl.load_workbook('scrapers_pack/fetcher_temp/temp.xlsx')
-        ws = wb.active
+            for row in ws.iter_rows(min_col=3, max_col=3, min_row=2):
+                for cl in row:
+                    cl.hyperlink = cl.value
 
-        for row in ws.iter_rows(min_col=3, max_col=3, min_row=2):
-            for cl in row:
-                cl.hyperlink = cl.value
+            wb.save('scrapers_pack/fetcher_temp/temp.xlsx')
+            wb.close()
+            _file = 'scrapers_pack/fetcher_temp/temp.xlsx'
 
-        wb.save('scrapers_pack/fetcher_temp/temp.xlsx')
-        wb.close()
-        _file = 'scrapers_pack/fetcher_temp/temp.xlsx'
+            result_file = open(_file, 'rb')
+            col1, col2, col3 = st.columns(3)
 
-        result_file = open(_file, 'rb')
-        col1, col2, col3 = st.columns(3)
-
-        with col2:
-            st.download_button(label='📥 Download Current Result', data=result_file ,file_name= f'Fetched_URL.xlsx',use_container_width=True)
-
+            with col2:
+                st.download_button(label='📥 Download Current Result', data=result_file ,file_name= f'Fetched_URL.xlsx',use_container_width=True)
+        except:
+            pass    
