@@ -23,7 +23,7 @@ def mst(my_range):
         html_content = response.content
         soup = BeautifulSoup(html_content, 'html.parser')
 
-        section_containers = soup.findAll('.menu')
+        section_containers = soup.find_all(class_='menu')
 
         st.write(len(section_containers))
     
