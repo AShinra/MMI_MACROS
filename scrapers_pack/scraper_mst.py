@@ -15,6 +15,7 @@ def mst(my_range):
     _dates = []
     _titles = []
     _urls = []
+    section_links = []
 
     url = 'https://www.manilastandard.net'
     response = requests.get(url)
@@ -30,16 +31,33 @@ def mst(my_range):
             x = _url.get('href')
             if 'category' in x:
                 if 'https' not in x:
-                    st.write(f'https://manilastandard.net{x}')
+                    section_links.append(f'https://manilastandard.net{x}')
                 else:
-                    st.write(x)
+                    section_links.append(x)
 
-        # section_containers = footer_container.find_all(class_='wpb_wrapper')
-        # st.write(section_containers)
+        for section_link in section_links:
+            response = requests.get(section_link)
 
-        # for section_container in section_containers:
-        #     menu_item = section_container.find_all(class_='menu-item')
-        #     st.write(len(menu_item))
+            if response.status_code == 200:
+                html_content = response.content
+
+                soup = BeautifulSoup(html_content, 'html.parser')
+
+                articles = soup.select('.td-module-meta-info')
+                for article in articles:
+                    _datestr = article.find('time').text
+                    _date = datetime.strptime(_datestr, '%B %d, %Y, %I:%M %p').date()
+                    _title = article.find('a').text
+                    _url = article.find('a').get('href')
+                    _url = re.sub('www.', '', _url)
+                    
+                    if _date >= st_date and _date <= en_date:
+                        if _url not in _urls:
+                            _dates.append(_datestr)
+                            _titles.append(_title)
+                            _urls.append(_url)
+
+        return pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
 
 '''
