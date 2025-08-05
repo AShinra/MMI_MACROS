@@ -35,28 +35,29 @@ def mst(my_range):
                 else:
                     section_links.append(x)
 
-        for section_link in section_links:
-            with st.spinner(f'Processing {section_link}'):
-                response = requests.get(section_link)
+        for section_link in section_links[:2]:
+            for i in range(1, 31):
+                with st.spinner(f'Processing {section_link}'):
+                    response = requests.get(f'{section_link}/page/{i}')
 
-                if response.status_code == 200:
-                    html_content = response.content
+                    if response.status_code == 200:
+                        html_content = response.content
 
-                    soup = BeautifulSoup(html_content, 'html.parser')
+                        soup = BeautifulSoup(html_content, 'html.parser')
 
-                    articles = soup.select('.td-module-meta-info')
-                    for article in articles:
-                        _datestr = article.find('time').text
-                        _date = datetime.strptime(_datestr, '%B %d, %Y, %I:%M %p').date()
-                        _title = article.find('a').text
-                        _url = article.find('a').get('href')
-                        _url = re.sub('www.', '', _url)
-                        
-                        if _date >= st_date and _date <= en_date:
-                            if _url not in _urls:
-                                _dates.append(_datestr)
-                                _titles.append(_title)
-                                _urls.append(_url)
+                        articles = soup.select('.td-module-meta-info')
+                        for article in articles:
+                            _datestr = article.find('time').text
+                            _date = datetime.strptime(_datestr, '%B %d, %Y, %I:%M %p').date()
+                            _title = article.find('a').text
+                            _url = article.find('a').get('href')
+                            _url = re.sub('www.', '', _url)
+                            
+                            if _date >= st_date and _date <= en_date:
+                                if _url not in _urls:
+                                    _dates.append(_datestr)
+                                    _titles.append(_title)
+                                    _urls.append(_url)
 
         return pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
