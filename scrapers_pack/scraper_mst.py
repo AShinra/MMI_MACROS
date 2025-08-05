@@ -35,7 +35,7 @@ def mst(my_range):
                 else:
                     section_links.append(x)
 
-        for section_link in section_links:
+        for section_link in section_links[:2]:
             response = requests.get(section_link)
 
             if response.status_code == 200:
