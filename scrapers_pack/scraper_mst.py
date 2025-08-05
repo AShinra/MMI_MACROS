@@ -24,11 +24,12 @@ def mst(my_range):
         soup = BeautifulSoup(html_content, 'html.parser')
         
         footer_container = soup.find(class_='td-footer-wrap')
-        st.write(footer_container)
-
+        
         _urls = footer_container.find_all('a')
         for _url in _urls:
-            st.write(_url.get('href'))
+            x = _url.get('href')
+            if 'category' in x:
+                st.write(x)
 
         # section_containers = footer_container.find_all(class_='wpb_wrapper')
         # st.write(section_containers)
