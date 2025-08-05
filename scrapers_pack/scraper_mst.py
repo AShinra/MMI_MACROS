@@ -24,10 +24,11 @@ def mst(my_range):
         soup = BeautifulSoup(html_content, 'html.parser')
         
         footer_container = soup.find(class_='td-footer-wrap')
+        st.write(footer_container)
 
         section_containers = footer_container.find_all(class_='menu')
         for section_container in section_containers:
-            menu_item = section_container.find_all(class_='menu-news-ms-container')
+            menu_item = section_container.find_all(class_='menu-item')
             st.write(len(menu_item))
     
 
