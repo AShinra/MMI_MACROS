@@ -58,7 +58,7 @@ def mst(my_range):
                                 _titles.append(_title)
                                 _urls.append(_url)
 
-        return pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls}).sort_values(ascending=False)
+        return pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
 
 '''
