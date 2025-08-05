@@ -27,7 +27,7 @@ def mst(my_range):
 
         section_containers = footer_container.find_all(class_='menu')
         for section_container in section_containers:
-            menu_item = section_container.find_all(class_='menu')
+            menu_item = section_container.find_all(class_='menu-news-ms-container')
             st.write(len(menu_item))
     
 
