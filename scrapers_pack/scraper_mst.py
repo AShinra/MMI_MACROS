@@ -25,7 +25,7 @@ def mst(my_range):
 
         section_containers = soup.find_all('.menu')
 
-        st.write(section_containers)
+        st.write(len(section_containers))
     
 
 '''
