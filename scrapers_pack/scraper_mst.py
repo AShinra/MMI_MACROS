@@ -29,7 +29,10 @@ def mst(my_range):
         for _url in _urls:
             x = _url.get('href')
             if 'category' in x:
-                st.write(x)
+                if 'https' not in x:
+                    st.write(f'https://manilastandard.net{x}')
+                else:
+                    st.write(x)
 
         # section_containers = footer_container.find_all(class_='wpb_wrapper')
         # st.write(section_containers)
