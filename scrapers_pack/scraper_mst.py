@@ -26,9 +26,9 @@ def mst(my_range):
         
         footer_container = soup.find(class_='td-footer-wrap')
         
-        _urls = footer_container.find_all('a')
-        for _url in _urls:
-            x = _url.get('href')
+        _links = footer_container.find_all('a')
+        for _link in _links:
+            x = _link.get('href')
             if 'category' in x:
                 if 'https' not in x:
                     section_links.append(f'https://manilastandard.net{x}')
