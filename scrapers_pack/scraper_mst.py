@@ -36,8 +36,8 @@ def mst(my_range):
                     section_links.append(x)
 
         for section_link in section_links[:2]:
-            for i in range(1, 31):
-                with st.spinner(f'Processing {section_link}'):
+            with st.spinner(f'Processing {section_link}'):
+                for i in range(1, 31):
                     response = requests.get(f'{section_link}/page/{i}')
 
                     if response.status_code == 200:
