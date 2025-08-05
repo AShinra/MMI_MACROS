@@ -47,7 +47,7 @@ def mst(my_range):
 
                         soup = BeautifulSoup(html_content, 'html.parser')
 
-                        articles = soup.select('.td-module-meta-info')
+                        articles = soup.find_all(class_='td-module-meta-info')
                         for article in articles:
                             _datestr = article.find('time').text
                             _date = datetime.strptime(_datestr, '%B %d, %Y, %I:%M %p').date()
