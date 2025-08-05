@@ -67,11 +67,12 @@ def scraper_landing():
             st.error('Please indicate date range')
         else:
             if st.session_state['pub_sel_radio'] == 'Manila Standard':
-                links_collected = mst(my_range)
+                st.write('fixing')
+                # links_collected = mst(my_range)
 
-                with col2:
-                    st.header(f'Links Collected - {links_collected.shape[0]}')
-                    st.dataframe(links_collected, hide_index=True)
+                # with col2:
+                #     st.header(f'Links Collected - {links_collected.shape[0]}')
+                #     st.dataframe(links_collected, hide_index=True)
                             
             elif st.session_state['pub_sel_radio'] == 'Manila Times':
                 links_collected = mt(my_range)
