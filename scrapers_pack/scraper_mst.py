@@ -15,6 +15,20 @@ def mst(my_range):
     _dates = []
     _titles = []
     _urls = []
+
+    url = 'https://www.manilastandard.net'
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        html_content = response.content
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        section_containers = soup.find_all('.menu')
+
+        st.write(section_containers)
+    
+
+'''
     
 
     for i in range(1, 31):
@@ -43,3 +57,5 @@ def mst(my_range):
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
     return df
+
+    '''
