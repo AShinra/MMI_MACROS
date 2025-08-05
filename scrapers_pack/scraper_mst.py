@@ -37,7 +37,7 @@ def mst(my_range):
 
         st.write(section_links)
 
-        for section_link in section_links:
+        for section_link in section_links[:1]:
             with st.spinner(f'Processing {section_link}'):
                 for i in range(1, 11):
                     response = requests.get(f'{section_link}/page/{i}')
@@ -60,7 +60,6 @@ def mst(my_range):
                                     _dates.append(_datestr)
                                     _titles.append(_title)
                                     _urls.append(_url)
-                                    st.write(_urls)
 
         return pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
