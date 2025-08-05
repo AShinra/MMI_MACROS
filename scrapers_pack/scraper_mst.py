@@ -60,6 +60,7 @@ def mst(my_range):
                                     _dates.append(_datestr)
                                     _titles.append(_title)
                                     _urls.append(_url)
+                                    print(_urls)
 
         return pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
     
