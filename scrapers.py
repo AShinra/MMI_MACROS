@@ -67,7 +67,8 @@ def scraper_landing():
             st.error('Please indicate date range')
         else:
             if st.session_state['pub_sel_radio'] == 'Manila Standard':
-                st.write('fixing')
+                'aa'
+                # st.write('fixing')
                 # links_collected = mst(my_range)
 
                 # with col2:
