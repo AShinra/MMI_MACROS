@@ -68,15 +68,18 @@ def ps_tech(my_range, timer):
                                         if 'facebook.com/share' not in link:
                                             if 'viber://forward?text' not in link:
                                                 if link not in _urls:
-                                                    _urls.append(link)
 
                                                     _day = int(link.split('/')[-4])
                                                     _month = int(link.split('/')[-5])
                                                     _year = int(link.split('/')[-6])
                                                     _date = datetime(_year, _month, _day)
-                                                    _dates.append(_date)
 
-                                                    _titles.append(_title)
+                                                    if _date in date_list:
+                                                        _urls.append(link)
+                                                        _dates.append(_date)
+                                                        _titles.append(_title)
+                                                    else:
+                                                        pass
 
                 else:
                     st.write(response)
