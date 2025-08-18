@@ -19,7 +19,7 @@ from scrapers_pack.scraper_ttm import ttm
 from scrapers_pack.scraper_art import art
 from scrapers_pack.scraper_pstech import ps_tech
 from scrapers_pack.scraper_yugatech import yugatech
-from test_scraper_playwright import get_page_title
+
 
 def scraper_landing():
 
@@ -40,8 +40,7 @@ def scraper_landing():
         'TechTravelMonitor',
         'ArtPlus',
         'PhilstarTech',
-        'Yugatech',
-        'Test'
+        'Yugatech'
         )
 
     publication_options = tuple(sorted(publication_options))
@@ -148,15 +147,7 @@ def scraper_landing():
                 with col2:
                     st.header(f'Links Collected - {links_collected.shape[0]}')
                     st.dataframe(links_collected, hide_index=True)
-            
-            elif st.session_state['pub_sel_radio'] == 'Test':
-                get_page_title()
-                # links_collected = yugatech(my_range, _timer)
-
-                # with col2:
-                #     st.header(f'Links Collected - {links_collected.shape[0]}')
-                #     st.dataframe(links_collected, hide_index=True)
-                            
+                         
             else:
                 with col2:
                     st.error('Development Phase')
