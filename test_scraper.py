@@ -68,15 +68,17 @@ def mst():
     
 
     for i in range(1, 2):
-        url = f'https://www.yugatech.com/page/{i}/'
+        print(i)
+        url = f'https://www.technewsphilippines.com/page/{i}/'
         response = requests.get(url)
-
+        print(response.status_code)
         if response.status_code == 200:
             html_content = response.content
             soup = BeautifulSoup(html_content, 'html.parser')
+            print(soup)
             
-            container = soup.select_one('.bde-loop-list')
-            elements = container.select('.bde-loop-item')
+            container = soup.select_one('.cat-box-content')
+            elements = container.select('article')
             for element in elements:
                 _link = element.find('a').get('href')
                 print(_link)
