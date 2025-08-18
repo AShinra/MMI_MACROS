@@ -56,9 +56,9 @@ def yugatech(my_range, timer):
                         elements = container.select('.bde-loop-item')
                         for element in elements:
                             link = element.find('a').get('href')
-                            print(link)
+                            st.write(link)
                             _title = element.find('a').text
-                            print(_title)
+                            st.write(_title)
 
                             # if link not in [None, '']:
                             #     if re.search('/\d{4}/\d{2}/\d{2}/\w+', link):
