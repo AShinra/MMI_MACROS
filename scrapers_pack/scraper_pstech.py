@@ -59,7 +59,6 @@ def ps_tech(my_range, timer):
                     for _container in container:
                         elements = _container.find_all(class_='grid-base-post')
                         for element in elements:
-                            st.write(element)
                             link = element.find('a').get('href')
                             _title = element.find('a').text
                             if link not in [None, '']:
