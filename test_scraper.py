@@ -68,23 +68,30 @@ def mst():
     
 
     for i in range(1, 2):
-        url = f'https://philstartech.com/all-posts/page/{i}/'
+        url = f'https://www.yugatech.com/page/{i}/'
         response = requests.get(url)
 
         if response.status_code == 200:
             html_content = response.content
-        
             soup = BeautifulSoup(html_content, 'html.parser')
             
-            articles = soup.select('.grid-base-post')
-            print(len(articles))
-            for article in articles:
-                # _datestr = article.find('time').text
-                # _date = datetime.strptime(_datestr, '%B %d, %Y, %I:%M %p').date()
-                # _title = article.find('a').text
-                _url = article.find('a').get('href')
-                # _url = re.sub('www.', '', _url)
-                print(_url)
+            container = soup.select_one('.bde-loop-list')
+            elements = container.select('.bde-loop-item')
+            for element in elements:
+                _link = element.find('a').get('href')
+                print(_link)
+
+
+                
+            # articles = soup.select('.grid-base-post')
+            # print(len(articles))
+            # for article in articles:
+            #     # _datestr = article.find('time').text
+            #     # _date = datetime.strptime(_datestr, '%B %d, %Y, %I:%M %p').date()
+            #     # _title = article.find('a').text
+            #     _url = article.find('a').get('href')
+            #     # _url = re.sub('www.', '', _url)
+            #     print(_url)
                 
     #             if _date >= st_date and _date <= en_date:
     #                 if _url not in _urls:

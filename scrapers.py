@@ -18,6 +18,7 @@ from scrapers_pack.scraper_bil import bil
 from scrapers_pack.scraper_ttm import ttm
 from scrapers_pack.scraper_art import art
 from scrapers_pack.scraper_pstech import ps_tech
+from scrapers_pack.scraper_yugatech import yugatech
 
 def scraper_landing():
 
@@ -37,7 +38,8 @@ def scraper_landing():
         'Bilyonaryo',
         'TechTravelMonitor',
         'ArtPlus',
-        'PhilstarTech'
+        'PhilstarTech',
+        'Yugatech'
         )
 
     publication_options = tuple(sorted(publication_options))
@@ -138,6 +140,12 @@ def scraper_landing():
                     st.header(f'Links Collected - {links_collected.shape[0]}')
                     st.dataframe(links_collected, hide_index=True)
             
+            elif st.session_state['pub_sel_radio'] == 'Yugatech':
+                links_collected = yugatech(my_range, _timer)
+
+                with col2:
+                    st.header(f'Links Collected - {links_collected.shape[0]}')
+                    st.dataframe(links_collected, hide_index=True)
                             
             else:
                 with col2:
