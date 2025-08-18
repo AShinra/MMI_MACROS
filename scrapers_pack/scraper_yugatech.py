@@ -57,7 +57,7 @@ def yugatech(my_range, timer):
                         for element in elements:
                             link = element.find('a').get('href')
                             st.write(link)
-                            _title = element.find('a').text
+                            _title = element.find('h3').text
                             st.write(_title)
 
                             # if link not in [None, '']:
