@@ -28,7 +28,6 @@ def ps_tech(my_range, timer):
     # create list of dates
     D = 'D'
     date_list = pd.date_range(st_date, en_date, freq=D)
-    st.write(date_list)
 
     for _date in date_list:
         _Y = _date.year
@@ -79,7 +78,7 @@ def ps_tech(my_range, timer):
                                                         _dates.append(_date)
                                                         _titles.append(_title)
                                                     else:
-                                                        pass
+                                                        break
 
                 else:
                     st.write(response)
