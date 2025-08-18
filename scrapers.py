@@ -17,6 +17,7 @@ from scrapers_pack.scraper_bw import bw
 from scrapers_pack.scraper_bil import bil
 from scrapers_pack.scraper_ttm import ttm
 from scrapers_pack.scraper_art import art
+from scrapers_pack.scraper_pstech import ps_tech
 
 def scraper_landing():
 
@@ -35,7 +36,8 @@ def scraper_landing():
         'Malaya Business Insight',
         'Bilyonaryo',
         'TechTravelMonitor',
-        'ArtPlus'
+        'ArtPlus',
+        'PhilstarTech'
         )
 
     publication_options = tuple(sorted(publication_options))
@@ -124,6 +126,13 @@ def scraper_landing():
             
             elif st.session_state['pub_sel_radio'] == 'ArtPlus':
                 links_collected = art(my_range)
+
+                with col2:
+                    st.header(f'Links Collected - {links_collected.shape[0]}')
+                    st.dataframe(links_collected, hide_index=True)
+            
+            elif st.session_state['pub_sel_radio'] == 'PhilstarTech':
+                links_collected = ps_tech(my_range)
 
                 with col2:
                     st.header(f'Links Collected - {links_collected.shape[0]}')
