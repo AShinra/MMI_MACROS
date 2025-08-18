@@ -61,7 +61,7 @@ def yugatech(my_range, timer):
                             # _ele = _element.find('span').text
                             # st.write(_ele)
 
-                            _date = element.select('span.ee-postmeta-date').text
+                            _date = element.select('.ee-postmeta-date').text
                             st.write(f'{_date} - {_title}')
 
                             # if link not in [None, '']:
