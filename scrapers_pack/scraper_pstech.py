@@ -35,7 +35,7 @@ def ps_tech(my_range, timer):
         _D = _date.day
 
         with st.spinner('Processing Website'):
-            for i in range(1, 2):
+            for i in range(1, 31):
                 url = f'https://philstartech.com/all-posts/page/{i}/'
                 response = requests.get(url, headers={
                     'User-Agent':random.choice(userAgents),
