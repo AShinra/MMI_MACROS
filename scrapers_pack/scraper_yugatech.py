@@ -57,8 +57,11 @@ def yugatech(my_range, timer):
                         for element in elements:
                             link = element.find('a').get('href')
                             _title = element.find('h3').text
-                            _date = element.find('span.ee-postmeta-date')
-                            st.write(f'{_date} - {_title}')
+                            _element = element.find_all('li')[-1]
+                            st.write(_element)
+
+                            # _date = element.find('span.ee-postmeta-date')
+                            # st.write(f'{_date} - {_title}')
 
                             # if link not in [None, '']:
                             #     if re.search('/\d{4}/\d{2}/\d{2}/\w+', link):
