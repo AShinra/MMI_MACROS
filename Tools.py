@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 from datetime import datetime, timedelta
+import re
 
 def user_agents():
 
@@ -99,3 +100,14 @@ def bg_image():
     st.markdown(input_style, unsafe_allow_html=True)
     
     return
+
+
+def parse_date(date_str):
+
+    # Remove ordinal suffixes (st, nd, rd, th)
+    cleaned_date = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', date_str)
+
+    # Parse the cleaned date
+    parsed_date = datetime.strptime(cleaned_date, "%B %d, %Y")
+
+    return parsed_date

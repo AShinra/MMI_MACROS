@@ -6,7 +6,7 @@ import re
 import time
 import random
 from datetime import datetime
-from Tools import user_agents
+from Tools import user_agents, parse_date
 # import cloudscraper
 
 
@@ -62,6 +62,7 @@ def yugatech(my_range, timer):
                             # st.write(_ele)
 
                             _date = element.select_one('.ee-postmeta-date').text
+                            _date = parse_date(_date)
                             st.write(f'{_date} - {_title}')
 
                             # if link not in [None, '']:
