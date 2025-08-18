@@ -7,13 +7,10 @@ import time
 import random
 from datetime import datetime
 from Tools import user_agents
-from requests_html import HTMLSession
 # import cloudscraper
 
 
 def bm(my_range, timer):
-
-    
 
     # scraper = cloudscraper.create_scraper()
 
@@ -39,16 +36,12 @@ def bm(my_range, timer):
 
         with st.spinner('Processing Website'):
             for i in range(1, 10):
-                session = HTMLSession()
                 url = f'https://businessmirror.com.ph/{_Y}/{_M}/{_D}/page/{i}'
-                response = session.get(url)
-                response.html.render(timeout=20, sleep=2)
-                st.write(response.html.html)
-                # response = requests.get(url, headers={
-                #     'User-Agent':random.choice(userAgents),
-                #     'Referer': 'https://www.google.com/',  # Mimic a search engine referral
-                #     'Accept-Language': 'en-US,en;q=0.9'})
-                # st.write(BeautifulSoup(response.content, 'html.parser'))
+                response = requests.get(url, headers={
+                    'User-Agent':random.choice(userAgents),
+                    'Referer': 'https://www.google.com/',  # Mimic a search engine referral
+                    'Accept-Language': 'en-US,en;q=0.9'})
+                st.write(BeautifulSoup(response.content, 'html.parser'))
                 time.sleep(timer)
                 
                 # response = scraper.get(url, headers={
