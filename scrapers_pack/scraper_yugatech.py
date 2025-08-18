@@ -57,7 +57,7 @@ def yugatech(my_range, timer):
                         for element in elements:
                             link = element.find('a').get('href')
                             _title = element.find('h3').text
-                            _date = element.find('li.ee-postmeta-date-wrap')
+                            _date = element.find_all('li')
                             st.write(f'{_date} - {_title}')
 
                             # if link not in [None, '']:
