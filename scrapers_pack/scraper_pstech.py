@@ -81,4 +81,4 @@ def ps_tech(my_range, timer):
                                             
     # df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})  
 
-    return df
+    # return df
