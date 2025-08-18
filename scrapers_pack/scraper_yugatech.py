@@ -37,7 +37,7 @@ def yugatech(my_range, timer):
         _D = _date.day
 
         with st.spinner('Processing Website'):
-            for i in range(1, 3):
+            for i in range(1, 31):
                 if status=='break':
                     break
                 else:
