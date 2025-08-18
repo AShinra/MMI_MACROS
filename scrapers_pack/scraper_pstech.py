@@ -47,6 +47,9 @@ def ps_tech(my_range, timer):
                 #     'User-Agent':random.choice(userAgents),
                 #     'Referer': 'https://www.google.com/',  # Mimic a search engine referral
                 #     'Accept-Language': 'en-US,en;q=0.9'})
+
+                "https://philstartech.com/news/2025/08/18/14124/dost-expands-ai-projects-in-ph/"
+
                             
                 if response.status_code == 200:
                     html_content = response.content
@@ -67,9 +70,9 @@ def ps_tech(my_range, timer):
                                                 if link not in _urls:
                                                     _urls.append(link)
 
-                                                    _day = int(link.split('/')[6])
-                                                    _month = int(link.split('/')[5])
-                                                    _year = int(link.split('/')[4])
+                                                    _day = int(link.split('/')[-4])
+                                                    _month = int(link.split('/')[-5])
+                                                    _year = int(link.split('/')[-6])
                                                     _date = datetime(_year, _month, _day)
                                                     _dates.append(_date)
 
