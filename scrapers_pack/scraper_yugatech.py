@@ -57,8 +57,9 @@ def yugatech(my_range, timer):
                         for element in elements:
                             link = element.find('a').get('href')
                             _title = element.find('h3').text
-                            _element = element.find_all('li')
-                            st.write(_element)
+                            _element = element.select('li')[-1]
+                            _ele = _element.find('span')
+                            st.write(_ele)
 
                             # _date = element.find('span.ee-postmeta-date')
                             # st.write(f'{_date} - {_title}')
