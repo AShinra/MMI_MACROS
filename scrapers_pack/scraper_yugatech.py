@@ -57,37 +57,24 @@ def yugatech(my_range, timer):
                         for element in elements:
                             link = element.find('a').get('href')
                             _title = element.find('h3').text
-                            # _element = element.select('li')[-1]
-                            # _ele = _element.find('span').text
-                            # st.write(_ele)
-
                             _date = element.select_one('.ee-postmeta-date').text
                             _date = parse_date(_date)
                             st.write(f'{_date} - {_title}')
 
-                            # if link not in [None, '']:
-                            #     if re.search('/\d{4}/\d{2}/\d{2}/\w+', link):
-                            #         if 'twitter.com/share?' not in link:
-                            #             if 'facebook.com/share' not in link:
-                            #                 if 'viber://forward?text' not in link:
-                            #                     if link not in _urls:
+                            if link not in [None, '']:
+                                if link not in _urls:
+                                    if _date in date_list:
+                                        _urls.append(link)
+                                        _dates.append(_date)
+                                        _titles.append(_title)
+                                    else:
+                                        status='break'
+                                        break
 
-                            #                         _day = int(link.split('/')[-4])
-                            #                         _month = int(link.split('/')[-5])
-                            #                         _year = int(link.split('/')[-6])
-                            #                         _date = datetime(_year, _month, _day)
-
-                            #                         if _date in date_list:
-                            #                             _urls.append(link)
-                            #                             _dates.append(_date)
-                            #                             _titles.append(_title)
-                            #                         else:
-                            #                             status='break'
-
-    #                 else:
-    #                     st.write(response)
-    #                     break
+                    else:
+                        st.write(response)
+                        break
                                                 
-    #         df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})  
+            df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})  
 
-    # return df
+    return df
