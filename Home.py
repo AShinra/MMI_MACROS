@@ -4,7 +4,7 @@ from Tools import bg_image
 from templates import template_landing
 from scrapers import scraper_landing
 from parser import parsers_landing
-from test_scraper import main_scraper
+# from test_scraper import main_scraper
 from archive import local_fetcher_archive
 
 

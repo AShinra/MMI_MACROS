@@ -48,10 +48,10 @@ def inq(my_range):
     with st.spinner('Processing Website'):
         for k, v in urls.items():
             response = requests.get(v, headers={'User-Agent':random.choice(userAgents)})
-
+            
             if response.status_code == 200:
                 html_content = response.content
-
+            
                 soup = BeautifulSoup(html_content, 'html.parser')
 
                 article_group = soup.find(id='index-wrap')
@@ -69,6 +69,9 @@ def inq(my_range):
                             _dates.append(date_str)
                             _titles.append(_title)
                             _urls.append(_url)
+            else:
+                st.write(response.status_code)
+            
             
 
     df = pd.DataFrame({'Date':_dates, 'Title':_titles, 'URL':_urls})
