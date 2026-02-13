@@ -80,7 +80,7 @@ pyee
 Pygments==2.18.0
 pymdown-extensions==10.12
 pyparsing==3.2.0
-pyppeteer==2.0.0
+pyppeteer
 pyquery==2.0.1
 PySocks==1.7.1
 python-dateutil==2.9.0.post0
