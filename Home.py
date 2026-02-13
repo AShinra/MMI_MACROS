@@ -6,6 +6,8 @@ from scrapers import scraper_landing
 from parser import parsers_landing
 # from test_scraper import main_scraper
 from archive import local_fetcher_archive
+from test_selenium_scraper import pampangajournal_scraper
+
 
 
 
@@ -22,8 +24,8 @@ if __name__ == '__main__':
     with st.sidebar:
         selected = option_menu(
             menu_title='',
-            options=['Home', 'Templates', 'Fetcher', 'Archive', 'URL Fetcher'],
-            icons=['house', 'file-ruled', 'link', 'archive', 'link'],
+            options=['Home', 'Templates', 'Fetcher', 'Pampanga Journal', 'Archive', 'URL Fetcher'],
+            icons=['house', 'file-ruled', 'link', 'link', 'archive', 'link'],
             orientation='vertical',
             default_index=0
         )
@@ -45,6 +47,9 @@ if __name__ == '__main__':
     
     if selected == 'Archive':
         local_fetcher_archive()
+    
+    if selected == 'Pampanga Journal':
+        pampangajournal_scraper()
     
     # elif selected == 'Parser':
     #     parsers_landing()
