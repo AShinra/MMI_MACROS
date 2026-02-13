@@ -19,6 +19,7 @@ from scrapers_pack.scraper_ttm import ttm
 from scrapers_pack.scraper_art import art
 from scrapers_pack.scraper_pstech import ps_tech
 from scrapers_pack.scraper_yugatech import yugatech
+from scrapers_pack.scraper_pampanga_journal import pampangajournal_scraper
 
 
 def scraper_landing():
@@ -40,8 +41,8 @@ def scraper_landing():
         'TechTravelMonitor',
         'ArtPlus',
         'PhilstarTech',
-        'Yugatech'
-        )
+        'Yugatech',
+        'Pampanga Journal')
 
     publication_options = tuple(sorted(publication_options))
 
@@ -143,6 +144,13 @@ def scraper_landing():
             
             elif st.session_state['pub_sel_radio'] == 'Yugatech':
                 links_collected = yugatech(my_range, _timer)
+
+                with col2:
+                    st.header(f'Links Collected - {links_collected.shape[0]}')
+                    st.dataframe(links_collected, hide_index=True)
+            
+            elif st.session_state['pub_sel_radio'] == 'Pampanga Journal':
+                links_collected = pampangajournal_scraper(my_range)
 
                 with col2:
                     st.header(f'Links Collected - {links_collected.shape[0]}')
