@@ -6,16 +6,24 @@ from BSP_Alert import bsp_main
 
 def template_landing():
 
-    with st.sidebar:
-        selected = option_menu(
-            menu_title='',
-            options=['BSP', 'MPIC'],
-            icons = ['file-spreadsheet', 'file-richtext-fill'],
-            orientation='vertical',
-            default_index=0
-        )
-    
-    if selected == 'BSP':
-        bsp_main()
+    cols = st.columns([2,5,3])
 
-    return
+    with cols[0]:
+        client = st.radio('Select Client', ['Bangko Sentral ng Pilipinas','JG Summit'])
+    with cols[1]:
+        raw_file = st.file_uploader('Input Raw File', key='client_raw',label_visibility='collapsed')
+
+    if raw_file == None:
+        _disabled = True
+    else:
+        _disabled = False
+    
+    if st.button(label='Process File', disabled=_disabled):
+        if client == 'Bangko Sentral ng Pilipinas':
+            bsp_main(client)
+        if client == 'JG Summit':
+            bsp_main(client)
+
+
+
+    
