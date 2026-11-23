@@ -50,10 +50,11 @@ def sheet_formating(df, sendout_date, cats, client):
         df_3 = df_cat.loc[df_cat['PRINT LINK'] == 'N/A']
 
         # get broadcast rows
-        df_4 = df_cat.loc[df_cat['BROADCAST LINK'] == 'N/A']
+        # df_4 = df_cat.loc[df_cat['BROADCAST LINK'] == 'N/A']
     
         # combine dataframes
-        df_cat = pd.concat([df_1, df_2, df_3, df_4], sort=False)
+        # df_cat = pd.concat([df_1, df_2, df_3, df_4], sort=False)
+        df_cat = pd.concat([df_1, df_2, df_3], sort=False)
         df_cat.reset_index(drop=True, inplace=True)
 
         dfs.append(df_cat)
@@ -142,7 +143,7 @@ def sheet_formating(df, sendout_date, cats, client):
         category_cell.border = thin_border
         category_cell.font = category_font
         category_cell.alignment = Alignment(horizontal='center')
-        ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=6)
+        ws.merge_cells(start_row=s_row, start_column=1, end_row=s_row, end_column=5)
 
         # create header
         date_header = ws.cell(row=s_row+1, column=1)
@@ -175,11 +176,11 @@ def sheet_formating(df, sendout_date, cats, client):
         print_header.alignment = Alignment(horizontal='center')
         print_header.border = thin_border
 
-        print_header = ws.cell(row=s_row+1, column=6)
-        print_header.value = 'BROADCAST'
-        print_header.font = header_font
-        print_header.alignment = Alignment(horizontal='center')
-        print_header.border = thin_border
+        # print_header = ws.cell(row=s_row+1, column=6)
+        # print_header.value = 'BROADCAST'
+        # print_header.font = header_font
+        # print_header.alignment = Alignment(horizontal='center')
+        # print_header.border = thin_border
         
         for i in _df.index:
 
@@ -188,7 +189,7 @@ def sheet_formating(df, sendout_date, cats, client):
             s_title = _df.at[i, 'TITLE']
             s_online = _df.at[i, 'ONLINE LINK']
             s_print = _df.at[i, 'PRINT LINK']
-            s_broadcast = _df.at[i, 'BROADCAST LINK']
+            # s_broadcast = _df.at[i, 'BROADCAST LINK']
 
             # populate and format cells
             date_cell = ws.cell(row=s_row+2+i, column=1)
@@ -235,18 +236,18 @@ def sheet_formating(df, sendout_date, cats, client):
             print_cell.alignment = Alignment(horizontal='center')
             print_cell.border = thin_border
 
-            broadcast_cell = ws.cell(row=s_row+2+i, column=6)
-            if s_broadcast == 'N/A':    
-                broadcast_cell.value = 'N/A'
-                broadcast_cell.font = general_font
-            else:
-                broadcast_cell.value = 'Broadcast Link'
-                broadcast_cell.hyperlink = s_print
-                # broadcast_cell.style = 'Hyperlink'
-                broadcast_cell.font = Font(bold=True, name='Arial', size=10, color='0000FF', underline='single')
+            # broadcast_cell = ws.cell(row=s_row+2+i, column=6)
+            # if s_broadcast == 'N/A':    
+            #     broadcast_cell.value = 'N/A'
+            #     broadcast_cell.font = general_font
+            # else:
+            #     broadcast_cell.value = 'Broadcast Link'
+            #     broadcast_cell.hyperlink = s_print
+            #     # broadcast_cell.style = 'Hyperlink'
+            #     broadcast_cell.font = Font(bold=True, name='Arial', size=10, color='0000FF', underline='single')
 
-            broadcast_cell.alignment = Alignment(horizontal='center')
-            broadcast_cell.border = thin_border
+            # broadcast_cell.alignment = Alignment(horizontal='center')
+            # broadcast_cell.border = thin_border
 
 
         s_row = s_row + l + 2
@@ -350,7 +351,7 @@ def bsp_main(client):
 
     df['PRINT LINK'] = 'N/A'
     df['ONLINE LINK'] = 'N/A'
-    df['BROADCAST LINK'] = 'N/A'
+    # df['BROADCAST LINK'] = 'N/A'
     df['DELETE'] = ''
 
     dfs = []
@@ -424,6 +425,10 @@ def bsp_main(client):
 
     new_dfs = []
     for _df in dfs:
+
+        _df = _df[~_df['TYPE'].isin(['Cable TV', 'AM Radio'])]
+        st.dataframe(_df)
+
         for j in _df.index:
             main_title = _df.at[j, 'TITLE']
             main_source = _df.at[j, 'SOURCE']
@@ -485,6 +490,7 @@ def bsp_main(client):
 
         # drop other columns
         _df = _df.drop(["AUTHOR", "LINK", "DELETE"], axis='columns')
+        _df = _df.drop_duplicates()
 
         # st.dataframe(_df)
         new_dfs.append(_df)
@@ -496,7 +502,7 @@ def bsp_main(client):
     # convert to excel
     # df_merged = pd.concat([new_dfs[0], new_dfs[1], new_dfs[2]], sort=False)
     df_merged = pd.concat(new_dfs, ignore_index=True, sort=False)
-    df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'BROADCAST LINK', 'CATEGORY']]
+    df_merged = df_merged[['DATE', 'SOURCE', 'TITLE', 'ONLINE LINK', 'PRINT LINK', 'CATEGORY']]
     
     df_merged.to_excel(REPORT_FILE, index=False, startrow=8)
     
