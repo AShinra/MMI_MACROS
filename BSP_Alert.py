@@ -339,8 +339,6 @@ def dataframe_create(uploaded_file):
 
     df = pd.read_excel(REPORT_FILE) 
 
-    st.write(cats)
-
     return df, REPORT_FILE, sendout_date, cats
 
 
@@ -374,8 +372,6 @@ def bsp_main(client):
             if '|' in _title:
                 end_text = _title.split('|')[-1]
                 df_cat.at[i, 'TITLE'] = _title.replace(end_text, '')
-
-        st.dataframe(df_cat)
 
         dfs.append(df_cat)
 
