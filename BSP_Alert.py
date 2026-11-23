@@ -322,6 +322,9 @@ def dataframe_create(uploaded_file):
     cats = [x for x in cats if x not in ('', None)]
     cats = cats[0:-2]
 
+    cats = [value for i, value in enumerate(cats) if i + 1 >= len(cats) or cats[i + 1] != "NEWS SCAN HAS NO RESULT"]
+    cats = [x for x in cats if x != 'NEWS SCAN HAS NO RESULT']
+
     for row in ws.iter_rows(max_col=7):
 
         # if row[0].value in ['TODAYS HEADLINE NEWS',
@@ -335,6 +338,8 @@ def dataframe_create(uploaded_file):
     wb.close()
 
     df = pd.read_excel(REPORT_FILE) 
+
+    st.write(cats)
 
     return df, REPORT_FILE, sendout_date, cats
 
@@ -356,7 +361,7 @@ def bsp_main(client):
 
     dfs = []
     for cat in cats:
-
+        
         df_cat = df.groupby('CATEGORY').get_group(cat)
 
         for i in df_cat.index:
@@ -369,6 +374,8 @@ def bsp_main(client):
             if '|' in _title:
                 end_text = _title.split('|')[-1]
                 df_cat.at[i, 'TITLE'] = _title.replace(end_text, '')
+
+        st.dataframe(df_cat)
 
         dfs.append(df_cat)
 
