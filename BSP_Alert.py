@@ -427,8 +427,7 @@ def bsp_main(client):
     for _df in dfs:
 
         _df = _df[~_df['TYPE'].isin(['Cable TV', 'AM Radio'])]
-        st.dataframe(_df)
-
+        
         for j in _df.index:
             main_title = _df.at[j, 'TITLE']
             main_source = _df.at[j, 'SOURCE']
