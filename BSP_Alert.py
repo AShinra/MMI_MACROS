@@ -484,7 +484,7 @@ def bsp_main(client):
         _df = _df[_df.DELETE != 'FOR DELETION']
 
         # drop other columns
-        _df = _df.drop(["AUTHOR", "LINK", "DELETE", "BROADCAST"], axis='columns')
+        _df = _df.drop(["AUTHOR", "LINK", "DELETE"], axis='columns')
 
         # st.dataframe(_df)
         new_dfs.append(_df)
